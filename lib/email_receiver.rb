@@ -14,7 +14,6 @@ class EmailReceive
     to      = mail.to.first
     subject = mail.subject
 
-
     if mail.multipart?
       part = mail.parts.select { |p| p.content_type =~ /text\/plain/ }.first rescue nil
       unless part.nil?
@@ -29,5 +28,4 @@ class EmailReceive
     end
   end
 end
-
 EmailReceive.new($stdin.read)

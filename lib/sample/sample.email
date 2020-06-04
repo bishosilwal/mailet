@@ -1,0 +1,14 @@
+From alice@yourdomain.com  Sun Apr  6 18:18:26 2014
+Return-Path: <alice@yourdomain.com>
+X-Original-To: bob@yourdomain.com
+Delivered-To: bob@yourdomain.com
+Received: by smtp.yourdomain.com (Postfix, from userid 1000)
+        id A3D17282CF9; Sun,  6 Apr 2014 18:18:26 -0700 (PDT)
+Subject: testing the ruby scripts
+To: <bob@yourdomain.com>
+X-Mailer: mail (GNU Mailutils 2.2)
+Message-Id: <20140407011826.A3D17282CF9@smtp.yourdomain.com>
+Date: Sun,  6 Apr 2014 18:18:26 -0700 (PDT)
+From: alice@yourdomain.com (alice)
+
+Hello, this is the body of the email.

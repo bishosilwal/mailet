@@ -5,6 +5,7 @@ class EmailReceive
 
   def self.perform(from, to, subject, body)
     user = User.first
+
     if user.nil?
       raise InvalidReplyUser, "User with email = #{from} is not a member of the app."
     end

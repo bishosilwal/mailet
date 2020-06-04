@@ -46,6 +46,7 @@ group :development do
   gem 'byebug'
   gem 'pry'
   gem 'pry-rails'
+  gem 'pry-stack_explorer'
 end
 
 group :test do
