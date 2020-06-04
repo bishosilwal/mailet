@@ -1,4 +1,28 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-@import "bootstrap/scss/bootstrap.scss"
+@import "bootstrap/scss/bootstrap.scss";
+
+.email-div{
+  background-color: green;
+}
+.email-div-row{
+  background-color: #612a0c;
+  border-radius: 4px;
+}
+
+.email-container{
+  background-color: #042d57;
+}
+.message-container-card {
+  .card-header {
+    background-color: #042d57;
+  }
+}
+.mail-active{
+  background-color: green;
+  height: 3px;
+  width: 3px;
+  padding-right: 5px;
+  margin-right: 5px;
+}

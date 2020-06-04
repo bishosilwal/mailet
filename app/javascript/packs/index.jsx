@@ -4,13 +4,19 @@
 
 import React, { Component} from 'react'
 import ReactDOM from 'react-dom'
-import PropTypes from 'prop-types'
+import Header from './components/header'
+import EmailContainer from './components/emailContainer'
+import MessageContainer from "./components/messageContainer";
 
 export default class Index extends Component {
 
   render(){
     return(
-      <div>hello world</div>
+      <React.Fragment>
+        <Header/>
+        <EmailContainer />
+        <MessageContainer />
+      </React.Fragment>
     )
   }
 }
