@@ -1,6 +1,6 @@
 class EmailChannel < ApplicationCable::Channel
   def subscribed
-    stream_from "message"
+    stream_from "mail_receiver"
   end
 
   def unsubscribed
