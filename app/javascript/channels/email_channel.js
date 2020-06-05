@@ -12,7 +12,10 @@ consumer.subscriptions.create("EmailChannel", {
 
   received(data) {
     console.log('receive data')
-    console.log(data)
+    window.store.dispatch({
+      type: 'EMAIL_RECEIVED',
+      email: data.email
+    })
     // Called when there's incoming data on the websocket for this channel
   }
 });

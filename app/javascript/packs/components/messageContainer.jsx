@@ -5,7 +5,7 @@ import Message from './message';
 class MessageContainer extends Component{
   state = {
     message: {},
-    emails: this.props.emails,
+    emails: this.props.emails || [],
   };
 
   componentWillReceiveProps(nextProps, nextContext) {
@@ -62,9 +62,9 @@ class MessageContainer extends Component{
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   return {
-    emails: state.emails
+    emails: state.emailReducer.emails
   }
 };
-export default connect(mapStateToProps)(MessageContainer);
+export default connect(mapStateToProps, null)(MessageContainer);

@@ -7,10 +7,8 @@ import ReactDOM from 'react-dom';
 import Header from './components/header';
 import EmailContainer from './components/emailContainer';
 import MessageContainer from "./components/messageContainer";
-import configureStore from './store/configureStore';
+import './store/configureStore';
 import { Provider } from 'react-redux';
-
-window.store = configureStore();
 
 export default class Index extends Component {
 
