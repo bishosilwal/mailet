@@ -5,21 +5,21 @@ export default class Message extends Component{
     message: this.props.message
   }
 
-  componentWillUpdate(prevProps, prevState, snapshot) {
-    if(prevProps.message != prevState.message) {
-      this.setState({...prevState, message: prevProps.message})
+  componentWillReceiveProps(nextProps, nextContext) {
+    if(nextProps.message != this.props.message) {
+      this.setState({message: nextProps.message})
     }
   }
 
   render(){
     var message = this.state.message;
-    if(message) {
+    if(Object.keys(message).length !=0) {
       return(
         <div className='container'>
           <div className='row'>
             <div className='col-6'>
               <img href='' alt='image'/> Bisho silwal
-              {message}
+              {message.from}
             </div>
             <div className='col-6'>
               Date: Fri, 05 Jun 2020
@@ -27,10 +27,10 @@ export default class Message extends Component{
           </div>
           <div className='row'>
             <div className='col-12 pt-3 p-2'>
-              subject: test email
+              subject: {message.subject}
             </div>
             <div className='col-12 pt-3 p-2'>
-              This is the body of the mail
+              {message.body}
             </div>
           </div>
         </div>
