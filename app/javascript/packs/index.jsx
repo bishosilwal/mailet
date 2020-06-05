@@ -2,21 +2,25 @@
 // like app/views/layouts/application.html.erb. All it does is render <div>Hello React</div> at the bottom
 // of the page.
 
-import React, { Component} from 'react'
-import ReactDOM from 'react-dom'
-import Header from './components/header'
-import EmailContainer from './components/emailContainer'
+import React, { Component} from 'react';
+import ReactDOM from 'react-dom';
+import Header from './components/header';
+import EmailContainer from './components/emailContainer';
 import MessageContainer from "./components/messageContainer";
+import configureStore from './store/configureStore';
+import { Provider } from 'react-redux';
+
+window.store = configureStore();
 
 export default class Index extends Component {
 
   render(){
     return(
-      <React.Fragment>
+      <Provider store={window.store}>
         <Header/>
         <EmailContainer />
         <MessageContainer />
-      </React.Fragment>
+      </Provider>
     )
   }
 }

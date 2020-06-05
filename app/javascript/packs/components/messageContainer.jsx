@@ -1,36 +1,30 @@
-import React,{ Component } from 'react'
-import Message from './message'
-export default class MessageContainer extends Component{
+import React,{ Component } from 'react';
+import { connect } from 'react-redux';
+import Message from './message';
+
+class MessageContainer extends Component{
   state = {
     message: {},
-    allMessage: [{
-      id: 1,
-      to: 'receiver@gmail.com',
-      from: 'sender@gmail.com',
-      subject: 'test message',
-      body: 'This is the body of message'
-    },
-      {
-        id: 2,
-        to: 'receiver1@gmail.com',
-        from: 'sender1@gmail.com',
-        subject: 'test1 message',
-        body: 'This is the body of message'
-      }
-    ],
+    emails: this.props.emails,
+  };
+
+  componentWillReceiveProps(nextProps, nextContext) {
+    if(nextProps.emails != this.state.emails) {
+      this.setState({emails: nextProps.emails})
+    }
   };
 
   messageClicked = e => {
-    var allMessage = this.state.allMessage;
-    var message = allMessage.find(m => m.from == e.target.innerText);
+    var emails = this.state.emails;
+    var message = emails.find(m => m.from == e.target.innerText);
     this.setState({...this.state, message: message});
   };
 
   render(){
-    var {message, allMessage} = this.state;
+    var {message, emails} = this.state;
     const messageList = (
       <ul>
-        {allMessage.map(m =>
+        {emails.map(m =>
           <li key={m.id} onClick={this.messageClicked}>{m.from}</li>
         )}
       </ul>
@@ -67,3 +61,10 @@ export default class MessageContainer extends Component{
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    emails: state.emails
+  }
+};
+export default connect(mapStateToProps)(MessageContainer);
