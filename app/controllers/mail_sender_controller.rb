@@ -2,7 +2,7 @@ class MailSenderController < ApplicationController
 
   def send_mail
     UserMailer.reply_mail(params['new_message']).deliver_now
-    render json: { status: '', message: 'Mail sent'}
+    render json: { status: '', message: 'Mail sent', details: ""}
   end
 
   private

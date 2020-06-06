@@ -24,7 +24,7 @@ class Message extends Component{
   }
 
   sendMessage = (e) => {
-    var state = this.state;
+    var that = this;
     var newMessage = this.state.newMessage;
     newMessage['to'] = this.state.from;
     newMessage['from'] = 'test@gmail.com';
@@ -38,8 +38,8 @@ class Message extends Component{
       }
     })
       .then(function (res) {
-        console.log('response from message send');
-        console.log(res);
+        that.setState({newMessage: {subject: '', body: ''}});
+        toastr.success(res.data.message, res.data.details)
       })
   }
 
