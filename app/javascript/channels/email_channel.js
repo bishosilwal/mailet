@@ -1,6 +1,6 @@
 import consumer from "./consumer"
 
-consumer.subscriptions.create("EmailChannel", {
+window.emailChannel = consumer.subscriptions.create("EmailChannel", {
   initialized() {
     this.initEmail = this.initEmail.bind(this);
   },
@@ -25,6 +25,5 @@ consumer.subscriptions.create("EmailChannel", {
 
   initEmail() {
     this.perform('get_email')
-  },
-
+  }
 });

@@ -70,7 +70,7 @@ class MessageContainer extends Component{
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    emails: state.emailReducer.emails
+    emails: state.emailReducer.emails,
   }
 };
 export default connect(mapStateToProps, null)(MessageContainer);

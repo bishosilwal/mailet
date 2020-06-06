@@ -1,15 +1,20 @@
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 class Message extends Component{
   state = {
     messages: this.props.selectedMessages || [],
-    from: this.props.from
+    from: this.props.from,
+    newMessage: {
+      subject: '',
+      body: ''
+    }
   }
 
   componentWillReceiveProps(nextProps, nextContext) {
     if(nextProps.selectedMessages != this.props.selectedMessages) {
-      this.setState({messages: nextProps.selectedMessages});
+      this.setState({messages: nextProps.selectedMessages, from: nextProps.from});
     }
   }
   formatDateTime(date) {
@@ -17,8 +22,35 @@ class Message extends Component{
     date = date.toDateString() + ' ' + date.toLocaleTimeString();
     return date;
   }
+
+  sendMessage = (e) => {
+    var state = this.state;
+    var newMessage = this.state.newMessage;
+    newMessage['to'] = this.state.from;
+    newMessage['from'] = 'test@gmail.com';
+    var token = window.$("meta[name='csrf-token']").attr('content');
+    axios.post('/send_email', {
+      new_message: newMessage
+    },{
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+        'X-CSRF-Token': token
+      }
+    })
+      .then(function (res) {
+        console.log('response from message send');
+        console.log(res);
+      })
+  }
+
+  handleChange = (e) => {
+    var newMessage = this.state.newMessage;
+    newMessage[e.target.name] = e.target.value;
+    this.setState({newMessage: newMessage})
+  }
+
   render() {
-    var messages = this.state.messages;
+    var {messages, newMessage} = this.state;
     var scrollable = messages.length === 3 ? true : false;
     const scrollableMessageStyles = scrollable ? {
       height: '500px',
@@ -52,7 +84,6 @@ class Message extends Component{
         ) }
       </div>
 
-
     if(scrollable) {
       this.messagesList.scrollIntoView();
     }
@@ -63,41 +94,23 @@ class Message extends Component{
           <div className='row m-1'>
             <div className='col-12 shadow-lg p-3 pt-0 mb-5 bg-white rounded'>
               <div className='row'>
-                <div className='col-12 pt-3'>
-                  <div className="form-group row">
-                    <label htmlFor="email" className="col-sm-2 col-form-label">
-                      <span className='font-weight-bolder'>To:</span>
-                    </label>
-                    <div className="col-sm-10">
-                      <input type="email" name='receiver_email' className="form-control" id="email" placeholder='Enter receiver email' />
-                    </div>
-                  </div>
-                  <div className="form-group row">
-                    <label htmlFor="cc" className="col-sm-2 col-form-label">
-                      <span className='font-weight-bolder'>CC:</span>
-                    </label>
-                    <div className="col-sm-10">
-                      <input type="email" name='receiver_cc' className="form-control" id="cc" placeholder='Enter email' />
-                    </div>
-                  </div>
-                </div>
                 <div className='col-12 p-3'>
                   <div className="form-group row">
                     <label htmlFor="subject" className="col-sm-2 col-form-label">
                       <span className='font-weight-bolder'>Subject:</span>
                     </label>
                     <div className="col-sm-10">
-                      <input type="text" name='subject' className="form-control" id="subject" placeholder='Enter mail subject' />
+                      <input type="text" name='subject' value={newMessage.subject} className="form-control" id="subject" placeholder='Enter mail subject' onChange={this.handleChange} />
                     </div>
                   </div>
                 </div>
                 <div className='col-12 p-3 pt-0'>
                   <div className="form-group">
-                    <textarea className="form-control" name='body' rows="3" placeholder='Enter message'></textarea>
+                    <textarea className="form-control" value={newMessage.body} onChange={this.handleChange} name='body' rows="3" placeholder='Enter message'></textarea>
                   </div>
                 </div>
                 <div className='col-12 '>
-                  <button className='btn btn-success float-right'>Send</button>
+                  <button className='btn btn-success float-right' onClick={this.sendMessage}>Send</button>
                 </div>
               </div>
             </div>
