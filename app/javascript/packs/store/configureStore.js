@@ -1,20 +1,38 @@
 import { createStore, combineReducers } from 'redux';
 
 const initialState = {
-  emails: [
-  ]
+  emails: []
 };
 
 function emailReducer(state = initialState, action) {
-  console.log('email reducer called')
   switch (action.type) {
     case 'EMAIL_RECEIVED':
-      return {
-        ...state,
-        emails: [
-          ...state.emails,
-          action.email
-        ],
+      var mail = state.emails.find(m => m.from == action.email.from);
+      if(typeof(mail) == 'undefined') {
+        return {
+          ...state,
+          emails: [
+            ...state.emails,
+            {
+              from: action.email.from,
+              messages: [action.email]
+            }
+          ],
+        }
+      } else {
+        return {
+          ...state,
+          emails: [
+            ...state.emails.filter(m => m.from != action.email.from),
+            {
+              from: action.email.from,
+              messages: [
+                ...mail.messages,
+                action.email
+              ]
+            }
+          ]
+        }
       }
     default:
       return state;
