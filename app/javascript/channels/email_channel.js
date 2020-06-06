@@ -2,12 +2,12 @@ import consumer from "./consumer"
 
 consumer.subscriptions.create("EmailChannel", {
   initialized() {
-    // this.initEmail = this.initEmail.bind(this);
+    this.initEmail = this.initEmail.bind(this);
   },
   connected() {
     console.log('subscription is ready')
     // Called when the subscription is ready for use on the server
-    // this.initEmail();
+    this.initEmail();
   },
 
   disconnected() {
@@ -22,9 +22,9 @@ consumer.subscriptions.create("EmailChannel", {
     })
     // Called when there's incoming data on the websocket for this channel
   },
-  //
-  // initEmail() {
-  //   this.perform('get_email')
-  // },
+
+  initEmail() {
+    this.perform('get_email')
+  },
 
 });

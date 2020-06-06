@@ -6,8 +6,8 @@ class EmailChannel < ApplicationCable::Channel
   def unsubscribed
     # Any cleanup needed when channel is unsubscribed
   end
-  #
-  # def get_email
-  #   ActionCable.server.broadcast('mail_receiver', email: Message.last)
-  # end
+
+  def get_email
+    ActionCable.server.broadcast('mail_receiver', email: Message.last)
+  end
 end
