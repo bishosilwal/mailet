@@ -24,11 +24,14 @@ class MessageContainer extends Component{
   render(){
     var {selectedMessages, emails, from} = this.state;
     const messageList = (
-      <ul>
+      <div className="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
         {emails.map(m =>
-          <li key={m.from} onClick={this.messageClicked} data-from={m.from}>{m.from}    count:{m.messages.length}</li>
+          <a className="nav-link border border-secondary rounded-0" id="v-pills-message-tab" data-toggle="pill" href="#v-pills-message" role="tab"
+             aria-controls="v-pills-message" aria-selected={from == m.from ? 'true' : 'false'} data-from={m.from} onClick={this.messageClicked} key={m.from}>
+            {m.from}  <span className='badge badge-success float-right'>{m.messages.length}</span>
+          </a>
         )}
-      </ul>
+      </div>
     )
     return(
       <div className='container-fluid'>
@@ -43,15 +46,18 @@ class MessageContainer extends Component{
                 </div>
               </div>
 
-              <div className='card-body'>
-                <div className='row'>
-                  <div className='col-4 message-list'>
-                    <div className='row'>
-                      {messageList}
-                    </div>
+              <div className='card-body container-fluid p-2'>
+                <div className='row p-2'>
+                  <div className='col-4 p-1 pl-2'>
+                    {messageList}
                   </div>
-                  <div className='col-8'>
-                    <Message selectedMessages={selectedMessages} from={from}/>
+                  <div className='col-8 p-1'>
+                    <div className="tab-content" id="v-pills-tabContent">
+                      <div className="tab-pane fade show active" id="v-pills-message" role="tabpanel"
+                           aria-labelledby="v-pills-message-tab">
+                        <Message selectedMessages={selectedMessages} from={from}/>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
