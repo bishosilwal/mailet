@@ -1,17 +1,19 @@
-import React,{ Component } from 'react'
+import React,{ Component } from 'react';
+import { connect } from 'react-redux';
 
-export default class Message extends Component{
+class Message extends Component{
   state = {
-    messages: this.props.messages || []
+    messages: this.props.selectedMessages || [],
+    from: this.props.from
   }
 
   componentWillReceiveProps(nextProps, nextContext) {
-    if(nextProps.messages != this.props.messages) {
-      this.setState({messages: nextProps.messages})
+    if(nextProps.selectedMessages != this.props.selectedMessages) {
+      this.setState({messages: nextProps.selectedMessages});
     }
   }
 
-  render(){
+  render() {
     var messages = this.state.messages;
     const messagesList = messages.map(message =>
       <div className='col-12' key={message.id}>
@@ -34,7 +36,7 @@ export default class Message extends Component{
         </div>
       </div>
     )
-    if(Object.keys(messages).length !=0) {
+    if(messages.length != 0) {
       return(
         <div className='container'>
           {messagesList}
@@ -51,3 +53,17 @@ export default class Message extends Component{
     }
   }
 }
+
+const mapsStateToProps = (state, ownProps) => {
+  var messages = state.emailReducer.emails.filter(m => m.from === ownProps.from)[0];
+  if(typeof(messages) == 'undefined') {
+    messages = [];
+  } else {
+    messages = messages.messages
+  }
+  return {
+    selectedMessages: messages,
+    from: ownProps.from
+  }
+};
+export default connect(mapsStateToProps, null)(Message);

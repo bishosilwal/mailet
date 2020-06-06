@@ -4,7 +4,8 @@ import Message from './message';
 
 class MessageContainer extends Component{
   state = {
-    messages: [],
+    selectedMessages: [],
+    from: null,
     emails: this.props.emails || [],
   };
 
@@ -16,16 +17,16 @@ class MessageContainer extends Component{
 
   messageClicked = e => {
     var emails = this.state.emails;
-    var messages = emails.find(m => m.from == e.target.innerText).messages;
-    this.setState({...this.state, messages: messages});
+    var selectedMessages = emails.find(m => m.from == e.target.dataset.from).messages;
+    this.setState({...this.state, selectedMessages: selectedMessages, from: e.target.dataset.from});
   };
 
   render(){
-    var {messages, emails} = this.state;
+    var {selectedMessages, emails, from} = this.state;
     const messageList = (
       <ul>
         {emails.map(m =>
-          <li key={m.from} onClick={this.messageClicked}>{m.from}</li>
+          <li key={m.from} onClick={this.messageClicked} data-from={m.from}>{m.from}    count:{m.messages.length}</li>
         )}
       </ul>
     )
@@ -50,7 +51,7 @@ class MessageContainer extends Component{
                     </div>
                   </div>
                   <div className='col-8'>
-                    <Message messages={messages}/>
+                    <Message selectedMessages={selectedMessages} from={from}/>
                   </div>
                 </div>
               </div>
