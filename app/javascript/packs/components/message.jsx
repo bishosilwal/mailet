@@ -12,23 +12,33 @@ class Message extends Component{
       this.setState({messages: nextProps.selectedMessages});
     }
   }
-
+  formatDateTime(date) {
+    date = new Date(date);
+    date = date.toDateString() + ' ' + date.toLocaleTimeString();
+    return date;
+  }
   render() {
     var messages = this.state.messages;
+    console.log(messages)
     const messagesList = messages.map(message =>
-      <div className='col-12' key={message.id}>
+      <div className='col-12 shadow-lg p-3 mb-5 bg-white rounded' key={message.id}>
         <div className='row'>
           <div className='col-6'>
-            <img href='' alt='image'/> Bisho silwal
-            {message.from}
+            <span className='font-weight-bolder'>From:</span> <span>{message.from} </span>
           </div>
           <div className='col-6'>
-            Date: Fri, 05 Jun 2020
+            <p className='float-right'>
+              <span className='font-weight-bolder'>Date: </span>
+              <span>{this.formatDateTime(message.created_at)}</span>
+            </p>
           </div>
         </div>
         <div className='row'>
           <div className='col-12 pt-3 p-2'>
-            subject: {message.subject}
+            <hr/>
+            <span className='font-weight-bolder'>Subject: </span>
+            {message.subject}
+            <hr/>
           </div>
           <div className='col-12 pt-3 p-2'>
             {message.body}
