@@ -9,7 +9,9 @@ class Message extends Component{
     newMessage: {
       subject: '',
       body: ''
-    }
+    },
+    subjectInvalid: false,
+    bodyInvalid: false
   }
 
   componentWillReceiveProps(nextProps, nextContext) {
@@ -28,6 +30,18 @@ class Message extends Component{
     var newMessage = this.state.newMessage;
     newMessage['to'] = this.state.from;
     newMessage['from'] = 'test@gmail.com';
+    if(newMessage['subject'].trim().length == 0) {
+      this.setState({subjectInvalid: true})
+      e.preventDefault();
+      return;
+    }
+    this.setState({subjectInvalid: false, bodyInvalid: false})
+    if(newMessage['body'].trim().length == 0) {
+      this.setState({bodyInvalid: true})
+      e.preventDefault();
+      return;
+    }
+    this.setState({bodyInvalid: false})
     var token = window.$("meta[name='csrf-token']").attr('content');
     axios.post('/send_email', {
       new_message: newMessage
@@ -39,7 +53,7 @@ class Message extends Component{
     })
       .then(function (res) {
         that.setState({newMessage: {subject: '', body: ''}});
-        toastr.success(res.data.message, res.data.details)
+        toastr.success(res.data.message, res.data.details, {'iconClass': 'toastr-success'})
       })
   }
 
@@ -50,7 +64,8 @@ class Message extends Component{
   }
 
   render() {
-    var {messages, newMessage} = this.state;
+    var {messages, newMessage, subjectInvalid, bodyInvalid} = this.state;
+
     var scrollable = messages.length === 3 ? true : false;
     const scrollableMessageStyles = scrollable ? {
       height: '500px',
@@ -100,13 +115,19 @@ class Message extends Component{
                       <span className='font-weight-bolder'>Subject:</span>
                     </label>
                     <div className="col-sm-10">
-                      <input type="text" name='subject' value={newMessage.subject} className="form-control" id="subject" placeholder='Enter mail subject' onChange={this.handleChange} />
+                      <input type="text" name='subject' value={newMessage.subject} ref={(el) => this.mailSubject = el} className={"form-control " + `${subjectInvalid ? 'is-invalid' : ''}` } id="subject" placeholder='Enter mail subject' onChange={this.handleChange} required={true}/>
+                      <div className="invalid-feedback">
+                        Please enter subject
+                      </div>
                     </div>
                   </div>
                 </div>
                 <div className='col-12 p-3 pt-0'>
                   <div className="form-group">
-                    <textarea className="form-control" value={newMessage.body} onChange={this.handleChange} name='body' rows="3" placeholder='Enter message'></textarea>
+                    <textarea value={newMessage.body} ref={(el) => this.mailBody = el} onChange={this.handleChange} name='body' rows="3" placeholder='Enter message' required={true} className={"form-control " + `${bodyInvalid ? 'is-invalid' : ''}` }></textarea>
+                    <div className="invalid-feedback">
+                      Please enter body
+                    </div>
                   </div>
                 </div>
                 <div className='col-12 '>

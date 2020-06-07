@@ -18,7 +18,7 @@ toastr.options = {
   "showEasing": "swing",
   "hideEasing": "linear",
   "showMethod": "slideDown",
-  "hideMethod": "slideUp"
+  "hideMethod": "slideUp",
 }
 window.toastr = toastr;
 // Uncomment to copy all static images under ../images to the output folder and reference
