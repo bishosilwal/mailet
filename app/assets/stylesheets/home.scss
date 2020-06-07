@@ -3,13 +3,17 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "bootstrap/scss/bootstrap.scss";
 @import "toastr/toastr.scss";
+@import "@fortawesome/fontawesome-free/css/all.css";
 
+$grey-color: #e8e8e8;
+$primary-color: #0e345a;
 
 body {
   min-height: 100vh;
 }
 .email-div{
-  background-color: green;
+  background-color: $grey-color;
+  color: black;
 }
 .email-div-row{
   background-color: #612a0c;
@@ -17,11 +21,11 @@ body {
 }
 
 .email-container{
-  background-color: #042d57;
+  background-color: $primary-color;
 }
 .message-container-card {
   .card-header {
-    background-color: #042d57;
+    background-color: $primary-color;
   }
 }
 .mail-active{
@@ -38,4 +42,13 @@ body {
 
 .toastr-success {
   background-color: darkgreen;
+}
+.expire-counter{
+  .text-muted{
+    font-size: 13px;
+  }
+
+  .bg-light{
+    background-color: $grey-color;
+  }
 }
