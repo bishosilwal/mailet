@@ -4,7 +4,7 @@ export default class Header extends Component{
 
   render(){
     return(
-     <div className='container-fluid bg-dark text-white'>
+     <div className='container-fluid footer'>
        <div className='row justify-content-center pt-5 pb-2'>
          <div className='col-6 p-3'>
            Contact: Test@gmail.com

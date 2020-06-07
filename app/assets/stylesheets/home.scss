@@ -1,31 +1,20 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import './variables/_variables.scss';
 @import "bootstrap/scss/bootstrap.scss";
 @import "toastr/toastr.scss";
 @import "@fortawesome/fontawesome-free/css/all.css";
 
-$grey-color: #e8e8e8;
-$primary-color: #0e345a;
-
 body {
   min-height: 100vh;
 }
-.email-div{
-  background-color: $grey-color;
-  color: black;
-}
-.email-div-row{
-  background-color: #612a0c;
-  border-radius: 4px;
-}
-
 .email-container{
-  background-color: $primary-color;
+  background-color: $secondary;
 }
-.message-container-card {
-  .card-header {
-    background-color: $primary-color;
+.card{
+  .card-header{
+    background-color: $secondary;
   }
 }
 .mail-active{
@@ -37,18 +26,26 @@ body {
 }
 
 .message-list {
-  background-color: #F6F7F9;
+  background-color: $light;
 }
 
 .toastr-success {
-  background-color: darkgreen;
+  background-color: $success;
 }
 .expire-counter{
   .text-muted{
     font-size: 13px;
   }
+}
 
-  .bg-light{
-    background-color: $grey-color;
-  }
+.footer{
+  background-color: $dark;
+  color: $light;
+}
+
+.address-list{
+  background-color: $light;
+}
+.temp-email-div{
+  background-color: $light;
 }

@@ -72,7 +72,7 @@ class Message extends Component{
       overflowY: 'scroll',
     } : {}
     const messagesList =
-      <div className={'row m-1 ' + scrollable ? 'p-2' : ''} style={scrollableMessageStyles} ref={(el) =>{ this.messagesList = el }}>
+      <div className={'row m-1 ' + scrollable ? 'row p-4' : ''} style={scrollableMessageStyles} ref={(el) =>{ this.messagesList = el }}>
         {messages.map(message =>
           <div className='col-12 shadow-lg p-3 mb-3 bg-white rounded' key={message.id}>
             <div className='row'>
@@ -107,7 +107,7 @@ class Message extends Component{
         <div className='container'>
           {messagesList}
           <div className='row m-1'>
-            <div className='col-12 shadow-lg p-3 pt-0 mb-5 bg-white rounded'>
+            <div className='col-12 shadow-lg p-3 pt-0 mb-2 bg-white rounded'>
               <div className='row'>
                 <div className='col-12 p-3'>
                   <div className="form-group row">
@@ -141,7 +141,7 @@ class Message extends Component{
     } else {
       return(
         <div className='container'>
-          <div className='row'>
+          <div className='row p-5 text-center'>
             No messages
           </div>
         </div>
