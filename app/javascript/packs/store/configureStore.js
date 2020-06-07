@@ -1,7 +1,9 @@
 import { createStore, combineReducers } from 'redux';
 
 const initialState = {
-  emails: []
+  emails: [],
+  createNewMessage: false,
+  from: null
 };
 
 function emailReducer(state = initialState, action) {
@@ -33,6 +35,17 @@ function emailReducer(state = initialState, action) {
             }
           ]
         }
+      }
+    case 'CREATE_NEW_MESSAGE':
+      return {
+        ...state,
+        createNewMessage: action.value
+      }
+    case 'EMAIL_SELECTED':
+      return {
+        ...state,
+        from: action.value,
+        createNewMessage: false
       }
     default:
       return state;

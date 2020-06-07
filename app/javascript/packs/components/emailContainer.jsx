@@ -1,6 +1,11 @@
-import React,{ Component } from 'react'
+import React,{ Component } from 'react';
+import { connect } from 'react-redux';
 
-export default class EmailContainer extends Component{
+class EmailContainer extends Component{
+
+  createMessage = e => {
+    this.props.createNewMessage(true);
+  }
 
   render(){
     return(
@@ -71,7 +76,7 @@ export default class EmailContainer extends Component{
                 </div>
               </div>
               <div className='col-4'>
-                <div className='btn btn-primary rounded-pill p-3 text-center w-75'>
+                <div className='btn btn-primary rounded-pill p-3 text-center w-75' onClick={this.createMessage}>
                   <span className='float-left ml-1'>
                     <i className="fas fa-envelope-square"></i>
                   </span>
@@ -86,3 +91,11 @@ export default class EmailContainer extends Component{
     )
   }
 }
+
+const mapDispatchToProps = dispatch => {
+  return {
+    createNewMessage: (value) => dispatch({type: 'CREATE_NEW_MESSAGE', value: value })
+  }
+}
+
+export default connect(null, mapDispatchToProps)(EmailContainer)

@@ -11,12 +11,11 @@ import Footer from './components/footer';
 import './store/configureStore';
 import { Provider } from 'react-redux';
 
-export default class Index extends Component {
-
+class Index extends Component {
   render(){
     return(
       <Provider store={window.store}>
-        <Header/>
+        <Header />
         <EmailContainer />
         <MessageContainer />
         <Footer />

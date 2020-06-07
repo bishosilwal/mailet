@@ -4,8 +4,7 @@ import Message from './message';
 
 class MessageContainer extends Component{
   state = {
-    selectedMessages: [],
-    from: null,
+    from: this.props.from || null,
     emails: this.props.emails || [],
   };
 
@@ -16,14 +15,12 @@ class MessageContainer extends Component{
   };
 
   messageClicked = e => {
-    var emails = this.state.emails;
-    var selectedMessages = emails.find(m => m.from == e.target.dataset.from).messages;
-    this.setState({...this.state, selectedMessages: selectedMessages, from: e.target.dataset.from});
+    this.props.fromChanged(e.target.dataset.from)
   };
 
   render(){
-    var {selectedMessages, emails, from} = this.state;
-    const messageList = (
+    var { emails, from} = this.state;
+    const emailAddressList = (
       <div className="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
         {emails.map(m =>
           <a className="nav-link border border-secondary rounded-0 mb-2" id="v-pills-message-tab" data-toggle="pill" href="#v-pills-message" role="tab"
@@ -49,13 +46,13 @@ class MessageContainer extends Component{
                 <div className='container'>
                   <div className='row'>
                     <div className='col-4 p-2 address-list'>
-                      {messageList}
+                      {emailAddressList}
                     </div>
                     <div className='col-8 p-1'>
                       <div className="tab-content" id="v-pills-tabContent">
                         <div className="tab-pane fade show active" id="v-pills-message" role="tabpanel"
                              aria-labelledby="v-pills-message-tab">
-                          <Message selectedMessages={selectedMessages} from={from}/>
+                          <Message />
                         </div>
                       </div>
                     </div>
@@ -73,6 +70,13 @@ class MessageContainer extends Component{
 const mapStateToProps = (state, ownProps) => {
   return {
     emails: state.emailReducer.emails,
+    from: state.emailReducer.from
   }
 };
-export default connect(mapStateToProps, null)(MessageContainer);
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fromChanged: email => dispatch({type: 'EMAIL_SELECTED', value: email})
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(MessageContainer);
