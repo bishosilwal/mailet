@@ -39,9 +39,9 @@ class MessageContainer extends Component{
           <div className='col-10'>
             <div className="card message-container-card" >
               <div className="card-header">
-                <div className='row justify-content-around text-white'>
-                  <div className='col'>Sender's List</div>
-                  <div className='col '>Email</div>
+                <div className='row justify-content-around text-light'>
+                  <div className='col'>Address</div>
+                  <div className='col '>Emails</div>
                 </div>
               </div>
 

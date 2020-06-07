@@ -11,15 +11,13 @@ export default class EmailContainer extends Component{
               <div className='col-8 pr-0'>
                 <div className='temp-email-div rounded-pill m-3 p-3 text-center'>
                   <span className='text-dark'>temp-email@gmail.com</span>
+                  <span className='float-right'>
+                    <i className="far fa-copy fa-2x text-secondary"></i>
+                  </span>
                 </div>
               </div>
-              <div className='col-2 pt-3 pl-0'>
-                <span className='rounded-lg bg-primary p-3 justify-content-center'>
-                    <i className="far fa-copy fa-2x text-secondary"></i>
-                </span>
-              </div>
             </div>
-            <div className='row mb-2 mt-2 text-white'>
+            <div className='row mb-2 mt-2'>
               <div className='col-12 p-0'>
                 <div className='row mb-2 justify-content-center expire-counter'>
                   <div className='col-3 p-0'>
@@ -46,20 +44,20 @@ export default class EmailContainer extends Component{
                     <p className='text-muted'>Minutes</p>
                   </div>
                 </div>
-                <div className='row justify-content-center mt-5'>
+                <div className='row justify-content-center mt-5 text-light'>
                   <div className='col-3'>
                     <div className='p-2 bg-primary rounded-pill text-center'>
-                      <span className='text-white'>Change Email</span>
+                      <span className=''>Change Email</span>
                     </div>
                   </div>
                   <div className='col-3'>
                     <div className='p-2 bg-primary rounded-pill text-center'>
-                      <span className='text-white'>Delete Email</span>
+                      <span className=''>Delete Email</span>
                     </div>
                   </div>
                   <div className='col-3'>
                     <div className='p-2 bg-primary rounded-pill text-center'>
-                      <span className='text-white'>Send Email</span>
+                      <span className=''>Send Email</span>
                     </div>
                   </div>
                 </div>
