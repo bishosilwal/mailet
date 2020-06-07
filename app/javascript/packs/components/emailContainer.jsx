@@ -6,9 +6,12 @@ export default class EmailContainer extends Component{
     return(
       <div className='container-fluid email-container text-white'>
         <div className='row justify-content-center pb-5'>
-          <div className='col-6 mt-5'>
-            <div className='row justify-content-center m-3 p-3'>
-              <div className='col-8 pr-0'>
+          <div className='col-12 mt-5 text-center text-light'>
+            <h6>Your Temporary Email Address</h6>
+          </div>
+          <div className='col-12'>
+            <div className='row justify-content-center pb-0 pl-3 pr-3 pt-3'>
+              <div className='col-4 pr-0'>
                 <div className='temp-email-div rounded-pill m-3 p-3 text-center'>
                   <span className='text-dark'>temp-email@gmail.com</span>
                   <span className='float-right'>
@@ -17,7 +20,9 @@ export default class EmailContainer extends Component{
                 </div>
               </div>
             </div>
-            <div className='row m-3 p-3'>
+          </div>
+          <div className='col-8'>
+            <div className='row ml-3 mr-3 mb-3 p-3'>
               <div className='col-12 p-0'>
                 <div className='row mb-2 justify-content-center expire-counter'>
                   <div className='col-3 p-0'>
@@ -25,17 +30,17 @@ export default class EmailContainer extends Component{
                   </div>
                   <div className='col-6'>
                     <div className='row justify-content-center'>
-                      <div className='col-2 p-2 bg-light text-dark text-center rounded-lg m-2'>
+                      <div className='col-2 p-2 text-dark text-center rounded-lg m-2 count-number'>
                         <div className=''>2</div>
                       </div>
-                      <div className='col-2 p-2 bg-light text-dark text-center rounded-lg m-2'>
+                      <div className='col-2 p-2 text-dark text-center rounded-lg m-2  count-number'>
                         <div className=''>0</div>
                       </div>
                       <span className='align-content-center'>:</span>
-                      <div className='col-2 p-2 bg-light text-dark text-center rounded-lg m-2'>
+                      <div className='col-2 p-2 text-dark text-center rounded-lg m-2  count-number'>
                         <div className=''>0</div>
                       </div>
-                      <div className='col-2 p-2 bg-light text-dark text-center rounded-lg m-2'>
+                      <div className='col-2 p-2 text-dark text-center rounded-lg m-2  count-number'>
                         <div className=''>0</div>
                       </div>
                     </div>
@@ -48,7 +53,7 @@ export default class EmailContainer extends Component{
             </div>
           </div>
           <div className='col-8'>
-            <div className='row justify-content-around text-light'>
+            <div className='row justify-content-around'>
               <div className='col-4'>
                 <div className='btn btn-primary rounded-pill p-3 text-center w-75'>
                    <span className='float-left ml-1'>
