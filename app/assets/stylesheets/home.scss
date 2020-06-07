@@ -4,6 +4,10 @@
 @import "bootstrap/scss/bootstrap.scss";
 @import "toastr/toastr.scss";
 
+
+body {
+  min-height: 100vh;
+}
 .email-div{
   background-color: green;
 }

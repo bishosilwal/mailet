@@ -7,6 +7,7 @@ import ReactDOM from 'react-dom';
 import Header from './components/header';
 import EmailContainer from './components/emailContainer';
 import MessageContainer from "./components/messageContainer";
+import Footer from './components/footer';
 import './store/configureStore';
 import { Provider } from 'react-redux';
 
@@ -18,6 +19,7 @@ export default class Index extends Component {
         <Header/>
         <EmailContainer />
         <MessageContainer />
+        <Footer />
       </Provider>
     )
   }
@@ -26,6 +28,6 @@ export default class Index extends Component {
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
     <Index />,
-    document.body.appendChild(document.createElement('div')),
+    document.body.appendChild(document.createElement('div', { className: 'container-fluid'})),
   )
 })
