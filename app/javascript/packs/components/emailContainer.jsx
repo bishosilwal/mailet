@@ -14,6 +14,12 @@ class EmailContainer extends Component{
   }
 
   componentDidMount() {
+    this.resetCounter();
+  }
+
+  resetCounter = (_) => {
+    clearInterval(this.state.intervalId);
+    this.setState({counter: {first: 1, second: 9, third: 5, fourth: 9}});
     var intervalId = setInterval(this.updateCounter, 10);
     this.setState({intervalId: intervalId});
   }
@@ -42,6 +48,10 @@ class EmailContainer extends Component{
     this.setState({counter: counter});
   }
 
+  handleDelete = e => {
+    this.resetCounter();
+  }
+  
   createMessage = e => {
     this.props.createNewMessage(true);
   }
@@ -108,7 +118,7 @@ class EmailContainer extends Component{
                 </div>
               </div>
               <div className='col-4'>
-                <div className='btn btn-primary rounded-pill p-3 text-center w-75'>
+                <div className='btn btn-primary rounded-pill p-3 text-center w-75' onClick={this.handleDelete}>
                   <span className='float-left ml-1'>
                     <i className="fas fa-trash-alt"></i>
                   </span>
