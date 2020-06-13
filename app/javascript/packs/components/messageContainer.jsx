@@ -1,11 +1,15 @@
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
+import { css } from "@emotion/core";
+import PulseLoader from "react-spinners/PulseLoader";
+
 import Message from './message';
 
 class MessageContainer extends Component{
   state = {
     from: this.props.from || null,
     emails: this.props.emails || [],
+    createNewMessage: this.props.createNewMessage || null,
   };
 
   componentWillReceiveProps(nextProps, nextContext) {
@@ -19,7 +23,7 @@ class MessageContainer extends Component{
   };
 
   render(){
-    var { emails, from} = this.state;
+    var { emails, from, createNewMessage } = this.state;
     const emailAddressList = (
       <div className="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
         {emails.map(m =>
@@ -45,17 +49,38 @@ class MessageContainer extends Component{
               <div className='card-body p-0'>
                 <div className='container'>
                   <div className='row'>
-                    <div className='col-4 p-2 address-list'>
-                      {emailAddressList}
-                    </div>
-                    <div className='col-8 p-1'>
-                      <div className="tab-content" id="v-pills-tabContent">
-                        <div className="tab-pane fade show active" id="v-pills-message" role="tabpanel"
-                             aria-labelledby="v-pills-message-tab">
-                          <Message />
+                    { (from == null || createNewMessage == null) ?
+                      <div className='col-12'>
+                        <div className='row justify-content-center p-5'>
+                          <div className='col-12 text-center'>
+                            <PulseLoader
+                              size={15}
+                              color={"#142850"}
+                              loading={true}
+                              margin={2}
+                            />
+                            <h6 className='text-secondary mt-2'>
+                              You have 0 received email.<br/>
+                              <span className='text-light'>Waiting for incoming emails.</span>
+                            </h6>
+                          </div>
                         </div>
                       </div>
-                    </div>
+                      :
+                      <React.Fragment>
+                        <div className='col-4 p-2 address-list'>
+                          {emailAddressList}
+                        </div>
+                        <div className='col-8 p-1'>
+                          <div className="tab-content" id="v-pills-tabContent">
+                            <div className="tab-pane fade show active" id="v-pills-message" role="tabpanel"
+                                 aria-labelledby="v-pills-message-tab">
+                              <Message />
+                            </div>
+                          </div>
+                        </div>
+                      </React.Fragment>
+                    }
                   </div>
                 </div>
               </div>
@@ -70,7 +95,8 @@ class MessageContainer extends Component{
 const mapStateToProps = (state, ownProps) => {
   return {
     emails: state.emailReducer.emails,
-    from: state.emailReducer.from
+    from: state.emailReducer.from,
+    createNewMessage: state.emailReducer.createNewMessage
   }
 };
 
