@@ -20,7 +20,7 @@ class EmailContainer extends Component{
   resetCounter = (_) => {
     clearInterval(this.state.intervalId);
     this.setState({counter: {first: 1, second: 9, third: 5, fourth: 9}});
-    var intervalId = setInterval(this.updateCounter, 10);
+    var intervalId = setInterval(this.updateCounter, 1000);
     this.setState({intervalId: intervalId});
   }
 
