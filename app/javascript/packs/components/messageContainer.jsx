@@ -1,25 +1,28 @@
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
-import { css } from "@emotion/core";
 import PulseLoader from "react-spinners/PulseLoader";
 
 import Message from './message';
 
 class MessageContainer extends Component{
   state = {
-    from: this.props.from || null,
+    from: this.props.from,
     emails: this.props.emails || [],
-    createNewMessage: this.props.createNewMessage || null,
+    createNewMessage: this.props.createNewMessage,
   };
 
   componentWillReceiveProps(nextProps, nextContext) {
     if(nextProps.emails != this.state.emails) {
-      this.setState({emails: nextProps.emails})
+      this.setState({emails: nextProps.emails});
+    }
+
+    if(nextProps.createNewMessage != this.props.createNewMessage) {
+      this.setState({createNewMessage: nextProps.createNewMessage});
     }
   };
 
   messageClicked = e => {
-    this.props.fromChanged(e.target.dataset.from)
+    this.props.fromChanged(e.target.dataset.from);
   };
 
   render(){
@@ -49,7 +52,7 @@ class MessageContainer extends Component{
               <div className='card-body p-0'>
                 <div className='container'>
                   <div className='row'>
-                    { (from == null || createNewMessage == null) ?
+                    { emails.length === 0 && createNewMessage === false ?
                       <div className='col-12'>
                         <div className='row justify-content-center p-5'>
                           <div className='col-12 text-center'>
@@ -60,14 +63,14 @@ class MessageContainer extends Component{
                               margin={2}
                             />
                             <h6 className='text-secondary mt-2'>
-                              You have 0 received email.<br/>
+                              You have 0 received emails.<br/>
                               <span className='text-light'>Waiting for incoming emails.</span>
                             </h6>
                           </div>
                         </div>
                       </div>
                       :
-                      <React.Fragment>
+                      <div className='col-12 row'>
                         <div className='col-4 p-2 address-list'>
                           {emailAddressList}
                         </div>
@@ -79,7 +82,7 @@ class MessageContainer extends Component{
                             </div>
                           </div>
                         </div>
-                      </React.Fragment>
+                      </div>
                     }
                   </div>
                 </div>
