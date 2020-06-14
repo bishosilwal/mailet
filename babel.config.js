@@ -44,7 +44,6 @@ module.exports = function(api) {
           useBuiltIns: true
         }
       ],
-      ["@babel/preset-react", "@babel/preset-env"],
     ].filter(Boolean),
     plugins: [
       'babel-plugin-macros',
@@ -83,7 +82,7 @@ module.exports = function(api) {
           removeImport: true
         }
       ],
-      'emotion',
+      'emotion'
     ].filter(Boolean)
   }
 }
