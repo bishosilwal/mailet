@@ -3,12 +3,31 @@ class InvalidReplyUser    < StandardError ; end
 class EmailReceive
   @queue = :incoming_email_queue
 
-  def self.perform(from, to, subject, body)
+  def self.perform(content)
     user = User.first
 
     if user.nil?
       raise InvalidReplyUser, "User with email = #{from} is not a member of the app."
     end
+
+    mail    = Mail.read_from_string(content)
+    body    = mail.body.decoded
+    from    = mail.from.first
+    to      = mail.to&.first
+    subject = mail.subject
+
+    if mail.multipart?
+      part = mail.parts.select { |p| p.content_type =~ /text\/plain/ }.first rescue nil
+      unless part.nil?
+        body = part.body.decoded
+      end
+    else
+      body = mail.decoded
+    end
+
+    puts 'mail content .............................'
+    puts content
+    puts "................mail ended"
 
     params = {
         :body     => body,
