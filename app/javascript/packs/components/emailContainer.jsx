@@ -2,62 +2,12 @@ import React,{ Component } from 'react';
 import { connect } from 'react-redux';
 
 class EmailContainer extends Component{
-
-  state = {
-    counter: {
-      first: 1,
-      second: 9,
-      third: 5,
-      fourth: 9
-    },
-    intervalId: null,
-  }
-
-  componentDidMount() {
-    this.resetCounter();
-  }
-
-  resetCounter = (_) => {
-    clearInterval(this.state.intervalId);
-    this.setState({counter: {first: 1, second: 9, third: 5, fourth: 9}});
-    var intervalId = setInterval(this.updateCounter, 1000);
-    this.setState({intervalId: intervalId});
-  }
-
-  updateCounter = (_) => {
-    var { counter } = this.state;
-    if(counter.first < 0) {
-      clearInterval(this.state.intervalId);
-      this.setState({counter: {first: 1, second: 9, third: 5, fourth: 9}});
-      return;
-    }
-    counter.fourth = counter.fourth - 1;
-    if(counter.fourth === -1) {
-      counter.third = counter.third - 1;
-      counter.fourth = 9;
-      if(counter.third === -1) {
-        counter.second = counter.second - 1;
-        counter.third = 5;
-        counter.fourth = 9;
-        if(counter.second === 0) {
-          counter.second = 9;
-          counter.first = counter.first - 1;
-        }
-      }
-    }
-    this.setState({counter: counter});
-  }
-
-  handleDelete = e => {
-    this.resetCounter();
-  }
   
   createMessage = e => {
     this.props.createNewMessage(true);
   }
 
   render(){
-    const {counter} = this.state;
     return(
       <div className='container-fluid email-container text-white'>
         <div className='row justify-content-center pb-5'>
@@ -76,38 +26,7 @@ class EmailContainer extends Component{
               </div>
             </div>
           </div>
-          <div className='col-8'>
-            <div className='row ml-3 mr-3 mb-3 p-3'>
-              <div className='col-12 p-0'>
-                <div className='row mb-2 justify-content-center expire-counter'>
-                  <div className='col-3 p-0'>
-                    <p className='text-muted'>This Email will deleted after</p>
-                  </div>
-                  <div className='col-6 counter'>
-                    <div className='row justify-content-center'>
-                      <div className='col-2 p-2 text-dark text-center rounded-lg m-2 count-number'>
-                        <span>{counter.first}</span>
-                      </div>
-                      <div className='col-2 p-2 text-dark text-center rounded-lg m-2  count-number'>
-                        <span>{counter.second}</span>
-                      </div>
-                      <span className='align-content-center'>:</span>
-                      <div className='col-2 p-2 text-dark text-center rounded-lg m-2  count-number'>
-                        <span>{counter.third}</span>
-                      </div>
-                      <div className='col-2 p-2 text-dark text-center rounded-lg m-2  count-number'>
-                        <span>{counter.fourth}</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className='col-3'>
-                    <p className='text-muted'>Minutes</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className='col-8'>
+          <div className='col-8 mt-5 pt-5'>
             <div className='row justify-content-around'>
               <div className='col-4'>
                 <div className='btn btn-primary rounded-pill p-3 text-center w-75'>
