@@ -25,9 +25,9 @@ class EmailReceive
       body = mail.decoded
     end
 
-    puts 'mail content .............................'
+    puts '............................. Mail raw content start .............................'
     puts content
-    puts "................mail ended"
+    puts "............................. Mail raw content end ............................."
 
     params = {
         :body     => body,
