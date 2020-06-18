@@ -4,12 +4,6 @@ class EmailReceive
   @queue = :incoming_email_queue
 
   def self.perform(content)
-    user = User.first
-
-    if user.nil?
-      raise InvalidReplyUser, "User with email = #{from} is not a member of the app."
-    end
-
     mail    = Mail.read_from_string(content)
     body    = mail.body.decoded
     from    = mail.from.first
@@ -36,7 +30,7 @@ class EmailReceive
         :from     => from
     }
 
-    message = user.messages.new(params)
+    message = Message.new(params)
     unless message.save
       raise RuntimeError, "Unable to save message. Errors: #{message.errors.inspect}"
     end
