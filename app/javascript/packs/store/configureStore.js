@@ -3,7 +3,8 @@ import { createStore, combineReducers } from 'redux';
 const initialState = {
   emails: [],
   createNewMessage: false,
-  from: null
+  from: null,
+  tempMail: null
 };
 
 function emailReducer(state = initialState, action) {
@@ -46,6 +47,11 @@ function emailReducer(state = initialState, action) {
         ...state,
         from: action.value,
         createNewMessage: false
+      }
+    case 'TEMP_MAIL_ADDRESS_RECEIVED':
+      return {
+        ...state,
+        tempMail: action.value
       }
     default:
       return state;
