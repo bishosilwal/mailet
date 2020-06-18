@@ -1,5 +1,6 @@
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
+import renderHTML from 'react-render-html';
 
 import EmailMessageCreator from "./emailMessageCreator";
 
@@ -48,7 +49,7 @@ class Message extends Component{
                 {message.subject}
               </div>
               <div className='col-12 p-3'>
-                {message.body}
+                {renderHTML(message.body)}
               </div>
             </div>
           </div>
