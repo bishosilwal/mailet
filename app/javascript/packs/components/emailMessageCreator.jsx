@@ -14,7 +14,8 @@ class EmailMessageCreator extends Component {
     subjectInvalid: false,
     bodyInvalid: false,
     toInvalid: false,
-    createNewMessage: this.props.createNewMessage
+    createNewMessage: this.props.createNewMessage,
+    tempMail: this.props.tempMail
   }
 
   sendMessage = (e) => {
@@ -60,12 +61,8 @@ class EmailMessageCreator extends Component {
   }
 
   componentWillReceiveProps(nextProps, nextContext) {
-    if(nextProps.createNewMessage != this.props.createNewMessage) {
-      this.setState({createNewMessage: nextProps.createNewMessage});
-    }
-
-    if(nextProps.from != this.props.from) {
-      this.setState({from: nextProps.from});
+    if(nextProps != this.props) {
+      this.setState({...nextProps})
     }
   }
 
@@ -129,7 +126,8 @@ class EmailMessageCreator extends Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     createNewMessage: state.emailReducer.createNewMessage,
-    from: state.emailReducer.from
+    from: state.emailReducer.from,
+    tempMail: state.emailReducer.tempMail
   }
 }
 

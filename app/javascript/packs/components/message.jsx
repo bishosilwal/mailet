@@ -5,18 +5,13 @@ import EmailMessageCreator from "./emailMessageCreator";
 
 class Message extends Component{
   state = {
-    messages: this.props.selectedMessages || [],
+    selectedMessages: this.props.selectedMessages || [],
     createNewMessage: this.props.createNewMessage,
   }
 
   componentWillReceiveProps(nextProps, nextContext) {
-
-    if(nextProps.selectedMessages.length != this.props.selectedMessages.length) {
-      this.setState({messages: nextProps.selectedMessages});
-    }
-
-    if(nextProps.createNewMessage != this.props.createNewMessage) {
-      this.setState({createNewMessage: nextProps.createNewMessage})
+    if(nextProps != this.props) {
+      this.setState({...nextProps})
     }
   }
   formatDateTime(date) {
@@ -26,15 +21,15 @@ class Message extends Component{
   }
 
   render() {
-    var {messages, createNewMessage} = this.state;
-    var scrollable = messages.length === 3 ? true : false;
+    var {selectedMessages, createNewMessage} = this.state;
+    var scrollable = selectedMessages.length === 3 ? true : false;
     const scrollableMessageStyles = scrollable ? {
       height: '500px',
       overflowY: 'scroll',
     } : {}
     const messagesList =
       <div className={'row m-1 ' + scrollable ? 'row p-4' : ''} style={scrollableMessageStyles} ref={(el) =>{ this.messagesList = el }}>
-        {messages.map(message =>
+        {selectedMessages.map(message =>
           <div className='col-12 shadow-lg p-3 mb-3 bg-white rounded' key={message.id}>
             <div className='row'>
               <div className='col-6'>
@@ -63,7 +58,7 @@ class Message extends Component{
     if(scrollable) {
       this.messagesList.scrollIntoView();
     }
-    if(messages.length != 0 || createNewMessage) {
+    if(selectedMessages.length != 0 || createNewMessage) {
       return(
         <div className='container'>
           {(createNewMessage) ? '' : messagesList}

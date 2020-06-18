@@ -7,8 +7,8 @@ class EmailContainer extends Component{
   }
 
   componentWillReceiveProps(nextProps, nextContext) {
-    if(nextProps.tempMail != this.state.tempMail) {
-      this.setState({tempMail: nextProps.tempMail});
+    if(nextProps != this.props) {
+      this.setState({...nextProps})
     }
   }
 

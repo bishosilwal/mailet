@@ -4,7 +4,6 @@ window.emailChannel = consumer.subscriptions.create("EmailChannel", {
   initialized() {
   },
   connected() {
-    console.log('subscription is ready');
     // Called when the subscription is ready for use on the server
   },
 
@@ -13,7 +12,6 @@ window.emailChannel = consumer.subscriptions.create("EmailChannel", {
   },
 
   received(data) {
-    console.log('receive data');
     if(data.email) {
       window.store.dispatch({
         type: 'EMAIL_RECEIVED',

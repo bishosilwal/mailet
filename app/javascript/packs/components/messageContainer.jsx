@@ -12,12 +12,8 @@ class MessageContainer extends Component{
   };
 
   componentWillReceiveProps(nextProps, nextContext) {
-    if(nextProps.emails != this.state.emails) {
-      this.setState({emails: nextProps.emails});
-    }
-
-    if(nextProps.createNewMessage != this.props.createNewMessage) {
-      this.setState({createNewMessage: nextProps.createNewMessage});
+    if(nextProps != this.props) {
+      this.setState({...nextProps})
     }
   };
 

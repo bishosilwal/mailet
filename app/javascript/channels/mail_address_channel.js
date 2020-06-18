@@ -14,8 +14,6 @@ window.mailAddressChannel = consumer.subscriptions.create("EmailChannel",{
   },
 
   received(data) {
-    console.log('recieved temp mail data');
-    console.log(data)
     if(data.mail_address) {
       window.store.dispatch({
         type: 'TEMP_MAIL_ADDRESS_RECEIVED',
