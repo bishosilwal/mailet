@@ -12,6 +12,13 @@ class MailAddressController < ApplicationController
     render json: { message: 'Mail address changed', new_mail: 'changedMail@generatemail.com', status: :ok }
   end
 
+  def custom_address
+    render json: {
+      message: 'Mail address created',
+      new_mail: mail_address_params[:mail]
+    }
+  end
+
   private
 
   def mail_address_params

@@ -1,18 +1,21 @@
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
 import PulseLoader from "react-spinners/PulseLoader";
+import axios from 'axios';
 
 import Message from './message';
+
+const token = window.$("meta[name='csrf-token']").attr('content');
 
 class MessageContainer extends Component{
   state = {
     from: this.props.from,
     emails: this.props.emails || [],
+    tempMail: this.props.tempMail,
     createNewMessage: this.props.createNewMessage,
     changeMailAddress: this.props.changeMailAddress,
     customMailAddress: '',
     customMailValid: true,
-
   };
 
   componentWillReceiveProps(nextProps, nextContext) {
@@ -30,8 +33,38 @@ class MessageContainer extends Component{
   };
 
   customMailPlaceholder() {
-    return '@generatemail.com'
-  }
+    var { tempMail } = this.state;
+    return tempMail.slice(tempMail.lastIndexOf('@'));
+  };
+
+  handleCustomMailSubmit = _ => {
+    var that = this;
+    var { customMailAddress, tempMail } = this.state;
+    var domain = tempMail.slice(tempMail.lastIndexOf('@'));
+    var mail = customMailAddress + domain;
+    if(this.validateEmail(mail)) {
+      axios.post('/mail_address/create/custom', {
+        mail: mail
+      }, {
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+          'X-CSRF-Token': token
+        }
+      }).then(function (res) {
+        that.props.customMailAddressCreated(res.data.new_mail);
+        that.setState({customMailAddress: '', customMailValid: true});
+        toastr.success(res.data.message, res.data.details, {'iconClass': 'toastr-success'});
+      });
+    } else {
+      this.setState({customMailValid: false});
+    }
+  };
+
+  validateEmail(email) {
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  };
+
   renderContent() {
     var { emails, from, createNewMessage, changeMailAddress, customMailAddress, customMailValid } = this.state;
     const emailAddressList = (
@@ -61,13 +94,13 @@ class MessageContainer extends Component{
                   <div className="col-sm-9">
                     <input type="text" name='to' value={customMailAddress} ref={(el) => this.customMail = el} className={"form-control " + `${customMailValid ? '' : 'is-invalid'}` } id="customMailAddress" placeholder={this.customMailPlaceholder()} onChange={this.handleCustomMailChange} required={true}/>
                     <div className="invalid-feedback">
-                      Please enter custom name
+                      Please enter custom name. Valid characters include: {"!#$%&'*+-/=?^_\{|}~"}
                     </div>
                   </div>
                 </div>
                 <div className='col-3 row'>
                   <div className='col-12 text-left'>
-                    <button className='btn btn-outline-primary'>Submit</button>
+                    <button className='btn btn-outline-primary' onClick={this.handleCustomMailSubmit}>Submit</button>
                   </div>
                 </div>
               </div>
@@ -147,12 +180,14 @@ const mapStateToProps = (state, ownProps) => {
     from: state.emailReducer.from,
     createNewMessage: state.emailReducer.createNewMessage,
     changeMailAddress: state.emailReducer.changeMailAddress,
+    tempMail: state.emailReducer.tempMail,
   }
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    fromChanged: email => dispatch({type: 'EMAIL_SELECTED', value: email})
+    fromChanged: email => dispatch({type: 'EMAIL_SELECTED', value: email}),
+    customMailAddressCreated: email => dispatch({ type: 'TEMP_MAIL_ADDRESS_CREATE', value: email}),
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(MessageContainer);

@@ -66,22 +66,28 @@ function emailReducer(state = initialState, action) {
 
     case 'EMAIL_SENT':
       var mail = state.emails.find(m => m.from == action.value.to);
-      mail.messages = [
-        ...mail.messages,
-        action.value
-      ];
-      return {
-        ...state,
-        emails: [
-          ...state.emails.filter(m=> m.from != action.value.to),
-          mail
-        ]
+      if(mail){
+        mail.messages = [
+          ...mail.messages,
+          action.value
+        ];
+        return {
+          ...state,
+          emails: [
+            ...state.emails.filter(m=> m.from != action.value.to),
+            mail
+          ]
+        }
+      }else{
+        return {
+          ...state
+        }
       }
     case 'TEMP_MAIL_ADDRESS_CHANGE':
       return {
-        ...state,
+        ...initialState,
         changeMailAddress: action.value,
-        createNewMessage: false,
+        tempMail: action.tempMail
       }
 
     default:

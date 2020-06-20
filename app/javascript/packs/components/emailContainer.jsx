@@ -63,8 +63,7 @@ class EmailContainer extends Component{
         'X-CSRF-Token': token
       }
     }).then(function(res) {
-      that.props.newMailAddress(res.data.new_mail);
-      that.props.changeMailAddress(true);
+      that.props.changeMailAddress(true, res.data.new_mail);
       toastr.success(res.data.message, res.data.details, {'iconClass': 'toastr-success'});
     });
   };
@@ -129,7 +128,7 @@ const mapDispatchToProps = dispatch => {
     createNewMessage: (value) => dispatch({type: 'CREATE_NEW_MESSAGE', value: value }),
     handleMailDelete: (_) => dispatch({ type: 'TEMP_MAIL_ADDRESS_DELETE' }),
     newMailAddress: (address) => dispatch({type: 'TEMP_MAIL_ADDRESS_CREATE', value: address}),
-    changeMailAddress: (value) => dispatch({type: 'TEMP_MAIL_ADDRESS_CHANGE', value: value})
+    changeMailAddress: (value, address) => dispatch({type: 'TEMP_MAIL_ADDRESS_CHANGE', value: value, tempMail: address})
   }
 }
 
