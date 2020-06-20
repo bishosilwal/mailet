@@ -22,7 +22,6 @@ window.mailAddressChannel = consumer.subscriptions.create("EmailChannel",{
     }
   },
 
-
   getTempMailAddress() {
     this.perform('get_temp_mail_address')
   }

@@ -1,20 +1,40 @@
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 class EmailContainer extends Component{
   state = {
     tempMail: this.props.tempMail,
-  }
+  };
 
   componentWillReceiveProps(nextProps, nextContext) {
     if(nextProps != this.props) {
       this.setState({...nextProps})
     }
-  }
+  };
 
   createMessage = e => {
     this.props.createNewMessage(true);
-  }
+  };
+
+  handleDelete = _ => {
+    var that = this;
+    var token = window.$("meta[name='csrf-token']").attr('content');
+    var tempMail = this.state.tempMail;
+    axios.delete('/mail_address/', {
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+        'X-CSRF-Token': token
+      },
+      data: {
+        mail: tempMail
+      }
+    }).then(function (res) {
+      that.props.handleMailDelete();
+      that.props.newMailAddress(res.data.new_mail);
+      toastr.success(res.data.message, res.data.details, {'iconClass': 'toastr-success'});
+    });
+  };
 
   render(){
     const { tempMail } = this.state;
@@ -73,7 +93,9 @@ class EmailContainer extends Component{
 
 const mapDispatchToProps = dispatch => {
   return {
-    createNewMessage: (value) => dispatch({type: 'CREATE_NEW_MESSAGE', value: value })
+    createNewMessage: (value) => dispatch({type: 'CREATE_NEW_MESSAGE', value: value }),
+    handleMailDelete: (_) => dispatch({ type: 'TEMP_MAIL_ADDRESS_DELETE' }),
+    newMailAddress: (address) => dispatch({type: 'TEMP_MAIL_ADDRESS_CREATE', value: address})
   }
 }
 

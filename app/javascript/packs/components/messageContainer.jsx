@@ -50,7 +50,7 @@ class MessageContainer extends Component{
                   <div className='row'>
                     { emails.length === 0 && createNewMessage === false ?
                       <div className='col-12'>
-                        <div className='row justify-content-center p-5'>
+                        <div className='row justify-content-center p-5 m-5'>
                           <div className='col-12 text-center'>
                             <PulseLoader
                               size={15}
@@ -59,7 +59,7 @@ class MessageContainer extends Component{
                               margin={2}
                             />
                             <h6 className='text-secondary mt-2'>
-                              You have 0 received emails.<br/>
+                              You have received 0 emails.<br/>
                               <span className='text-light'>Waiting for incoming emails.</span>
                             </h6>
                           </div>

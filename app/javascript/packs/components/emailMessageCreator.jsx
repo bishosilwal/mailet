@@ -56,7 +56,7 @@ class EmailMessageCreator extends Component {
     })
       .then(function (res) {
         that.setState({newMessage: {subject: '', body: '', to: ''}});
-        toastr.success(res.data.message, res.data.details, {'iconClass': 'toastr-success'})
+        toastr.success(res.data.message, res.data.details, {'iconClass': 'toastr-success'});
       })
   }
 

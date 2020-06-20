@@ -53,6 +53,15 @@ function emailReducer(state = initialState, action) {
         ...state,
         tempMail: action.value
       }
+    case 'TEMP_MAIL_ADDRESS_DELETE':
+      return {
+        ...initialState
+      }
+    case 'TEMP_MAIL_ADDRESS_CREATE':
+      return {
+        ...initialState,
+        tempMail: action.value
+      }
     default:
       return state;
   }
