@@ -42,7 +42,8 @@ function emailReducer(state = initialState, action) {
     case 'CREATE_NEW_MESSAGE':
       return {
         ...state,
-        createNewMessage: action.value
+        createNewMessage: action.value,
+        changeMailAddress: false,
       }
 
     case 'EMAIL_SELECTED':
@@ -79,7 +80,8 @@ function emailReducer(state = initialState, action) {
     case 'TEMP_MAIL_ADDRESS_CHANGE':
       return {
         ...state,
-        changeMailAddress: action.value
+        changeMailAddress: action.value,
+        createNewMessage: false,
       }
 
     default:

@@ -24,7 +24,6 @@ class MessageContainer extends Component{
 
   renderContent() {
     var { emails, from, createNewMessage, changeMailAddress } = this.state;
-    console.log(this.state)
     const emailAddressList = (
       <div className="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
         {emails.map(m =>
