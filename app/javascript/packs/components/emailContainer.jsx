@@ -2,10 +2,26 @@ import React,{ Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
+const token = window.$("meta[name='csrf-token']").attr('content');
+
 class EmailContainer extends Component{
   state = {
     tempMail: this.props.tempMail,
   };
+
+  componentWillMount() {
+    var that = this;
+    axios({
+      method: 'post',
+      url: '/mail_address',
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+        'X-CSRF-Token': token
+      }
+    }).then(function(res) {
+      that.props.newMailAddress(res.data.new_mail);
+    })
+  }
 
   componentWillReceiveProps(nextProps, nextContext) {
     if(nextProps != this.props) {
@@ -19,7 +35,6 @@ class EmailContainer extends Component{
 
   handleDelete = _ => {
     var that = this;
-    var token = window.$("meta[name='csrf-token']").attr('content');
     var tempMail = this.state.tempMail;
     axios.delete('/mail_address/', {
       headers: {

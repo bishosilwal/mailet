@@ -1,5 +1,7 @@
 class MailAddressController < ApplicationController
+
   def create
+    render json: { new_mail: 'temp_mail@generatemail.com', status: :ok }
   end
 
   def destroy

@@ -48,11 +48,6 @@ function emailReducer(state = initialState, action) {
         from: action.value,
         createNewMessage: false
       }
-    case 'TEMP_MAIL_ADDRESS_RECEIVED':
-      return {
-        ...state,
-        tempMail: action.value
-      }
     case 'TEMP_MAIL_ADDRESS_DELETE':
       return {
         ...initialState
