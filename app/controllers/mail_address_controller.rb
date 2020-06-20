@@ -5,7 +5,11 @@ class MailAddressController < ApplicationController
   end
 
   def destroy
-    render json: { message: 'Mail deleted', new_mail: 'newMail@generatemail.com', details: '', status: :ok }
+    render json: { message: 'Mail address deleted', new_mail: 'newMail@generatemail.com', details: '', status: :ok }
+  end
+
+  def change
+    render json: { message: 'Mail address changed', new_mail: 'changedMail@generatemail.com', status: :ok }
   end
 
   private

@@ -51,6 +51,24 @@ class EmailContainer extends Component{
     });
   };
 
+  handleChange = _ => {
+    var that = this;
+    var tempMail = this.state.tempMail;
+    axios({
+      method: 'post',
+      url: '/mail_address/change',
+      data: {mail: tempMail},
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+        'X-CSRF-Token': token
+      }
+    }).then(function(res) {
+      that.props.newMailAddress(res.data.new_mail);
+      that.props.changeMailAddress(true);
+      toastr.success(res.data.message, res.data.details, {'iconClass': 'toastr-success'});
+    });
+  };
+
   render(){
     const { tempMail } = this.state;
     return(
@@ -74,7 +92,7 @@ class EmailContainer extends Component{
           <div className='col-8 mt-5 pt-5'>
             <div className='row justify-content-around'>
               <div className='col-4'>
-                <div className='btn btn-primary rounded-pill p-3 text-center w-75'>
+                <div className='btn btn-primary rounded-pill p-3 text-center w-75' onClick={this.handleChange}>
                    <span className='float-left ml-1'>
                      <i className="fas fa-edit"></i>
                    </span>
@@ -110,7 +128,8 @@ const mapDispatchToProps = dispatch => {
   return {
     createNewMessage: (value) => dispatch({type: 'CREATE_NEW_MESSAGE', value: value }),
     handleMailDelete: (_) => dispatch({ type: 'TEMP_MAIL_ADDRESS_DELETE' }),
-    newMailAddress: (address) => dispatch({type: 'TEMP_MAIL_ADDRESS_CREATE', value: address})
+    newMailAddress: (address) => dispatch({type: 'TEMP_MAIL_ADDRESS_CREATE', value: address}),
+    changeMailAddress: (value) => dispatch({type: 'TEMP_MAIL_ADDRESS_CHANGE', value: value})
   }
 }
 

@@ -2,9 +2,10 @@ import { createStore, combineReducers } from 'redux';
 
 const initialState = {
   emails: [],
-  createNewMessage: false,
   from: null,
-  tempMail: null
+  tempMail: null,
+  createNewMessage: false,
+  changeMailAddress: false,
 };
 
 function emailReducer(state = initialState, action) {
@@ -74,6 +75,11 @@ function emailReducer(state = initialState, action) {
           ...state.emails.filter(m=> m.from != action.value.to),
           mail
         ]
+      }
+    case 'TEMP_MAIL_ADDRESS_CHANGE':
+      return {
+        ...state,
+        changeMailAddress: action.value
       }
 
     default:

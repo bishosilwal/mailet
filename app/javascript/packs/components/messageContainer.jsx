@@ -9,6 +9,7 @@ class MessageContainer extends Component{
     from: this.props.from,
     emails: this.props.emails || [],
     createNewMessage: this.props.createNewMessage,
+    changeMailAddress: this.props.changeMailAddress
   };
 
   componentWillReceiveProps(nextProps, nextContext) {
@@ -21,8 +22,9 @@ class MessageContainer extends Component{
     this.props.fromChanged(e.target.dataset.from);
   };
 
-  render(){
-    var { emails, from, createNewMessage } = this.state;
+  renderContent() {
+    var { emails, from, createNewMessage, changeMailAddress } = this.state;
+    console.log(this.state)
     const emailAddressList = (
       <div className="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
         {emails.map(m =>
@@ -33,6 +35,53 @@ class MessageContainer extends Component{
         )}
       </div>
     )
+
+    if(changeMailAddress) {
+      return(
+        <div className='col-12'>
+          change mail address
+        </div>
+      )
+    } else {
+      if(emails.length === 0 && !createNewMessage) {
+        return(
+          <div className='col-12'>
+            <div className='row justify-content-center p-5 m-5'>
+              <div className='col-12 text-center'>
+                <PulseLoader
+                  size={15}
+                  color={"#142850"}
+                  loading={true}
+                  margin={2}
+                />
+                <h6 className='text-secondary mt-2'>
+                  You have received 0 emails.<br/>
+                  <span className='text-light'>Waiting for incoming emails.</span>
+                </h6>
+              </div>
+            </div>
+          </div>
+        )
+      } else {
+        return(
+          <div className='col-12 row'>
+            <div className='col-4 p-2 address-list'>
+              {emailAddressList}
+            </div>
+            <div className='col-8 p-1'>
+              <div className="tab-content" id="v-pills-tabContent">
+                <div className="tab-pane fade show active" id="v-pills-message" role="tabpanel"
+                     aria-labelledby="v-pills-message-tab">
+                  <Message />
+                </div>
+              </div>
+            </div>
+          </div>
+          )
+      }
+    }
+  }
+  render(){
     return(
       <div className='container-fluid'>
         <div className='row justify-content-center p-3'>
@@ -44,42 +93,10 @@ class MessageContainer extends Component{
                   <div className='col '>Emails</div>
                 </div>
               </div>
-
               <div className='card-body p-0'>
                 <div className='container'>
                   <div className='row'>
-                    { emails.length === 0 && createNewMessage === false ?
-                      <div className='col-12'>
-                        <div className='row justify-content-center p-5 m-5'>
-                          <div className='col-12 text-center'>
-                            <PulseLoader
-                              size={15}
-                              color={"#142850"}
-                              loading={true}
-                              margin={2}
-                            />
-                            <h6 className='text-secondary mt-2'>
-                              You have received 0 emails.<br/>
-                              <span className='text-light'>Waiting for incoming emails.</span>
-                            </h6>
-                          </div>
-                        </div>
-                      </div>
-                      :
-                      <div className='col-12 row'>
-                        <div className='col-4 p-2 address-list'>
-                          {emailAddressList}
-                        </div>
-                        <div className='col-8 p-1'>
-                          <div className="tab-content" id="v-pills-tabContent">
-                            <div className="tab-pane fade show active" id="v-pills-message" role="tabpanel"
-                                 aria-labelledby="v-pills-message-tab">
-                              <Message />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    }
+                    {this.renderContent()}
                   </div>
                 </div>
               </div>
@@ -95,7 +112,8 @@ const mapStateToProps = (state, ownProps) => {
   return {
     emails: state.emailReducer.emails,
     from: state.emailReducer.from,
-    createNewMessage: state.emailReducer.createNewMessage
+    createNewMessage: state.emailReducer.createNewMessage,
+    changeMailAddress: state.emailReducer.changeMailAddress,
   }
 };
 
