@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from "axios";
-import mapDispatchToProps from "react-redux/lib/connect/mapDispatchToProps";
 
 class EmailMessageCreator extends Component {
   state = {
@@ -55,8 +54,9 @@ class EmailMessageCreator extends Component {
       }
     })
       .then(function (res) {
-        that.setState({newMessage: {subject: '', body: '', to: ''}});
         toastr.success(res.data.message, res.data.details, {'iconClass': 'toastr-success'});
+        that.setState({newMessage: {subject: '', body: '', to: ''}});
+        that.props.messageSent(res.data.sent_message);
       })
   }
 
@@ -129,6 +129,12 @@ const mapStateToProps = (state, ownProps) => {
     from: state.emailReducer.from,
     tempMail: state.emailReducer.tempMail
   }
-}
+};
 
-export default connect(mapStateToProps, null)(EmailMessageCreator)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    messageSent: message => dispatch({ type: 'EMAIL_SENT', value: message })
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(EmailMessageCreator);

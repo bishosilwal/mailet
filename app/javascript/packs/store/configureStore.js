@@ -37,26 +37,45 @@ function emailReducer(state = initialState, action) {
           ]
         }
       }
+
     case 'CREATE_NEW_MESSAGE':
       return {
         ...state,
         createNewMessage: action.value
       }
+
     case 'EMAIL_SELECTED':
       return {
         ...state,
         from: action.value,
         createNewMessage: false
       }
+
     case 'TEMP_MAIL_ADDRESS_DELETE':
       return {
         ...initialState
       }
+
     case 'TEMP_MAIL_ADDRESS_CREATE':
       return {
         ...initialState,
         tempMail: action.value
       }
+
+    case 'EMAIL_SENT':
+      var mail = state.emails.find(m => m.from == action.value.to);
+      mail.messages = [
+        ...mail.messages,
+        action.value
+      ];
+      return {
+        ...state,
+        emails: [
+          ...state.emails.filter(m=> m.from != action.value.to),
+          mail
+        ]
+      }
+
     default:
       return state;
   }

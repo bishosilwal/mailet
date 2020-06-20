@@ -15,6 +15,7 @@ class Message extends Component{
       this.setState({...nextProps})
     }
   }
+
   formatDateTime(date) {
     date = new Date(date);
     date = date.toDateString() + ' ' + date.toLocaleTimeString();
@@ -41,6 +42,9 @@ class Message extends Component{
                   <span className='font-weight-bolder'>Date: </span>
                   <span>{this.formatDateTime(message.created_at)}</span>
                 </p>
+              </div>
+              <div className='col-12 mb-1'>
+                <span className='font-weight-bolder'>To: </span><span>{message.to}</span>
               </div>
             </div>
             <div className='row'>
