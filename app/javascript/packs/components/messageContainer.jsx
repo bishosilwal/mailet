@@ -9,7 +9,10 @@ class MessageContainer extends Component{
     from: this.props.from,
     emails: this.props.emails || [],
     createNewMessage: this.props.createNewMessage,
-    changeMailAddress: this.props.changeMailAddress
+    changeMailAddress: this.props.changeMailAddress,
+    customMailAddress: '',
+    customMailValid: true,
+
   };
 
   componentWillReceiveProps(nextProps, nextContext) {
@@ -22,8 +25,15 @@ class MessageContainer extends Component{
     this.props.fromChanged(e.target.dataset.from);
   };
 
+  handleCustomMailChange = e => {
+    this.setState({customMailAddress: e.target.value})
+  };
+
+  customMailPlaceholder() {
+    return '@generatemail.com'
+  }
   renderContent() {
-    var { emails, from, createNewMessage, changeMailAddress } = this.state;
+    var { emails, from, createNewMessage, changeMailAddress, customMailAddress, customMailValid } = this.state;
     const emailAddressList = (
       <div className="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
         {emails.map(m =>
@@ -37,8 +47,32 @@ class MessageContainer extends Component{
 
     if(changeMailAddress) {
       return(
-        <div className='col-12'>
-          change mail address
+        <div className='col-12 row p-5'>
+          <div className='col-10 text-center'>
+            <h5 className='text-primary'>Create custom mail address.</h5>
+          </div>
+          <div className='col-12 pt-3 row justify-content-center'>
+            <div className='col-8'>
+              <div className='row'>
+                <div className='col-9 row'>
+                  <label htmlFor="customMailAddress" className="col-sm-3 col-form-label">
+                    <span className='font-weight-bolder'>Email:</span>
+                  </label>
+                  <div className="col-sm-9">
+                    <input type="text" name='to' value={customMailAddress} ref={(el) => this.customMail = el} className={"form-control " + `${customMailValid ? '' : 'is-invalid'}` } id="customMailAddress" placeholder={this.customMailPlaceholder()} onChange={this.handleCustomMailChange} required={true}/>
+                    <div className="invalid-feedback">
+                      Please enter custom name
+                    </div>
+                  </div>
+                </div>
+                <div className='col-3 row'>
+                  <div className='col-12 text-left'>
+                    <button className='btn btn-outline-primary'>Submit</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       )
     } else {

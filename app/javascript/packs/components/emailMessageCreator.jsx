@@ -115,7 +115,7 @@ class EmailMessageCreator extends Component {
             </div>
           </div>
           <div className='col-12 '>
-            <button className='btn btn-success float-right' onClick={this.sendMessage}>Send</button>
+            <button className='btn btn-outline-primary float-right' onClick={this.sendMessage}>Send</button>
           </div>
         </div>
       </div>

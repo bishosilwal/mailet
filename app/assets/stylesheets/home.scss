@@ -58,3 +58,11 @@ body {
 .btn-primary{
   color: $light;
 }
+
+input.form-control, textarea.form-control{
+  box-shadow: none !important;
+  &:focus{
+    border-color: $secondary !important;
+  }
+
+}
