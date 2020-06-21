@@ -7,8 +7,9 @@ class MailAddress < ApplicationRecord
 
   before_validation :generate_mail, only: [:create]
 
-  def self.random
-    self.create
+  def self.random(opts = {})
+    self.find(opts[:mail_id])&.destroy if opts[:mail_id].present?
+    self.create({ mail: opts[:address] })
   end
 
   def mail_regex
