@@ -22,7 +22,6 @@ class MailAddressController < ApplicationController
         message: 'Mail address created',
         new_mail: mail
       }
-
     else
       render json: mail.errors , status: :unprocessable_entity
     end
