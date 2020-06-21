@@ -34,12 +34,14 @@ class MessageContainer extends Component{
 
   customMailPlaceholder() {
     var { tempMail } = this.state;
+    tempMail = tempMail.mail;
     return tempMail.slice(tempMail.lastIndexOf('@'));
   };
 
   handleCustomMailSubmit = _ => {
     var that = this;
     var { customMailAddress, tempMail } = this.state;
+    tempMail = tempMail.mail;
     var domain = tempMail.slice(tempMail.lastIndexOf('@'));
     var mail = customMailAddress + domain;
     if(this.validateEmail(mail)) {

@@ -3,7 +3,7 @@ import { createStore, combineReducers } from 'redux';
 const initialState = {
   emails: [],
   from: null,
-  tempMail: null,
+  tempMail: {},
   createNewMessage: false,
   changeMailAddress: false,
 };

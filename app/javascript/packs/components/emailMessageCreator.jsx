@@ -20,7 +20,7 @@ class EmailMessageCreator extends Component {
   sendMessage = (e) => {
     var that = this;
     var { newMessage, createNewMessage, from, tempMail } = this.state;
-    newMessage['from'] = tempMail; // make sure to change when system generate the mail
+    newMessage['from'] = tempMail.mail; // make sure to change when system generate the mail
     if(from.length != 0 && !createNewMessage) {
       newMessage['to'] = from;
     }

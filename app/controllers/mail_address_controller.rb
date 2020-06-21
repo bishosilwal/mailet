@@ -1,22 +1,31 @@
 class MailAddressController < ApplicationController
 
   def create
-    render json: { new_mail: 'temp_mail@generatemail.com', status: :ok }
+    mail = MailAddress.random
+    render json: { new_mail: mail, status: :ok }
   end
 
   def destroy
-    render json: { message: 'Mail address deleted', new_mail: 'newMail@generatemail.com', details: '', status: :ok }
+    mail = MailAddress.random
+    render json: { message: 'Mail address deleted', new_mail: mail, details: '', status: :ok }
   end
 
   def change
-    render json: { message: 'Mail address changed', new_mail: 'changedMail@generatemail.com', status: :ok }
+    mail = MailAddress.random
+    render json: { message: 'Mail address changed', new_mail: mail, status: :ok }
   end
 
   def custom_address
-    render json: {
-      message: 'Mail address created',
-      new_mail: mail_address_params[:mail]
-    }
+    mail = MailAddress.new(mail_address_params)
+    if mail.save
+      render json: {
+        message: 'Mail address created',
+        new_mail: mail
+      }
+
+    else
+      render json: mail.errors , status: :unprocessable_entity
+    end
   end
 
   private

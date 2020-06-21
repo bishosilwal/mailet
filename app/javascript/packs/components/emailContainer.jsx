@@ -6,7 +6,7 @@ const token = window.$("meta[name='csrf-token']").attr('content');
 
 class EmailContainer extends Component{
   state = {
-    tempMail: this.props.tempMail,
+    tempMail: this.props.tempMail || '',
   };
 
   componentWillMount() {
@@ -29,7 +29,7 @@ class EmailContainer extends Component{
     }
   };
 
-  createMessage = e => {
+  createMessage = _ => {
     this.props.createNewMessage(true);
   };
 
@@ -80,7 +80,7 @@ class EmailContainer extends Component{
             <div className='row justify-content-center pb-0 pl-3 pr-3 pt-3'>
               <div className='col-4 pr-0'>
                 <div className='temp-email-div rounded-pill m-3 p-3 text-center'>
-                  <span className='text-dark'>{tempMail}</span>
+                  <span className='text-dark'>{tempMail.mail}</span>
                   <span className='float-right'>
                     <i className="far fa-copy fa-2x text-secondary"></i>
                   </span>
