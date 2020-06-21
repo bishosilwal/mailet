@@ -47,7 +47,7 @@ class EmailContainer extends Component{
     }).then(function (res) {
       that.props.handleMailDelete();
       that.props.newMailAddress(res.data.new_mail);
-      toastr.success(res.data.message, res.data.details, {'iconClass': 'toastr-success'});
+      toastr.success(res.data.message, res.data.details, {'toastClass': 'toastr-success'});
     });
   };
 
@@ -64,7 +64,7 @@ class EmailContainer extends Component{
       }
     }).then(function(res) {
       that.props.changeMailAddress(true, res.data.new_mail);
-      toastr.success(res.data.message, res.data.details, {'iconClass': 'toastr-success'});
+      toastr.success(res.data.message, res.data.details, {'toastClass': 'toastr-success'});
     });
   };
 

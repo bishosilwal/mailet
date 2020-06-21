@@ -23,7 +23,7 @@ class MailAddressController < ApplicationController
         new_mail: mail
       }
     else
-      render json: mail.errors , status: :unprocessable_entity
+      render json: mail.errors.messages, status: :unprocessable_entity
     end
   end
 

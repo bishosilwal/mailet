@@ -55,7 +55,10 @@ class MessageContainer extends Component{
       }).then(function (res) {
         that.props.customMailAddressCreated(res.data.new_mail);
         that.setState({customMailAddress: '', customMailValid: true});
-        toastr.success(res.data.message, res.data.details, {'iconClass': 'toastr-success'});
+        toastr.success(res.data.message, res.data.details, {'toastClass': 'toastr-success'});
+      }).catch(function(error) {
+        var msg = Object.values(error.response.data).join();
+        toastr.error(msg);
       });
     } else {
       this.setState({customMailValid: false});
