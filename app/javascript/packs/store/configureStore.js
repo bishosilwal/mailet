@@ -22,6 +22,7 @@ function emailReducer(state = initialState, action) {
               messages: [action.email]
             }
           ],
+          changeMailAddress: false,
         }
       } else {
         return {
@@ -35,7 +36,8 @@ function emailReducer(state = initialState, action) {
                 action.email
               ]
             }
-          ]
+          ],
+          changeMailAddress: false,
         }
       }
 
