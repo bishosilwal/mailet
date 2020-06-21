@@ -6,6 +6,7 @@ class MailAddressController < ApplicationController
   end
 
   def destroy
+    MailAddress.find(params['mail']['id'])&.destroy
     mail = MailAddress.random
     render json: { message: 'Mail address deleted', new_mail: mail, details: '', status: :ok }
   end
