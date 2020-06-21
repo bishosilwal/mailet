@@ -16,6 +16,7 @@ class MessageContainer extends Component{
     changeMailAddress: this.props.changeMailAddress,
     customMailAddress: '',
     customMailValid: true,
+    addressValidationMsg: ''
   };
 
   componentWillReceiveProps(nextProps, nextContext) {
@@ -59,9 +60,10 @@ class MessageContainer extends Component{
       }).catch(function(error) {
         var msg = Object.values(error.response.data).join();
         toastr.error(msg);
+        that.setState({customMailValid: false, addressValidationMsg: msg});
       });
     } else {
-      this.setState({customMailValid: false});
+      this.setState({customMailValid: false, addressValidationMsg: "Please enter custom name. Valid characters include: !#$%&'*+-/=?^_\{|}~"});
     }
   };
 
@@ -71,7 +73,8 @@ class MessageContainer extends Component{
   };
 
   renderContent() {
-    var { emails, from, createNewMessage, changeMailAddress, customMailAddress, customMailValid } = this.state;
+    var { emails, from, createNewMessage, changeMailAddress, customMailAddress, customMailValid, addressValidationMsg } = this.state;
+
     const emailAddressList = (
       <div className="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
         {emails.map(m =>
@@ -97,9 +100,9 @@ class MessageContainer extends Component{
                     <span className='font-weight-bolder'>Email:</span>
                   </label>
                   <div className="col-sm-9">
-                    <input type="text" name='to' value={customMailAddress} ref={(el) => this.customMail = el} className={"form-control " + `${customMailValid ? '' : 'is-invalid'}` } id="customMailAddress" placeholder={this.customMailPlaceholder()} onChange={this.handleCustomMailChange} required={true}/>
-                    <div className="invalid-feedback">
-                      Please enter custom name. Valid characters include: {"!#$%&'*+-/=?^_\{|}~"}
+                    <input type="text" name='to' value={customMailAddress} className={"form-control " + `${customMailValid ? '' : 'is-invalid'}` } id="customMailAddress" placeholder={this.customMailPlaceholder()} onChange={this.handleCustomMailChange} required={true}/>
+                    <div className="invalid-feedback" >
+                      {addressValidationMsg}
                     </div>
                   </div>
                 </div>

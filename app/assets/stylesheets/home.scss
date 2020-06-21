@@ -59,7 +59,7 @@ body {
   color: $light;
 }
 
-input.form-control, textarea.form-control{
+input.form-control, textarea.form-control, .btn{
   box-shadow: none !important;
   &:focus{
     border-color: $secondary !important;
