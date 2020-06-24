@@ -5,7 +5,11 @@ export default class Header extends Component{
   render(){
     return(
       <nav className="navbar navbar-light bg-light">
-        <span className="navbar-brand mb-0 h1">GenMail</span>
+        <div className='container'>
+          <span className="navbar-brand mb-0 h1">
+            GenMail
+          </span>
+        </div>
       </nav>
     )
   }

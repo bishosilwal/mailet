@@ -64,5 +64,13 @@ input.form-control, textarea.form-control, .btn{
   &:focus{
     border-color: $secondary !important;
   }
+}
 
+.footer {
+  p {
+    font-size: 10px;
+  }
+  h5, h4 {
+    font-size: 12px;
+  }
 }
