@@ -78,19 +78,21 @@ class EmailContainer extends Component{
           </div>
           <div className='col-12'>
             <div className='row justify-content-center pb-0 pl-3 pr-3 pt-3'>
-              <div className='col-4 pr-0'>
-                <div className='temp-email-div rounded-pill m-3 p-3 text-center'>
-                  <span className='text-dark'>{tempMail.mail}</span>
-                  <span className='float-right'>
-                    <i className="far fa-copy fa-2x text-secondary"></i>
-                  </span>
+              <div className='col-md-3 col-sm-12 pr-0 pl-0'>
+                <div className='row temp-email-div rounded-pill m-3 pl-2'>
+                  <div className='col-8 mail'>
+                    <span className='text-dark mail'>{tempMail.mail}</span>
+                  </div>
+                  <div className='col-4 p-0 text-right'>
+                    <button className='btn btn-primary rounded-circle'><i class="fas fa-clone"></i></button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className='col-8 mt-5 pt-5'>
-            <div className='row justify-content-around'>
-              <div className='col-4'>
+          <div className='col-md-8 col-sm-12 mt-5 pt-5'>
+            <div className='row justify-content-around action-pills'>
+              <div className='col-md-4 col-sm-12'>
                 <div className='btn btn-primary rounded-pill p-3 text-center w-75' onClick={this.handleChange}>
                    <span className='float-left ml-1'>
                      <i className="fas fa-edit"></i>
@@ -98,7 +100,7 @@ class EmailContainer extends Component{
                   <span className=''>Change Email</span>
                 </div>
               </div>
-              <div className='col-4'>
+              <div className='col-md-4 col-sm-12'>
                 <div className='btn btn-primary rounded-pill p-3 text-center w-75' onClick={this.handleDelete}>
                   <span className='float-left ml-1'>
                     <i className="fas fa-trash-alt"></i>
@@ -106,7 +108,7 @@ class EmailContainer extends Component{
                   <span className=''>Delete Email</span>
                 </div>
               </div>
-              <div className='col-4'>
+              <div className='col-md-4 col-sm-12'>
                 <div className='btn btn-primary rounded-pill p-3 text-center w-75' onClick={this.createMessage}>
                   <span className='float-left ml-1'>
                     <i className="fas fa-envelope-square"></i>

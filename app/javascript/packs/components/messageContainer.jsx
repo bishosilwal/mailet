@@ -120,7 +120,7 @@ class MessageContainer extends Component{
       if(emails.length === 0 && !createNewMessage) {
         return(
           <div className='col-12'>
-            <div className='row justify-content-center p-5 m-5'>
+            <div className='row justify-content-center p-5 m-5 loading-row'>
               <div className='col-12 text-center'>
                 <PulseLoader
                   size={15}
@@ -159,7 +159,7 @@ class MessageContainer extends Component{
     return(
       <div className='container-fluid'>
         <div className='row justify-content-center p-3'>
-          <div className='col-10'>
+          <div className='col-md-10 col-sm-12 message-container'>
             <div className="card message-container-card" >
               <div className="card-header">
                 <div className='row justify-content-around text-light'>
