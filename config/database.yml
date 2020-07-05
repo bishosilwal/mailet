@@ -21,7 +21,6 @@ default: &default
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: postgres
-
 development:
   <<: *default
   database: mail_generate_development
@@ -82,5 +81,5 @@ test:
 production:
   <<: *default
   database: mail_generate_production
-  username: mail_generate
-  password: <%= ENV['MAIL_GENERATE_DATABASE_PASSWORD'] %>
+  username: postgres
+  password: <%= ENV['MAIL_GENERATE_DATABASE_PASSWORD'] || 'root' %>
