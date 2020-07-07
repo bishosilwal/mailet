@@ -25,9 +25,6 @@ shared_dir = "#{app_dir}/shared"
 # Set up socket location
 bind "unix://#{shared_dir}/sockets/puma.sock"
 
-# Logging
-stdout_redirect "#{shared_dir}/log/puma.stdout.log", "#{shared_dir}/log/puma.stderr.log", true
-
 # Specifies the number of `workers` to boot in clustered mode.
 # Workers are forked web server processes. If using threads and workers together
 # the concurrency of the application would be max `threads` * `workers`.
