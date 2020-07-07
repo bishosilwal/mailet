@@ -24,7 +24,10 @@ shared_dir = "#{app_dir}/shared"
 
 # Set up socket location
 bind "unix://#{shared_dir}/sockets/puma.sock"
-
+# Set master PID and state locations
+pidfile "#{shared_dir}/tmp/pids/puma.pid"
+state_path "#{shared_dir}/tmp/pids/puma.state"
+activate_control_app
 # Specifies the number of `workers` to boot in clustered mode.
 # Workers are forked web server processes. If using threads and workers together
 # the concurrency of the application would be max `threads` * `workers`.
