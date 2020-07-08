@@ -25,8 +25,11 @@ shared_dir = "#{app_dir}/shared"
 # Set up socket location
 bind "unix://#{shared_dir}/sockets/puma.sock"
 # Set master PID and state locations
-pidfile "#{shared_dir}/tmp/pids/puma.pid"
 state_path "#{shared_dir}/tmp/pids/puma.state"
+
+# Logging
+stdout_redirect "#{shared_dir}/log/puma.stdout.log", "#{shared_dir}/log/puma.stderr.log", true
+
 activate_control_app
 # Specifies the number of `workers` to boot in clustered mode.
 # Workers are forked web server processes. If using threads and workers together
@@ -43,5 +46,10 @@ activate_control_app
 #
 # preload_app!
 
+on_worker_boot do
+ require "active_record"
+ ActiveRecord::Base.connection.disconnect! rescue ActiveRecord::ConnectionNotEstablished
+ ActiveRecord::Base.establish_connection(YAML.load_file("#{app_dir}/config/database.yml")[rails_env])
+end
 # Allow puma to be restarted by `rails restart` command.
 plugin :tmp_restart
