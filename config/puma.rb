@@ -16,14 +16,15 @@ port        ENV.fetch("PORT") { 3000 }
 #
 environment ENV.fetch("RAILS_ENV") { "development" }
 
-# Specifies the `pidfile` that Puma will use.
-pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
-
 app_dir = File.expand_path("../..", __FILE__)
 shared_dir = "#{app_dir}/shared"
 
 # Set up socket location
 bind "unix://#{shared_dir}/sockets/puma.sock"
+  
+# Specifies the `pidfile` that Puma will use.
+pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
+
 # Set master PID and state locations
 state_path "#{shared_dir}/tmp/pids/puma.state"
 
