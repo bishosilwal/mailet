@@ -4,7 +4,9 @@
 @import './variables/_variables.scss';
 @import "bootstrap/scss/bootstrap.scss";
 @import "toastr/toastr.scss";
-@import "@fortawesome/fontawesome-free/css/all.css";
+$fa-font-path: '@fortawesome/fontawesome-free/webfonts';
+@import '@fortawesome/fontawesome-free/scss/fontawesome';
+@import '@fortawesome/fontawesome-free/scss/solid';
 
 body {
   min-height: 100vh;

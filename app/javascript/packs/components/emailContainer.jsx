@@ -84,7 +84,7 @@ class EmailContainer extends Component{
                     <span className='text-dark mail'>{tempMail.mail}</span>
                   </div>
                   <div className='col-4 p-0 text-right'>
-                    <button className='btn btn-primary rounded-circle'><i class="fas fa-clone"></i></button>
+                    <button className='btn btn-primary rounded-circle'><i className="fas fa-clone"></i></button>
                   </div>
                 </div>
               </div>
