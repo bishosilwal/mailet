@@ -1,0 +1,161 @@
+=== puma startup: 2020-07-09 21:18:03 +0545 ===
+Started GET "/rails/info/routes" for ::1 at 2020-07-09 21:18:07 +0545
+  
+PG::ConnectionBad (FATAL:  role "postgres" does not exist
+):
+  
+pg (1.2.3) lib/pg.rb:58:in `initialize'
+pg (1.2.3) lib/pg.rb:58:in `new'
+pg (1.2.3) lib/pg.rb:58:in `connect'
+activerecord (6.0.3.2) lib/active_record/connection_adapters/postgresql_adapter.rb:46:in `postgresql_connection'
+activerecord (6.0.3.2) lib/active_record/connection_adapters/abstract/connection_pool.rb:887:in `new_connection'
+activerecord (6.0.3.2) lib/active_record/connection_adapters/abstract/connection_pool.rb:931:in `checkout_new_connection'
+activerecord (6.0.3.2) lib/active_record/connection_adapters/abstract/connection_pool.rb:910:in `try_to_checkout_new_connection'
+activerecord (6.0.3.2) lib/active_record/connection_adapters/abstract/connection_pool.rb:871:in `acquire_connection'
+activerecord (6.0.3.2) lib/active_record/connection_adapters/abstract/connection_pool.rb:593:in `checkout'
+activerecord (6.0.3.2) lib/active_record/connection_adapters/abstract/connection_pool.rb:437:in `connection'
+activerecord (6.0.3.2) lib/active_record/connection_adapters/abstract/connection_pool.rb:1119:in `retrieve_connection'
+activerecord (6.0.3.2) lib/active_record/connection_handling.rb:221:in `retrieve_connection'
+activerecord (6.0.3.2) lib/active_record/connection_handling.rb:189:in `connection'
+activerecord (6.0.3.2) lib/active_record/migration.rb:562:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.3.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+web-console (4.0.3) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.3) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.3) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.3) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+webpacker (4.2.2) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+- Gracefully stopping, waiting for requests to finish
+=== puma shutdown: 2020-07-09 21:18:34 +0545 ===
+- Goodbye!
+Exiting
+=== puma startup: 2020-07-09 21:18:40 +0545 ===
+Started GET "/rails/info/routes" for ::1 at 2020-07-09 21:18:41 +0545
+  [1m[35m (3.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::InfoController#routes as HTML
+  Rendering /Users/silwal/.rvm/gems/ruby-2.5.1/gems/railties-6.0.3.2/lib/rails/templates/rails/info/routes.html.erb within layouts/application
+  Rendered collection of /Users/silwal/.rvm/gems/ruby-2.5.1/gems/actionpack-6.0.3.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb [28 times] (Duration: 7.9ms | Allocations: 4287)
+  Rendered /Users/silwal/.rvm/gems/ruby-2.5.1/gems/actionpack-6.0.3.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (Duration: 3.5ms | Allocations: 1158)
+  Rendered /Users/silwal/.rvm/gems/ruby-2.5.1/gems/railties-6.0.3.2/lib/rails/templates/rails/info/routes.html.erb within layouts/application (Duration: 18.6ms | Allocations: 8342)
+Completed 200 OK in 36ms (Views: 26.5ms | ActiveRecord: 0.0ms | Allocations: 11122)
+
+
+Started GET "/rails/info/routes" for ::1 at 2020-07-09 22:27:22 +0545
+Processing by Rails::InfoController#routes as HTML
+  Rendering /Users/silwal/.rvm/gems/ruby-2.5.1/gems/railties-6.0.3.2/lib/rails/templates/rails/info/routes.html.erb within layouts/application
+  Rendered collection of /Users/silwal/.rvm/gems/ruby-2.5.1/gems/actionpack-6.0.3.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb [28 times] (Duration: 18.5ms | Allocations: 4256)
+  Rendered /Users/silwal/.rvm/gems/ruby-2.5.1/gems/actionpack-6.0.3.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (Duration: 2.9ms | Allocations: 713)
+  Rendered /Users/silwal/.rvm/gems/ruby-2.5.1/gems/railties-6.0.3.2/lib/rails/templates/rails/info/routes.html.erb within layouts/application (Duration: 35.8ms | Allocations: 7580)
+Completed 200 OK in 50ms (Views: 42.0ms | ActiveRecord: 0.0ms | Allocations: 8826)
+
+
+Started GET "/" for ::1 at 2020-07-09 22:31:13 +0545
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+[Webpacker] Compiling...
+[Webpacker] Compiled all packs in /Users/silwal/files/workspace/mail-generate/public/packs
+[Webpacker] Hash: 40a579d5d1761188ea22
+Version: webpack 4.43.0
+Time: 2765ms
+Built at: 07/09/2020 10:31:19 PM
+                                                     Asset      Size                          Chunks                         Chunk Names
+                       application-40a579d5d1761188ea22.js   721 KiB                     application  [emitted] [immutable]  application
+                   application-40a579d5d1761188ea22.js.map   839 KiB                     application  [emitted] [dev]        application
+         components/emailContainer-40a579d5d1761188ea22.js  1.26 MiB       components/emailContainer  [emitted] [immutable]  components/emailContainer
+     components/emailContainer-40a579d5d1761188ea22.js.map  1.39 MiB       components/emailContainer  [emitted] [dev]        components/emailContainer
+    components/emailMessageCreator-40a579d5d1761188ea22.js  1.26 MiB  components/emailMessageCreator  [emitted] [immutable]  components/emailMessageCreator
+components/emailMessageCreator-40a579d5d1761188ea22.js.map  1.39 MiB  components/emailMessageCreator  [emitted] [dev]        components/emailMessageCreator
+                 components/footer-40a579d5d1761188ea22.js   112 KiB               components/footer  [emitted] [immutable]  components/footer
+             components/footer-40a579d5d1761188ea22.js.map   119 KiB               components/footer  [emitted] [dev]        components/footer
+                 components/header-40a579d5d1761188ea22.js   110 KiB               components/header  [emitted] [immutable]  components/header
+             components/header-40a579d5d1761188ea22.js.map   118 KiB               components/header  [emitted] [dev]        components/header
+                components/message-40a579d5d1761188ea22.js  1.79 MiB              components/message  [emitted] [immutable]  components/message
+            components/message-40a579d5d1761188ea22.js.map  1.98 MiB              components/message  [emitted] [dev]        components/message
+       components/messageContainer-40a579d5d1761188ea22.js  1.89 MiB     components/messageContainer  [emitted] [immutable]  components/messageContainer
+   components/messageContainer-40a579d5d1761188ea22.js.map  2.06 MiB     components/messageContainer  [emitted] [dev]        components/messageContainer
+                       hello_react-40a579d5d1761188ea22.js  1.08 MiB                     hello_react  [emitted] [immutable]  hello_react
+                   hello_react-40a579d5d1761188ea22.js.map  1.24 MiB                     hello_react  [emitted] [dev]        hello_react
+                             index-40a579d5d1761188ea22.js  1.93 MiB                           index  [emitted] [immutable]  index
+                         index-40a579d5d1761188ea22.js.map  2.07 MiB                           index  [emitted] [dev]        index
+                                             manifest.json   3.7 KiB                                  [emitted]              
+              store/configureStore-40a579d5d1761188ea22.js  65.7 KiB            store/configureStore  [emitted] [immutable]  store/configureStore
+          store/configureStore-40a579d5d1761188ea22.js.map  66.2 KiB            store/configureStore  [emitted] [dev]        store/configureStore
+Entrypoint application = application-40a579d5d1761188ea22.js application-40a579d5d1761188ea22.js.map
+Entrypoint components/emailContainer = components/emailContainer-40a579d5d1761188ea22.js components/emailContainer-40a579d5d1761188ea22.js.map
+Entrypoint components/emailMessageCreator = components/emailMessageCreator-40a579d5d1761188ea22.js components/emailMessageCreator-40a579d5d1761188ea22.js.map
+Entrypoint components/footer = components/footer-40a579d5d1761188ea22.js components/footer-40a579d5d1761188ea22.js.map
+Entrypoint components/header = components/header-40a579d5d1761188ea22.js components/header-40a579d5d1761188ea22.js.map
+Entrypoint components/message = components/message-40a579d5d1761188ea22.js components/message-40a579d5d1761188ea22.js.map
+Entrypoint components/messageContainer = components/messageContainer-40a579d5d1761188ea22.js components/messageContainer-40a579d5d1761188ea22.js.map
+Entrypoint hello_react = hello_react-40a579d5d1761188ea22.js hello_react-40a579d5d1761188ea22.js.map
+Entrypoint index = index-40a579d5d1761188ea22.js index-40a579d5d1761188ea22.js.map
+Entrypoint store/configureStore = store/configureStore-40a579d5d1761188ea22.js store/configureStore-40a579d5d1761188ea22.js.map
+[0] util (ignored) 15 bytes {components/message} {components/messageContainer} {index} [built]
+[1] util (ignored) 15 bytes {components/message} {components/messageContainer} {index} [built]
+[./app/javascript/channels sync recursive _channel\.js$] ./app/javascript/channels sync _channel\.js$ 183 bytes {application} [built]
+[./app/javascript/channels/consumer.js] 265 bytes {application} [built]
+[./app/javascript/channels/email_channel.js] 605 bytes {application} [optional] [built]
+[./app/javascript/channels/index.js] 211 bytes {application} [built]
+[./app/javascript/packs/application.js] 1.03 KiB {application} [built]
+[./app/javascript/packs/hello_react.jsx] 1.07 KiB {hello_react} [built]
+[./app/javascript/packs/index.jsx] 4.84 KiB {index} [built]
+[./app/javascript/packs/store/configureStore.js] 4.83 KiB {store/configureStore} {index} [built]
+[./node_modules/webpack/buildin/amd-define.js] (webpack)/buildin/amd-define.js 85 bytes {application} [built]
+[./node_modules/webpack/buildin/global.js] (webpack)/buildin/global.js 905 bytes {application} {components/emailContainer} {components/emailMessageCreator} {components/message} {components/messageContainer} {index} {store/configureStore} [built]
+[./node_modules/webpack/buildin/harmony-module.js] (webpack)/buildin/harmony-module.js 631 bytes {components/emailContainer} {components/emailMessageCreator} {components/message} {components/messageContainer} {index} {store/configureStore} [built]
+[./node_modules/webpack/buildin/module.js] (webpack)/buildin/module.js 552 bytes {application} [built]
+    + 162 hidden modules
+
+  Rendered home/index.html.erb within layouts/application (Duration: 5221.7ms | Allocations: 4237)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 7523ms (Views: 7520.5ms | ActiveRecord: 0.0ms | Allocations: 1873454)
+
+
+Started GET "/cable" for ::1 at 2020-07-09 22:31:21 +0545
+Started GET "/cable/" [WebSocket] for ::1 at 2020-07-09 22:31:21 +0545
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+Started POST "/mail_address" for ::1 at 2020-07-09 22:31:22 +0545
+Processing by MailAddressController#create as JSON
+  [1m[35m (1.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/mail_address.rb:25:in `generate_mail'
+  [1m[36mMailAddress Load (33.1ms)[0m  [1m[34mSELECT "mail_addresses".* FROM "mail_addresses" WHERE "mail_addresses"."mail" = $1 LIMIT $2[0m  [["mail", "UemuDlvh@generatemail.com"], ["LIMIT", 1]]
+  ↳ app/models/mail_address.rb:25:in `generate_mail'
+  [1m[36mMailAddress Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "mail_addresses" WHERE "mail_addresses"."mail" = $1 LIMIT $2[0m  [["mail", "UemuDlvh@generatemail.com"], ["LIMIT", 1]]
+  ↳ app/models/mail_address.rb:12:in `random'
+  [1m[36mMailAddress Create (29.4ms)[0m  [1m[32mINSERT INTO "mail_addresses" ("mail", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["mail", "UemuDlvh@generatemail.com"], ["created_at", "2020-07-09 16:46:22.280499"], ["updated_at", "2020-07-09 16:46:22.280499"]]
+  ↳ app/models/mail_address.rb:12:in `random'
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/mail_address.rb:12:in `random'
+Completed 200 OK in 274ms (Views: 0.5ms | ActiveRecord: 236.9ms | Allocations: 11728)
+
+
+EmailChannel is transmitting the subscription confirmation
+EmailChannel is streaming from mail_receiver

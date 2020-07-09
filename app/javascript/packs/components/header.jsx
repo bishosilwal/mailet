@@ -7,7 +7,7 @@ export default class Header extends Component{
       <nav className="navbar navbar-light bg-light">
         <div className='container'>
           <span className="navbar-brand mb-0 h1">
-            GenMail
+            MaiLet
           </span>
         </div>
       </nav>
