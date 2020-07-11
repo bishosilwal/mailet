@@ -4,8 +4,6 @@
 @import './variables/_variables.scss';
 @import "bootstrap/scss/bootstrap.scss";
 @import "toastr/toastr.scss";
-@import '@fortawesome/fontawesome-free/scss/fontawesome';
-@import '@fortawesome/fontawesome-free/scss/solid';
 
 body {
   min-height: 100vh;
@@ -40,7 +38,7 @@ body {
 }
 
 .footer{
-  background-color: $dark;
+  background-color: #02121d;
   color: $light;
 }
 
