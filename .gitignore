@@ -13,7 +13,7 @@
 !/log/.keep
 !/tmp/.keep
 /shared/*
-/idea/*
+/.idea/*
 # Ignore uploaded files in development.
 /storage/*
 !/storage/.keep
