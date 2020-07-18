@@ -34,6 +34,6 @@ class EmailReceive
     unless message.save
       raise RuntimeError, "Unable to save message. Errors: #{message.errors.inspect}"
     end
-    ActionCable.server.broadcast('mail_receiver', email: message)
+    ActionCable.server.broadcast("mail_receiver_#{message.to}", email: message)
   end
 end

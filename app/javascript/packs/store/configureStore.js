@@ -1,4 +1,5 @@
 import { createStore, combineReducers } from 'redux';
+import consumer from "../../channels/consumer";
 
 const initialState = {
   emails: [],
@@ -8,6 +9,32 @@ const initialState = {
   changeMailAddress: false,
 };
 
+function subscribeChannel(mailAddress){
+  window.emailChannel = consumer.subscriptions.create({
+    channel: "EmailChannel",
+    mail_address: mailAddress
+  }, {
+    initialized() {
+    },
+    connected() {
+      // Called when the subscription is ready for use on the server
+    },
+
+    disconnected() {
+      // Called when the subscription has been terminated by the server
+    },
+
+    received(data) {
+      if(data.email) {
+        window.store.dispatch({
+          type: 'EMAIL_RECEIVED',
+          email: data.email
+        });
+      }
+      // Called when there's incoming data on the websocket for this channel
+    }
+  });
+}
 function emailReducer(state = initialState, action) {
   switch (action.type) {
     case 'EMAIL_RECEIVED':
@@ -61,6 +88,7 @@ function emailReducer(state = initialState, action) {
       }
 
     case 'TEMP_MAIL_ADDRESS_CREATE':
+      subscribeChannel(action.value.mail);
       return {
         ...initialState,
         tempMail: action.value
