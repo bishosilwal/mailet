@@ -31,7 +31,7 @@ class MailAddress < ApplicationRecord
   private
 
   def local_part
-    [*'0'..'9',*'A'..'Z',*'a'..'z'].sample(MAIL_LOCAL_LENGTH).join
+    [*'0'..'9',*'a'..'z'].sample(MAIL_LOCAL_LENGTH).join
   end
 
   def random_address
