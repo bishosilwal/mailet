@@ -1,5 +1,5 @@
 class MailAddress < ApplicationRecord
-  DOMAIN = 'generatemail.com'
+  DOMAIN = 'mailet.in'
   MAIL_LOCAL_LENGTH = 8
 
   validates :mail, presence: true, uniqueness: true
