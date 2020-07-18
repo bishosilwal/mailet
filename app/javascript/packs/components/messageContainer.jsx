@@ -160,7 +160,7 @@ class MessageContainer extends Component{
       <div className='container-fluid'>
         <div className='row justify-content-center p-3'>
           <div className='col-md-10 col-sm-12'>
-            <span className='text-primary'>*Note: Incoming mail is updated automatically</span>
+            <span className='text-primary font-italic font-weight-light note'>*Note: Incoming mail is updated automatically</span>
           </div>
           <div className='col-md-10 col-sm-12 message-container'>
             <div className="card message-container-card" >
