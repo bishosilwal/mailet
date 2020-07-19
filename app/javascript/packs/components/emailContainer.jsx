@@ -86,7 +86,7 @@ class EmailContainer extends Component{
                     <span className='text-dark mail'>{tempMail.mail}</span>
                   </div>
                   <div className='col-4 p-0 text-right'>
-                    <button className='btn btn-primary rounded-circle'><i className="fas fa-clone"></i></button>
+                    <button className='btn btn-primary rounded-circle' data-toggle="tooltip" data-placement="right" title="Copy to clipboard"><i className="fas fa-clone"></i></button>
                   </div>
                 </div>
               </div>
@@ -95,23 +95,23 @@ class EmailContainer extends Component{
           <div className='col-md-8 col-sm-12 mt-5 pt-5'>
             <div className='row justify-content-around action-pills'>
               <div className='col-md-4 col-sm-12'>
-                <div className='btn btn-primary rounded-pill p-3 text-center w-75' onClick={this.handleChange}>
+                <div className='btn btn-primary rounded-pill p-3 text-center w-75' onClick={this.handleChange} data-toggle="tooltip" data-placement="bottom" title="Change mail address">
                    <span className='float-left ml-1'>
                      <i className="fas fa-edit"></i>
                    </span>
-                  <span className=''>Change Email</span>
+                  <span className=''>Change</span>
                 </div>
               </div>
               <div className='col-md-4 col-sm-12'>
-                <div className='btn btn-primary rounded-pill p-3 text-center w-75' onClick={this.handleDelete}>
+                <div className='btn btn-primary rounded-pill p-3 text-center w-75' onClick={this.handleDelete} data-toggle="tooltip" data-placement="bottom" title="Delete and create new mail address">
                   <span className='float-left ml-1'>
                     <i className="fas fa-trash-alt"></i>
                   </span>
-                  <span className=''>Delete Mail Address</span>
+                  <span className=''>Delete</span>
                 </div>
               </div>
               <div className='col-md-4 col-sm-12'>
-                <div className='btn btn-primary rounded-pill p-3 text-center w-75' onClick={this.createMessage}>
+                <div className='btn btn-primary rounded-pill p-3 text-center w-75' onClick={this.createMessage} data-toggle="tooltip" data-placement="bottom" title="Send email using current mail address">
                   <span className='float-left ml-1'>
                     <i className="fas fa-envelope-square"></i>
                   </span>
