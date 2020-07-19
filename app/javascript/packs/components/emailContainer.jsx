@@ -87,13 +87,13 @@ class EmailContainer extends Component{
       <div className='container-fluid email-container text-white'>
         <div className='row justify-content-center pb-5'>
           <div className='col-12 mt-5 text-center text-light'>
-            <h6>Your Temporary Email Address</h6>
+            <h5>Disposable Email Address</h5>
           </div>
           <div className='col-12'>
             <div className='row justify-content-center pb-0 pl-3 pr-3 pt-3'>
               <div className='col-md-3 col-sm-12 pr-0 pl-0'>
                 <div className='row temp-email-div rounded-pill m-3 pl-2'>
-                  <div className='col-8 mail'>
+                  <div className='col-8 mail' data-toggle="tooltip" data-placement="bottom" title="Your Temporary Email Address">
                     <span className='text-dark mail'>{tempMail.mail}</span>
                   </div>
                   <div className='col-4 p-0 text-right'>
