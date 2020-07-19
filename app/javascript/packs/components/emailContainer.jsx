@@ -70,6 +70,17 @@ class EmailContainer extends Component{
     // });
   };
 
+  copyToClipboard(mail, e) {
+    e.preventDefault();
+    e.stopPropagation();
+     navigator.clipboard.writeText(mail).then(function() {
+       toastr.success('Copied to clipboard', '', {'toastClass': 'toastr-success'});
+      /* clipboard successfully set */
+    }, function() {
+       console.log('Copied to clipboard failed')
+      /* clipboard write failed */
+    });
+  }
   render(){
     const { tempMail } = this.state;
     return(
@@ -86,7 +97,7 @@ class EmailContainer extends Component{
                     <span className='text-dark mail'>{tempMail.mail}</span>
                   </div>
                   <div className='col-4 p-0 text-right'>
-                    <button className='btn btn-primary rounded-circle' data-toggle="tooltip" data-placement="right" title="Copy to clipboard"><i className="fas fa-clone"></i></button>
+                    <div className='btn btn-primary rounded-circle copy-clipboard' onClick={ e => this.copyToClipboard(tempMail.mail, e) } data-toggle="tooltip" data-placement="right" title="Copy to clipboard"><i className="fas fa-clone"></i></div>
                   </div>
                 </div>
               </div>
