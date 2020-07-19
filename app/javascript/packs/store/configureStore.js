@@ -117,7 +117,7 @@ function emailReducer(state = initialState, action) {
       return {
         ...initialState,
         changeMailAddress: action.value,
-        tempMail: action.tempMail
+        tempMail: action.tempMail || state.tempMail
       }
 
     default:
