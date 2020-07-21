@@ -10,6 +10,9 @@ const initialState = {
 };
 
 function subscribeChannel(mailAddress){
+  if(window.emailChannel) {
+    window.emailChannel.unsubscribe();
+  }
   window.emailChannel = consumer.subscriptions.create({
     channel: "EmailChannel",
     mail_address: mailAddress
