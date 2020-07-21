@@ -34,6 +34,7 @@ function subscribeChannel(mailAddress){
           type: 'EMAIL_RECEIVED',
           email: data.email
         });
+        toastr.info("Please open mails.", 'Mail received');
       }
       // Called when there's incoming data on the websocket for this channel
     }
