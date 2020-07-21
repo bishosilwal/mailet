@@ -77,7 +77,7 @@ class EmailContainer extends Component{
       <div className='container-fluid email-container text-white'>
         <div className='row justify-content-center pb-5'>
           <div className='col-12 mt-5 text-center text-light'>
-            <h5>Disposable Email Address</h5>
+            <h5>Temporary Disposable Email Address</h5>
           </div>
           <div className='col-12'>
             <div className='row justify-content-center pb-0 pl-3 pr-3 pt-3'>
@@ -92,8 +92,14 @@ class EmailContainer extends Component{
                 </div>
               </div>
             </div>
+            <div className='row justify-content-center p-2'>
+              <div className='col-md-5'>
+                <p className='text-muted'>Use this mail address to send and receive mail from any sites. You don't have to worry about the spam emails in your personal mailbox, your
+                  online privacy, giving away your personal email address to other company.</p>
+              </div>
+            </div>
           </div>
-          <div className='col-md-8 col-sm-12 mt-5 pt-5'>
+          <div className='col-md-8 col-sm-12 pt-2'>
             <div className='row justify-content-around action-pills'>
               <div className='col-md-3 col-sm-12'>
                 <div className='btn btn-primary rounded-pill p-3 text-center w-75' onClick={this.handleChange} data-toggle="tooltip" data-placement="bottom" title="Change mail address">
