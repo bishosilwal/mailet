@@ -1,8 +1,9 @@
 class MailAddressController < ApplicationController
+  before_action :check_address_session, only: [:create]
   after_action :set_address_session
 
   def create
-    @mail = MailAddress.random
+    @mail ||= MailAddress.random
     render json: { new_mail: @mail, status: :ok }
   end
 
@@ -30,10 +31,16 @@ class MailAddressController < ApplicationController
 
   private
 
+  def check_address_session
+    if mail_address_session.present?
+      @mail = MailAddress.find_by_mail(mail_address_session)
+    end
+  end
+
   def set_address_session
     if @mail.persisted?
       session.delete(:mail_address)
-      session[:mail_address] = @mail.mail
+      mail_address_session @mail.mail
     end
   end
 
@@ -43,5 +50,13 @@ class MailAddressController < ApplicationController
 
   def mail_id_params
     { mail_id: params['mail']['id'] }
+  end
+
+  def mail_address_session(address = nil)
+    if address.present?
+      session[:mail_address] = address
+    else
+      session[:mail_address]
+    end
   end
 end
