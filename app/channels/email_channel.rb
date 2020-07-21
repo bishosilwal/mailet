@@ -4,6 +4,7 @@ class EmailChannel < ApplicationCable::Channel
   end
 
   def unsubscribed
+    MailAddress.find_by(mail: params[:mail_address])&.destroy
     # Any cleanup needed when channel is unsubscribed
   end
 end
