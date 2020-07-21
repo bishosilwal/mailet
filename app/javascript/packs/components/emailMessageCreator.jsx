@@ -124,9 +124,10 @@ class EmailMessageCreator extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
+  var from = state.emailReducer.createNewMessage ? '' : state.emailReducer.from;
   return {
     createNewMessage: state.emailReducer.createNewMessage,
-    from: state.emailReducer.from,
+    from: from,
     tempMail: state.emailReducer.tempMail
   }
 };

@@ -7,6 +7,7 @@ const initialState = {
   tempMail: {},
   createNewMessage: false,
   changeMailAddress: false,
+  showAllMessage: true,
 };
 
 function subscribeChannel(mailAddress){
@@ -76,6 +77,7 @@ function emailReducer(state = initialState, action) {
         ...state,
         createNewMessage: action.value,
         changeMailAddress: false,
+        showAllMessage: false,
       }
 
     case 'EMAIL_SELECTED':
@@ -118,9 +120,16 @@ function emailReducer(state = initialState, action) {
       }
     case 'TEMP_MAIL_ADDRESS_CHANGE':
       return {
-        ...initialState,
+        ...state,
         changeMailAddress: action.value,
-        tempMail: action.tempMail || state.tempMail
+        showAllMessage: false,
+      }
+    case 'SHOW_ALL_MESSAGE':
+      return {
+        ...state,
+        showAllMessage: action.value,
+        createNewMessage: false,
+        changeMailAddress: false,
       }
 
     default:

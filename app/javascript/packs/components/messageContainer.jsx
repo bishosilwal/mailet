@@ -4,6 +4,7 @@ import PulseLoader from "react-spinners/PulseLoader";
 import axios from 'axios';
 
 import Message from './message';
+import EmailMessageCreator from "./emailMessageCreator";
 
 const token = window.$("meta[name='csrf-token']").attr('content');
 
@@ -14,6 +15,7 @@ class MessageContainer extends Component{
     tempMail: this.props.tempMail,
     createNewMessage: this.props.createNewMessage,
     changeMailAddress: this.props.changeMailAddress,
+    showAllMessage: this.props.showAllMessage,
     customMailAddress: '',
     customMailValid: true,
     addressValidationMsg: ''
@@ -73,8 +75,7 @@ class MessageContainer extends Component{
   };
 
   renderContent() {
-    var { emails, from, createNewMessage, changeMailAddress, customMailAddress, customMailValid, addressValidationMsg } = this.state;
-
+    var { emails, from, createNewMessage, changeMailAddress, customMailAddress, customMailValid, addressValidationMsg, showAllMessage } = this.state;
     const emailAddressList = (
       <div className="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
         {emails.map(m =>
@@ -116,7 +117,7 @@ class MessageContainer extends Component{
           </div>
         </div>
       )
-    } else {
+    } else if(showAllMessage) {
       if(emails.length === 0 && !createNewMessage) {
         return(
           <div className='col-12'>
@@ -138,21 +139,32 @@ class MessageContainer extends Component{
         )
       } else {
         return(
-          <div className='col-12 row'>
-            <div className='col-4 p-2 address-list'>
-              {emailAddressList}
-            </div>
-            <div className='col-8 p-1'>
-              <div className="tab-content" id="v-pills-tabContent">
-                <div className="tab-pane fade show active" id="v-pills-message" role="tabpanel"
-                     aria-labelledby="v-pills-message-tab">
-                  <Message />
+          <div className='col-12'>
+            <div className='row'>
+              <div className='col-md-4 p-2 address-list'>
+                {emailAddressList}
+              </div>
+              <div className='col-8 p-1 mt-2'>
+                <div className="tab-content" id="v-pills-tabContent">
+                  <div className="tab-pane fade show active" id="v-pills-message" role="tabpanel"
+                       aria-labelledby="v-pills-message-tab">
+                    <Message />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          )
+        )
       }
+    } else {
+        return(
+          <div className='col-12 row justify-content-center'>
+            <div className='col-10 p-1 mt-2'>
+              <EmailMessageCreator />
+            </div>
+          </div>
+        )
+
     }
   }
   render(){
@@ -192,6 +204,7 @@ const mapStateToProps = (state, ownProps) => {
     createNewMessage: state.emailReducer.createNewMessage,
     changeMailAddress: state.emailReducer.changeMailAddress,
     tempMail: state.emailReducer.tempMail,
+    showAllMessage: state.emailReducer.showAllMessage,
   }
 };
 
