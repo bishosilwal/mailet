@@ -10,7 +10,7 @@ class Message extends Component{
     createNewMessage: this.props.createNewMessage,
   }
 
-  componentWillReceiveProps(nextProps, nextContext) {
+  UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
     if(nextProps != this.props) {
       this.setState({...nextProps})
     }

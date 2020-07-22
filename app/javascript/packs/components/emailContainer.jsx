@@ -9,7 +9,7 @@ class EmailContainer extends Component{
     tempMail: this.props.tempMail || '',
   };
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     var that = this;
     axios({
       method: 'post',
@@ -23,7 +23,7 @@ class EmailContainer extends Component{
     })
   }
 
-  componentWillReceiveProps(nextProps, nextContext) {
+  UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
     if(nextProps != this.props) {
       this.setState({...nextProps})
     }

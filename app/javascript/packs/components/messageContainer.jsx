@@ -21,7 +21,7 @@ class MessageContainer extends Component{
     addressValidationMsg: ''
   };
 
-  componentWillReceiveProps(nextProps, nextContext) {
+  UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
     if(nextProps != this.props) {
       this.setState({...nextProps})
     }
