@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   mount Resque::Server, :at => "/resque"
-
+  mount ActionCable.server => '/cable'
   post '/send_email', to: 'mail_sender#send_mail', as: 'mail_sender'
   post '/mail_address', to: 'mail_address#create', as: :mail_addresses
   delete '/mail_address', to: 'mail_address#destroy', as: :mail_address
