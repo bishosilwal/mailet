@@ -11,7 +11,7 @@ class EmailReceive
     subject = mail.subject
 
     if mail.multipart?
-      part = mail.parts.select { |p| p.content_type =~ /text\/html/ }.first rescue nil
+      part = mail.parts.select { |p| p.content_type =~ /text\/plain/ }.first rescue nil
       unless part.nil?
         body = part.body.decoded
       end
