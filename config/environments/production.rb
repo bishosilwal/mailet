@@ -39,10 +39,10 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # Mount Action Cable outside main process or domain.
-  # config.action_cable.mount_path = nil
+  config.action_cable.mount_path = '/cable'
   config.action_cable.url = 'ws://mailet.in/cable'
-  config.action_cable.allowed_request_origins = [ 'http://mailet.in', /http:\/\/mailet.*/, 'www.mailet.in' ]
-
+  config.action_cable.allowed_request_origins = [ 'http://mailet.in', /http:\/\/mailet.*/, 'http://www.mailet.in' ]
+  config.action_cable.allow_same_origin_as_host = true
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
 
