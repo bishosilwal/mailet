@@ -24,7 +24,7 @@ class Message extends Component{
 
   render() {
     var {selectedMessages, createNewMessage} = this.state;
-    var scrollable = selectedMessages.length === 3 ? true : false;
+    var scrollable = selectedMessages.length >= 4 ? true : false;
     const scrollableMessageStyles = scrollable ? {
       height: '500px',
       overflowY: 'scroll',
