@@ -1,51 +1,186 @@
-From aayussilwal@gmail.com  Fri Jul 17 17:21:09 2020
-Return-Path: <aayussilwal@gmail.com>
-Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
-        by ubuntu-s-1vcpu-1gb-sfo2-01 (Postfix) with ESMTPS id BC2BCC1094
-        for <deploy@mailet.in>; Fri, 17 Jul 2020 17:21:09 +0000 (UTC)
-Received: by mail-pg1-f169.google.com with SMTP id z5so7009307pgb.6
-        for <deploy@mailet.in>; Fri, 17 Jul 2020 10:21:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:content-transfer-encoding:mime-version:subject:date:references
-         :to:in-reply-to:message-id;
-        bh=wr13WeyVqnzleOWLPb3bmLlFj/g2R6FKMtvU8jpDffg=;
-        b=iMGilhqpcCw6O2IgvTCHP8Pyg0VnLnKwPpWC7FVIu0cJpFxnFd2RrrkteHoYUFJ/Iu
-         POndhatuG9DymVs5yh0EhXtVqxjF5jmTXWCFa4bU3tz68Qakfr2DlZFligj12mfghzoD
-         w2IVwl0YEgXG0Nith6BgcrOE5hR+A0udOnnVQFpVaLTH6+WV4RZzOTShC5zFviioo9iY
-         dElWUBOJZnpNxvNKJxwI5oAApw5gyHnQ9pLY4F8hEdWusYIH91gTWHshO5FPAOrK3BTC
-         33sZDt43leVmCmROVPtLWX6QgkvV0bm7qZi14FIOmOuw0ds44Fh7R8gPTwtPEKpAq4eV
-         Hjjw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:content-transfer-encoding:mime-version
-         :subject:date:references:to:in-reply-to:message-id;
-        bh=wr13WeyVqnzleOWLPb3bmLlFj/g2R6FKMtvU8jpDffg=;
-        b=jEzPlGC3U9yOcbrG5gDoIP8QUfR8k+xMl+eVT345JeebjDpUWXf7JyPDOb/XnbdYe8
-         HwzC5SDWI2cIXvdHb4fhdC3ba6nyyMZhQdBVKmRLLdXkoPCHJF8feNmMS4YxwlbMYBMS
-         6lOa2AVtqX4mhfg9AChXxH5M8JQYqc4Cdg6Qu0ye3m6FE4ZhFQGROPpKn9ILGHDfJSH8
-         6JiPOsH8IrA0ZUi1MGOTDDtai6HaqnvWl42EAMZaiFKDPizsYzyEinx/kbEBcg032Nq2
-         GZmyrwbDe2ydrVcpfrTLsUUpBeKe0avOA42sfwaYZoFifb/92rxv1Z/L1qUWrRcSHR/d
-         q9vA==
-X-Gm-Message-State: AOAM532+L8voyu0mPJSrhgUCgGhF4kXiE7PVSDTt03o5xNQs3xHGBwlO
-        WT1uRMrDW7sr6YF3r9DPiNjNi77scY0=
-X-Google-Smtp-Source: ABdhPJwBwaITeS3PViv222oc81LxBEeeVNHIPX+QtqICSXy5uFNeaoiQq/XErTAPCg+0Ll+QlFjuBw==
-X-Received: by 2002:a63:f241:: with SMTP id d1mr9448152pgk.272.1595006468826;
-        Fri, 17 Jul 2020 10:21:08 -0700 (PDT)
-Received: from [192.168.0.100] ([202.51.88.8])
-        by smtp.gmail.com with ESMTPSA id y27sm8643970pgc.56.2020.07.17.10.21.06
-        for <deploy@mailet.in>
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 17 Jul 2020 10:21:08 -0700 (PDT)
-From: Bisho Silwal <aayussilwal@gmail.com>
-Content-Type: text/plain;
-        charset=us-ascii
-Content-Transfer-Encoding: 7bit
-Mime-Version: 1.0 (Mac OS X Mail 13.4 \(3608.80.23.2.2\))
-Subject: Re: Test
-Date: Fri, 17 Jul 2020 23:06:04 +0545
-References: <D800F611-A6E2-444C-9C4F-E49B3165EAA4@gmail.com>
+From bounces+13515653-543d-deploy=mailet.in@em8082.slazzer.com  Fri Jul 24 13:32:58 2020
+Return-Path: <bounces+13515653-543d-deploy=mailet.in@em8082.slazzer.com>
+Received: from xtrwsqfq.outbound-mail.sendgrid.net (xtrwsqfq.outbound-mail.sendgrid.net [167.89.100.244])
+        by ubuntu-s-1vcpu-1gb-sfo2-01 (Postfix) with ESMTPS id 03F6EBFCEE
+        for <deploy@mailet.in>; Fri, 24 Jul 2020 13:32:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=slazzer.com;
+        h=content-transfer-encoding:content-type:from:mime-version:subject:to;
+        s=s1; bh=BfW168rB5bpJh/ufXHFd/y1upZQG66qY6H73wIBaxL4=;
+        b=kwHXccbZcRt+aQO2Y0fmWJdDcTiMrwK5xRnFDeo5qhPIsIjWX4O8E3NaA0Z8BusZonoA
+        YkQlT/QY8zoFssmNfuK4lRL5Rlb0mQ/N2hyyXhEHrPA+UZQ1agkbqihRipprJbxwkgqEmp
+        Ic5zUGpKdvtavTG9R1s+6qTT+73NgbzVY=
+Received: by filterdrecv-p3mdw1-75c584b9c6-hrjh5 with SMTP id filterdrecv-p3mdw1-75c584b9c6-hrjh5-19-5F1AE308-137
+        2020-07-24 13:32:57.098206686 +0000 UTC m=+2406199.436425610
+Received: from MTM1MTU2NTM (unknown)
+        by ismtpd0005p1hnd1.sendgrid.net (SG)
+        with HTTP
+        id caCE80KZQdmcpgKEkiVJ0A
+        Fri, 24 Jul 2020 13:32:56.894 +0000 (UTC)
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=us-ascii
+Date: Fri, 24 Jul 2020 13:32:57 +0000 (UTC)
+From: Slazzer <support@slazzer.com>
+Mime-Version: 1.0
+Message-ID: <caCE80KZQdmcpgKEkiVJ0A@ismtpd0005p1hnd1.sendgrid.net>
+Subject: Slazzer Email Verification
+X-SG-EID:
+ =?us-ascii?Q?WCZjZHYOZGTnNzYmr1wSbAwO09mXLI25E8TR8rI2OJs5uXMyQN1U=2FExbH=2FCFOk?=
+ =?us-ascii?Q?dSWQlQgZtLA33bXLo9G77SXMFYdLiEHX987vaX2?=
+ =?us-ascii?Q?Q9jlmWL1tNRgK6YsXGLZWvX=2FPRNdpXNlyu35anX?=
+ =?us-ascii?Q?DFCq4blzlPAus=2FTzrlixFCaqj7PMFFHjR8Vr1f9?=
+ =?us-ascii?Q?0eo73p59XRgZF7Zy7twJplLlnx72dimi5yA56Qw?=
+ =?us-ascii?Q?0NWaifDLUxTJ0AKdXi0BWA4jd9NgkX0OUdZXv5?=
 To: deploy@mailet.in
-In-Reply-To: <D800F611-A6E2-444C-9C4F-E49B3165EAA4@gmail.com>
-Message-Id: <9EB62E17-9FFE-414C-9950-76500AD03578@gmail.com>
-X-Mailer: Apple Mail (2.3608.80.23.2.2)
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset=3D"utf-8">
+    <meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge">
+    <title></title>
+    <link rel=3D"stylesheet" href=3D"">
+</head>
+<body>
+<table width=3D"600" align=3D"center" bgcolor=3D"#EDF1F7" cellpadding=3D"0"=
+ cellspacing=3D"0" border=3D"0"
+       style=3D"font-family: 'Arial', sans-serif; padding: 3px 3px 30px;">
+    <tbody>
+    <tr>
+        <td>
+            <table width=3D"594" align=3D"center" bgcolor=3D"#DEEAFF" cellp=
+adding=3D"0" cellspacing=3D"0" border=3D"0"
+                   style=3D"font-family: 'Arial', sans-serif; padding-botto=
+m: 50px;">
+                <tr>
+                    <td valign=3D"top" style=3D"padding: 15px;">
+                                                                <span style=3D"display: block; width: 100px;">
+                                                                        <img src=3D"https://slazzer.com/static/images/email/logo.png" alt=
+=3D"" style=3D"max-width: 100%;">
+                                                                </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td valign=3D"top" style=3D"padding: 40px 0px 30px; tex=
+t-align: center;">
+                        <figure style=3D"width: 100px; height: 100px; line-=
+height: 150px; border-radius: 50%; background-color: #0069D9; display: inli=
+ne-block; vertical-align: top; margin: 0px;">
+                            <img src=3D"https://slazzer.com/static/images/e=
+mail/user.png" alt=3D"">
+                        </figure>
+                   </td>
+                </tr>
+                <tr>
+                    <td valign=3D"top"
+                        style=3D"font-size: 24px; line-height: 30px; color:=
+ #222222; text-transform: capitalize; font-weight: bold; text-align: center=
+; padding: 0px 30px;">
+                        activate your account
+                    </td>
+                </tr>
+                <tr>
+                    <td valign=3D"top"
+                        style=3D"font-size: 12px; line-height: 20px; color:=
+ #222222; text-transform: capitalize; font-weight: normal; text-align: cent=
+er; padding: 20px 30px 0px;">
+                        24 Jul, 2020=20
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <table width=3D"594" align=3D"center" bgcolor=3D"#FFFFFF" cellp=
+adding=3D"0" cellspacing=3D"0" border=3D"0"
+                   style=3D"font-family: 'Arial', sans-serif; padding: 50px=
+ 30px;">
+                <tr>
+                    <td valign=3D"top"
+                        style=3D"font-size: 14px; line-height: 20px; color:=
+ #222222; font-weight: normal; text-align: center;">
+                        You are ready to setup your new Notification App ac=
+count.
+                    </td>
+                </tr>
+                 <tr>
+                                    <td valign=3D"top"
+                                        style=3D"font-size: 14px; line-height: 20px; color:=
+                 #222222; font-weight: normal; text-align: center;">
+                                        Click the button below to...
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign=3D"top" style=3D"padding: 30px 0px 20px; tex=
+                t-align: center;">
+                                        <a href=3D"http://url2478.slazzer.com/ls/click?upn=
+                =3DGaydfcBDiJ2Yrf8iGu-2BT7g6FyWpj2-2Fh5hlRu8XQN-2BFwRUyILNoJki7jKM3kPDwsKc6=
+                AfZN5HlTeMvHK5tQb0W3HRyhPy3Vtx-2FP30gABNdV1xZr9y7ei3eyfwsz9A2aHRTc_r_zVGKqw=
+                zXAp4cuom8-2Fb0mmdLnPUxwEsoRWTTiBya0-2FO0R-2FXnx99G7uJb5ZqmJQQPTogyFKKBsZBg=
+                Z3Q0BWpxxrk-2BTk5t528jTog88Zogzdlel7reBWJQtzloBMX4uTKFeor54iGN0PxQIzIhzJiw-=
+                2Blw-2B2wxa8wE702SOEqFClletvfxEvx2t0Yjnn0l9ESqP10-2FYE-2F3NmDvX0uptLpvTv04Q=
+                Zok-2FU0gR3rE3GBRDAPnk-3D"
+                                           style=3D"display: inline-block; vertical-align: =
+                top; background-color: #0069D9; color: #fff; font-size: 12px; line-height: =
+                20px; text-transform: capitalize; font-weight: bold; text-decoration: none;=
+                 padding: 15px 30px; border-radius: 5px;">
+                                            activate your account
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+ <tr>
+        <td style=3D"padding: 50px 0px 15px; text-align: center;">
+            <a href=3D"http://url2478.slazzer.com/ls/click?upn=3DGaydfcBDiJ=
+2Yrf8iGu-2BT7tv5nyOk5X-2FYwRq1DM26HFe2AVo3AkZUXMiqkX-2F6lsvvxh6z_zVGKqwzXAp=
+4cuom8-2Fb0mmdLnPUxwEsoRWTTiBya0-2FO0R-2FXnx99G7uJb5ZqmJQQPT8ovlON7x4cQZ8U1=
+V2Bh7q99aGcZHbqPi-2BEumvicDgJ-2BzrUA1yoX0tKAnw1QBv1zRvi-2FQ1tDgcIqxK0wZvSmC=
+crBy8KTriKLlylKRssVNnx4FxYPIf0-2Bdd6zrjC5TIed0XUeo4l8dUl34zHRRwn0MDV0mF-2Fw=
+MlJiP869ut8QP0Xk-3D"
+               style=3D"display: inline-block; vertical-align: top; margin-=
+right: 4px;">
+                <img src=3D"https://www.slazzer.com/static/images/email/ico=
+n-facebook.png" alt=3D"" style=3D"display: block;">
+            </a>
+            <a href=3D"http://url2478.slazzer.com/ls/click?upn=3DGaydfcBDiJ=
+2Yrf8iGu-2BT7gO8FAh-2Fun5lVphgw3Z4nKj2JKRwmNWTqtyt3LejsG8v61Us_zVGKqwzXAp4c=
+uom8-2Fb0mmdLnPUxwEsoRWTTiBya0-2FO0R-2FXnx99G7uJb5ZqmJQQPTm1-2Fc-2BlWdXyCd-=
+2FgmTmzZmNYuY-2F-2BQU9oRPghllHn7QMmLMHWfQbEL4T-2FqjQ-2BFpw7WIOC3U-2FDm3WKio=
+r2hKHzGIptZiyJODg1xvmbv97-2FSCsoIUXf0D21k9Mm94PZhzztU0xg-2Fq3pNktKGp4Tmc0Px=
+Vf02t5nRGuASMsRkG4sNY6zE-3D"
+               style=3D"display: inline-block; vertical-align: top; margin-=
+right: 4px;">
+                <img src=3D"https://www.slazzer.com/static/images/email/ico=
+n-twitter.png" alt=3D"" style=3D"display: block;">
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td valign=3D"top" align=3D"center"
+            style=3D"font-size: 12px; line-height: 22px; color: $222222; fo=
+nt-weight: normal;">
+            Email send by Slazzer
+        </td>
+    </tr>
+    <tr>
+        <td valign=3D"top" align=3D"center"
+            style=3D"font-size: 12px; line-height: 18px; color: $222222;  f=
+ont-weight: normal;">
+            Copyright &copy; slazzer.com | All rights reserved
+        </td>
+    </tr>
+    </tbody>
+    </table>
+    <img src=3D"http://url2478.slazzer.com/wf/open?upn=3DWgdjfI1DZeEhkYScgCy8SL=
+    jPXYFXsEPhLqeMMuhTjqLqTx0Wp8XnHYoyYXdLfvljsbzSN0TcbdNpEi6-2BFGip00BAyPFO9tP=
+    BqosDFCqp4G-2BMMb3zqbvOD07acSED1LfeyC1VXjzHBzxf2fOAeGZ3sWMJL0KqrSJma8MSqUGj=
+    8wBX9rpUkQxPOPvBRIGTw3BnhCTPqFlNn36PWM05v32L6Ha8Vg4aFJCACo2CtGV6qaA-3D" alt=
+    =3D"" width=3D"1" height=3D"1" border=3D"0" style=3D"height:1px !important;=
+    width:1px !important;border-width:0 !important;margin-top:0 !important;marg=
+    in-bottom:0 !important;margin-right:0 !important;margin-left:0 !important;p=
+    adding-top:0 !important;padding-bottom:0 !important;padding-right:0 !import=
+    ant;padding-left:0 !important;"/></body>
+    </html>
+
