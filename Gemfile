@@ -24,7 +24,7 @@ gem 'jbuilder', '~> 2.7'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
-
+gem 'sitemap_generator'
 gem 'resque', :require => "resque/server"
 gem 'mail', :require => false
 gem 'redis', :require => false
