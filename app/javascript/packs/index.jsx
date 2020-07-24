@@ -4,10 +4,8 @@
 
 import React, { Component} from 'react';
 import ReactDOM from 'react-dom';
-import Header from './components/header';
 import EmailContainer from './components/emailContainer';
 import MessageContainer from "./components/messageContainer";
-import Footer from './components/footer';
 import './store/configureStore';
 import { Provider } from 'react-redux';
 
@@ -15,10 +13,8 @@ class Index extends Component {
   render(){
     return(
       <Provider store={window.store}>
-        <Header />
         <EmailContainer />
         <MessageContainer />
-        <Footer />
       </Provider>
     )
   }
@@ -27,6 +23,6 @@ class Index extends Component {
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
     <Index />,
-    document.body.appendChild(document.createElement('div', { className: 'container-fluid'})),
+    document.getElementById('main-app-body').appendChild(document.createElement('div', { className: 'container-fluid'})),
   )
 })

@@ -20,6 +20,9 @@
   </head>
 
   <body class="container-fluid p-0">
+    <%= render 'shared/header' %>
     <%= yield %>
+    <div id='main-app-body'></div>
+    <%= render 'shared/footer' %>
   </body>
 </html>
