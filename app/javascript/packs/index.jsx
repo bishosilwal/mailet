@@ -23,6 +23,6 @@ class Index extends Component {
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
     <Index />,
-    document.getElementById('main-app-body').appendChild(document.createElement('div', { className: 'container-fluid'})),
+    document.getElementById('main-app-body')
   )
 })

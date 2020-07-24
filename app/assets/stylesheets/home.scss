@@ -9,6 +9,11 @@ body {
   min-height: 100vh;
   background-color: #e2e0e0;
 }
+
+#main-app-body {
+  min-height: 80vh;
+}
+
 .email-container{
   background-color: $secondary;
 }

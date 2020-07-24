@@ -22,6 +22,10 @@ class Message extends Component{
     return date;
   }
 
+  buildMessageBody = (message) => {
+    return renderHTML(message.body);
+  };
+
   render() {
     var {selectedMessages, createNewMessage} = this.state;
     var scrollable = selectedMessages.length >= 4 ? true : false;
@@ -53,7 +57,7 @@ class Message extends Component{
                 {message.subject}
               </div>
               <div className='col-12 p-3'>
-                {renderHTML(message.body)}
+                { this.buildMessageBody(message.body) }
               </div>
             </div>
           </div>
