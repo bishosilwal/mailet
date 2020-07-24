@@ -110,6 +110,11 @@ input.form-control, textarea.form-control, .btn{
   background-color: $light-black;
 }
 
+.custom-iframe {
+  height: 400px;
+  min-height: 200px;
+  width: 100%;
+}
 @media only screen and (max-width: 600px) {
   .action-pills {
     .col-sm-12 {

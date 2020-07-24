@@ -1,7 +1,6 @@
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
-import renderHTML from 'react-render-html';
-
+import CustomIframe from './customIframe';
 import EmailMessageCreator from "./emailMessageCreator";
 
 class Message extends Component{
@@ -22,17 +21,15 @@ class Message extends Component{
     return date;
   }
 
-  buildMessageBody = (message) => {
-    return renderHTML(message.body);
-  };
-
   render() {
     var {selectedMessages, createNewMessage} = this.state;
     var scrollable = selectedMessages.length >= 4 ? true : false;
+
     const scrollableMessageStyles = scrollable ? {
       height: '1000px',
       overflowY: 'scroll',
     } : {}
+
     const messagesList =
       <div className={'row m-1 ' + scrollable ? 'row p-4' : ''} style={scrollableMessageStyles} ref={(el) =>{ this.messagesList = el }}>
         {selectedMessages.map(message =>
@@ -57,7 +54,7 @@ class Message extends Component{
                 {message.subject}
               </div>
               <div className='col-12 p-3'>
-                { this.buildMessageBody(message.body) }
+                <CustomIframe content={message.body} />
               </div>
             </div>
           </div>
