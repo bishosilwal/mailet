@@ -94,7 +94,7 @@ class EmailContainer extends Component{
             </div>
             <div className='row justify-content-center p-2'>
               <div className='col-md-5'>
-                <p className='text-muted'>Use this mail address to send and receive mail from any sites. You don't have to worry about the spam emails in your personal mailbox, your
+                <p className='text-muted mail-desc'>Use this mail address to send and receive mail from any sites. You don't have to worry about the spam emails in your personal mailbox, your
                   online privacy, giving away your personal email address to other company.</p>
               </div>
             </div>

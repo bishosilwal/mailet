@@ -170,7 +170,7 @@ class MessageContainer extends Component{
   render(){
     return(
       <div className='container-fluid'>
-        <div className='row justify-content-center p-3'>
+        <div className='row justify-content-center p-3 pb-4'>
           <div className='col-md-10 col-sm-12'>
             <span className='text-primary font-italic font-weight-light note'>*Note: Incoming mail is updated automatically</span>
           </div>

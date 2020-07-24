@@ -7,6 +7,7 @@
 
 body {
   min-height: 100vh;
+  background-color: #e2e0e0;
 }
 .email-container{
   background-color: $secondary;
@@ -38,7 +39,7 @@ body {
 }
 
 .footer{
-  background-color: #02121d;
+  background-color: $light-black;
   color: $light;
 }
 
@@ -95,6 +96,13 @@ input.form-control, textarea.form-control, .btn{
 
 .note {
   font-size: 12px;
+}
+.mail-desc {
+  font-size: 14px;
+}
+
+.bg-black {
+  background-color: $light-black;
 }
 
 @media only screen and (max-width: 600px) {

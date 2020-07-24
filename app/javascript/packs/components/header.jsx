@@ -4,7 +4,7 @@ export default class Header extends Component{
 
   render(){
     return(
-      <nav className="navbar navbar-light bg-light">
+      <nav className="navbar navbar-dark bg-black">
         <div className='container'>
           <span className="navbar-brand mb-0 h1">
             MaiLet
