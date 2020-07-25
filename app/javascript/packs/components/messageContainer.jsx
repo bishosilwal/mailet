@@ -179,7 +179,7 @@ class MessageContainer extends Component{
               <div className="card-header">
                 <div className='row justify-content-around text-light'>
                   <div className='col'>Sender</div>
-                  <div className='col '>Message</div>
+                  <div className='col'>Message</div>
                 </div>
               </div>
               <div className='card-body p-0'>

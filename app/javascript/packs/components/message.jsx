@@ -31,7 +31,7 @@ class Message extends Component{
     } : {}
 
     const messagesList =
-      <div className={'row m-1 ' + scrollable ? 'row p-4' : ''} style={scrollableMessageStyles} ref={(el) =>{ this.messagesList = el }}>
+      <div className={'row p-1 ' + scrollable ? 'row p-1' : ''} style={scrollableMessageStyles} ref={(el) =>{ this.messagesList = el }}>
         {selectedMessages.map(message =>
           <div className='col-12 shadow-lg p-3 mb-3 bg-white rounded' key={message.id}>
             <div className='row'>
@@ -68,7 +68,7 @@ class Message extends Component{
       return(
         <div className='container'>
           {(createNewMessage) ? '' : messagesList}
-          <div className='row m-1'>
+          <div className='row p-1'>
             <EmailMessageCreator />
           </div>
         </div>

@@ -75,7 +75,7 @@ class EmailMessageCreator extends Component {
   render() {
     var { newMessage, subjectInvalid, bodyInvalid, createNewMessage, toInvalid } = this.state;
     return(
-      <div className='col-12 shadow-lg p-3 pt-0 mb-2 bg-white rounded'>
+      <div className='col-12 shadow-lg p-1 pt-0 mb-2 bg-white rounded'>
         <div className='row'>
           { createNewMessage ?
             <div className='col-12 p-3'>
