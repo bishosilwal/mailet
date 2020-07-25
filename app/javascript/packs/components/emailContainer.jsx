@@ -78,9 +78,9 @@ class EmailContainer extends Component{
         <div className='row justify-content-center pb-5'>
           <div className='col-12 mt-5 text-center text-light'>
             <h1>
-              <a href="" className="typewrite" data-period="5000" data-type='[ "Temporary Disposable Email Address","Mailet"]'>
+              <span className="typewrite" data-period="5000" data-type='[ "Temporary Disposable Email Address","Mailet"]'>
                 <span className="wrap"></span>
-              </a>
+              </span>
             </h1>
           </div>
           <div className='col-12'>
