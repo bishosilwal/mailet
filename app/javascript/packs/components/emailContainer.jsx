@@ -77,7 +77,7 @@ class EmailContainer extends Component{
       <div className='container-fluid email-container text-white'>
         <div className='row justify-content-center pb-5'>
           <div className='col-12 mt-5 text-center text-light'>
-            <h5>Temporary Disposable Email Address</h5>
+            <h1>Temporary Disposable Email Address</h1>
           </div>
           <div className='col-12'>
             <div className='row justify-content-center pb-0 pl-3 pr-3 pt-3'>
