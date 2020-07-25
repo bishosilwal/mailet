@@ -89,27 +89,35 @@ class MessageContainer extends Component{
 
     if(changeMailAddress) {
       return(
-        <div className='col-12 row p-5'>
-          <div className='col-10 text-center'>
-            <h5 className='text-primary'>Create custom mail address.</h5>
-          </div>
-          <div className='col-12 pt-3 row justify-content-center'>
-            <div className='col-8'>
-              <div className='row'>
-                <div className='col-9 row'>
-                  <label htmlFor="customMailAddress" className="col-sm-3 col-form-label">
-                    <span className='font-weight-bolder'>Email:</span>
-                  </label>
-                  <div className="col-sm-9">
-                    <input type="text" name='to' value={customMailAddress} className={"form-control " + `${customMailValid ? '' : 'is-invalid'}` } id="customMailAddress" placeholder={this.customMailPlaceholder()} onChange={this.handleCustomMailChange} required={true}/>
-                    <div className="invalid-feedback" >
-                      {addressValidationMsg}
+        <div className='col-md-12 col-sm-12 custom-mail-address'>
+          <div className='row p-md-5'>
+            <div className='col-md-10 col-sm-12 text-center'>
+              <h5 className='text-primary'>Create custom mail address.</h5>
+            </div>
+            <div className='col-md-12 col-sm-12 pt-md-3'>
+              <div className='row justify-content-center'>
+                <div className='col-md-8 col-sm-12'>
+                  <div className='row'>
+                    <div className='col-md-9 col-sm-12'>
+                      <div className='row'>
+                        <label htmlFor="customMailAddress" className="col-md-4 col-sm-3 col-form-label">
+                          <span className='font-weight-bolder'>Email:</span>
+                        </label>
+                        <div className="col-md-8 col-sm-9">
+                          <input type="text" name='to' value={customMailAddress} className={"form-control " + `${customMailValid ? '' : 'is-invalid'}` } id="customMailAddress" placeholder={this.customMailPlaceholder()} onChange={this.handleCustomMailChange} required={true}/>
+                          <div className="invalid-feedback" >
+                            {addressValidationMsg}
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-                <div className='col-3 row'>
-                  <div className='col-12 text-left'>
-                    <button className='btn btn-outline-primary' onClick={this.handleCustomMailSubmit}>Submit</button>
+                    <div className='col-md-3 col-sm-12'>
+                      <div className='row text-right'>
+                        <div className='col-md-12 col-sm-12 text-left'>
+                          <button className='btn btn-outline-primary' onClick={this.handleCustomMailSubmit}>Submit</button>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -144,7 +152,7 @@ class MessageContainer extends Component{
               <div className='col-md-4 p-2 address-list'>
                 {emailAddressList}
               </div>
-              <div className='col-8 p-1 mt-2'>
+              <div className='col-md-8 col-sm-12 p-1 mt-2'>
                 <div className="tab-content" id="v-pills-tabContent">
                   <div className="tab-pane fade show active" id="v-pills-message" role="tabpanel"
                        aria-labelledby="v-pills-message-tab">
@@ -158,9 +166,11 @@ class MessageContainer extends Component{
       }
     } else {
         return(
-          <div className='col-12 row justify-content-center'>
-            <div className='col-10 p-1 mt-2'>
-              <EmailMessageCreator />
+          <div className='col-12'>
+            <div className='row justify-content-center'>
+              <div className='col-md-10 col-sm-12 p-1 mt-2'>
+                <EmailMessageCreator />
+              </div>
             </div>
           </div>
         )
