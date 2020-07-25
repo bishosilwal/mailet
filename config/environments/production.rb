@@ -40,11 +40,11 @@ Rails.application.configure do
 
   # Mount Action Cable outside main process or domain.
   config.action_cable.mount_path = '/cable'
-  config.action_cable.url = 'ws://mailet.in/cable'
-  config.action_cable.allowed_request_origins = [ 'http://mailet.in', /http:\/\/mailet.*/, 'http://www.mailet.in' ]
+  config.action_cable.url = 'wss://mailet.in/cable'
+  config.action_cable.allowed_request_origins = [ 'https://mailet.in', /https:\/\/mailet.*/, 'https://www.mailet.in' ]
   config.action_cable.allow_same_origin_as_host = true
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  # config.force_ssl = true
+  config.force_ssl = true
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
