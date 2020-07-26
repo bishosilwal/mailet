@@ -27,10 +27,13 @@ class EmailReceive
         :from     => from
     }
 
-    message = Message.new(params)
-    unless message.save
-      raise RuntimeError, "Unable to save message. Errors: #{message.errors.inspect}"
+    mail_exists = MailAddress.find_by(mail: params.to)
+    if mail_exists.present?
+      message = Message.new(params)
+      unless message.save
+        raise RuntimeError, "Unable to save message. Errors: #{message.errors.inspect}"
+      end
+      ActionCable.server.broadcast("mail_receiver_#{message.to}", email: message)
     end
-    ActionCable.server.broadcast("mail_receiver_#{message.to}", email: message)
   end
 end
