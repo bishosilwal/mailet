@@ -27,8 +27,8 @@ class EmailReceive
         :from     => from
     }
 
-    mail_exists = MailAddress.find_by(mail: params.to)
-    if mail_exists.present?
+    mail_exists = MailAddress.find_by(mail: params[:to]).present?
+    if mail_exists
       message = Message.new(params)
       unless message.save
         raise RuntimeError, "Unable to save message. Errors: #{message.errors.inspect}"
