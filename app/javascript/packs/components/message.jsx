@@ -61,9 +61,6 @@ class Message extends Component{
         ) }
       </div>
 
-    if(scrollable) {
-      this.messagesList.scrollIntoView();
-    }
     if(selectedMessages.length != 0 || createNewMessage) {
       return(
         <div className='container'>

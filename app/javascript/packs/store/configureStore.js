@@ -54,7 +54,6 @@ function emailReducer(state = initialState, action) {
               messages: [action.email]
             }
           ],
-          changeMailAddress: false,
         }
       } else {
         return {
@@ -69,7 +68,6 @@ function emailReducer(state = initialState, action) {
               ]
             }
           ],
-          changeMailAddress: false,
         }
       }
 
@@ -85,7 +83,8 @@ function emailReducer(state = initialState, action) {
       return {
         ...state,
         from: action.value,
-        createNewMessage: false
+        createNewMessage: false,
+        changeMailAddress: false,
       }
 
     case 'TEMP_MAIL_ADDRESS_DELETE':
@@ -124,6 +123,7 @@ function emailReducer(state = initialState, action) {
         ...state,
         changeMailAddress: action.value,
         showAllMessage: false,
+        createNewMessage: false,
       }
     case 'SHOW_ALL_MESSAGE':
       return {

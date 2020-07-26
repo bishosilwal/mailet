@@ -106,8 +106,10 @@ h1 {
 .note {
   font-size: 12px;
 }
+
 .mail-desc {
   font-size: 14px;
+  line-height: 18px;
 }
 
 .bg-black {
@@ -119,6 +121,13 @@ h1 {
   min-height: 200px;
   width: 100%;
 }
+
+.loading-row {
+  h2 {
+    font-size: 18px;
+  }
+}
+
 @media only screen and (max-width: 600px) {
   .action-pills {
     .col-sm-12 {
@@ -134,6 +143,10 @@ h1 {
     padding: 0px !important;
     .col-12 {
       margin: 20px 0px;
+    }
+
+    h2 {
+      font-size: 15px;
     }
   }
 

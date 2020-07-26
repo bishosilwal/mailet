@@ -1,12 +1,10 @@
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
 import PulseLoader from "react-spinners/PulseLoader";
-import axios from 'axios';
 
 import Message from './message';
 import EmailMessageCreator from "./emailMessageCreator";
-
-const token = window.$("meta[name='csrf-token']").attr('content');
+import CustomMailAddress from "./customMailAddress";
 
 class MessageContainer extends Component{
   state = {
@@ -16,9 +14,6 @@ class MessageContainer extends Component{
     createNewMessage: this.props.createNewMessage,
     changeMailAddress: this.props.changeMailAddress,
     showAllMessage: this.props.showAllMessage,
-    customMailAddress: '',
-    customMailValid: true,
-    addressValidationMsg: ''
   };
 
   UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
@@ -31,51 +26,8 @@ class MessageContainer extends Component{
     this.props.fromChanged(e.target.dataset.from);
   };
 
-  handleCustomMailChange = e => {
-    this.setState({customMailAddress: e.target.value})
-  };
-
-  customMailPlaceholder() {
-    var { tempMail } = this.state;
-    tempMail = tempMail.mail;
-    return tempMail.slice(tempMail.lastIndexOf('@'));
-  };
-
-  handleCustomMailSubmit = _ => {
-    var that = this;
-    var { customMailAddress, tempMail } = this.state;
-    tempMail = tempMail.mail;
-    var domain = tempMail.slice(tempMail.lastIndexOf('@'));
-    var mail = customMailAddress + domain;
-    if(this.validateEmail(mail)) {
-      axios.post('/mail_address/create/custom', {
-        mail: mail
-      }, {
-        headers: {
-          'X-Requested-With': 'XMLHttpRequest',
-          'X-CSRF-Token': token
-        }
-      }).then(function (res) {
-        that.props.customMailAddressCreated(res.data.new_mail);
-        that.setState({customMailAddress: '', customMailValid: true});
-        toastr.success(res.data.message, res.data.details, {'toastClass': 'toastr-success'});
-      }).catch(function(error) {
-        var msg = Object.values(error.response.data).join();
-        toastr.error(msg);
-        that.setState({customMailValid: false, addressValidationMsg: msg});
-      });
-    } else {
-      this.setState({customMailValid: false, addressValidationMsg: "Please enter custom name. Valid characters include: !#$%&'*+-/=?^_\{|}~"});
-    }
-  };
-
-  validateEmail(email) {
-    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
-  };
-
   renderContent() {
-    var { emails, from, createNewMessage, changeMailAddress, customMailAddress, customMailValid, addressValidationMsg, showAllMessage } = this.state;
+    var { emails, from, createNewMessage, changeMailAddress, showAllMessage } = this.state;
     const emailAddressList = (
       <div className="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
         {emails.map(m =>
@@ -89,41 +41,7 @@ class MessageContainer extends Component{
 
     if(changeMailAddress) {
       return(
-        <div className='col-md-12 col-sm-12 custom-mail-address'>
-          <div className='row p-md-5'>
-            <div className='col-md-10 col-sm-12 text-center'>
-              <h5 className='text-primary'>Create custom mail address.</h5>
-            </div>
-            <div className='col-md-12 col-sm-12 pt-md-3'>
-              <div className='row justify-content-center'>
-                <div className='col-md-8 col-sm-12'>
-                  <div className='row'>
-                    <div className='col-md-9 col-sm-12'>
-                      <div className='row'>
-                        <label htmlFor="customMailAddress" className="col-md-4 col-sm-3 col-form-label">
-                          <span className='font-weight-bolder'>Email:</span>
-                        </label>
-                        <div className="col-md-8 col-sm-9">
-                          <input type="text" name='to' value={customMailAddress} className={"form-control " + `${customMailValid ? '' : 'is-invalid'}` } id="customMailAddress" placeholder={this.customMailPlaceholder()} onChange={this.handleCustomMailChange} required={true}/>
-                          <div className="invalid-feedback" >
-                            {addressValidationMsg}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className='col-md-3 col-sm-12'>
-                      <div className='row text-right'>
-                        <div className='col-md-12 col-sm-12 text-left'>
-                          <button className='btn btn-outline-primary' onClick={this.handleCustomMailSubmit}>Submit</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <CustomMailAddress />
       )
     } else if(showAllMessage) {
       if(emails.length === 0 && !createNewMessage) {
@@ -137,10 +55,10 @@ class MessageContainer extends Component{
                   loading={true}
                   margin={2}
                 />
-                <h6 className='text-secondary mt-2'>
+                <h2 className='text-secondary mt-2'>
                   You have received 0 emails.<br/>
                   <span className='text-light'>Waiting for incoming emails.</span>
-                </h6>
+                </h2>
               </div>
             </div>
           </div>
@@ -182,7 +100,9 @@ class MessageContainer extends Component{
       <div className='container-fluid'>
         <div className='row justify-content-center p-3 pb-4'>
           <div className='col-md-10 col-sm-12'>
-            <span className='text-primary font-italic font-weight-light note'>*Note: Incoming mail is updated automatically</span>
+            <h5>
+              <span className='text-primary font-italic font-weight-light note'>*Note: Incoming mail is updated automatically</span>
+            </h5>
           </div>
           <div className='col-md-10 col-sm-12 message-container'>
             <div className="card message-container-card" >
@@ -221,7 +141,6 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => {
   return {
     fromChanged: email => dispatch({type: 'EMAIL_SELECTED', value: email}),
-    customMailAddressCreated: email => dispatch({ type: 'TEMP_MAIL_ADDRESS_CREATE', value: email}),
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(MessageContainer);

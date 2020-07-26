@@ -20,9 +20,9 @@ class Index extends Component {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+$(document).on('ready DOMContentLoaded turbolinks:load', function() {
   ReactDOM.render(
     <Index />,
     document.getElementById('main-app-body')
   )
-})
+});
