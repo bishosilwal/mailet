@@ -38,14 +38,7 @@ class EmailMessageCreator extends Component {
       e.preventDefault();
       return;
     }
-    this.setState({subjectInvalid: false, bodyInvalid: false})
-    if(newMessage['body'].trim().length == 0) {
-      this.setState({ bodyInvalid: true });
-      e.preventDefault();
-      return;
-    }
-
-    this.setState({ bodyInvalid: false });
+    this.setState({subjectInvalid: false})
 
     var token = window.$("meta[name='csrf-token']").attr('content');
     axios.post('/send_email', {
@@ -59,6 +52,7 @@ class EmailMessageCreator extends Component {
       .then(function (res) {
         toastr.success(res.data.message, res.data.details, {'toastClass': 'toastr-success'});
         that.setState({newMessage: {subject: '', body: '', to: ''}});
+        that.summernote.reset();
         that.props.messageSent(res.data.sent_message);
       })
   }
@@ -73,6 +67,12 @@ class EmailMessageCreator extends Component {
     var newMessage = this.state.newMessage;
     newMessage[e.target.name] = e.target.value;
     this.setState({newMessage: newMessage})
+  }
+
+  summerNoteChange = value => {
+    var newMessage = this.state.newMessage;
+    newMessage['body'] = value;
+    this.setState({newMessage: newMessage});
   }
 
   render() {
@@ -112,7 +112,7 @@ class EmailMessageCreator extends Component {
           <div className='col-12 p-3 pt-0'>
             <div className="form-group">
               <ReactSummernote
-                value="Default value"
+                value="Hi there"
                 options={{
                   height: 250,
                   dialogsInBody: true,
@@ -120,13 +120,15 @@ class EmailMessageCreator extends Component {
                     ['style', ['style']],
                     ['font', ['bold', 'underline', 'clear']],
                     ['fontname', ['fontname']],
+                    ['color', ['color']],
                     ['para', ['ul', 'ol', 'paragraph']],
                     ['table', ['table']],
                     ['insert', ['link', 'picture']],
                     ['view', ['fullscreen']]
                   ]
                 }}
-                onChange={this.onChange}
+                ref={(summernote) => {this.summernote = summernote}}
+                onChange={this.summerNoteChange}
               />
             </div>
           </div>

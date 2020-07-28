@@ -1,6 +1,7 @@
 class MailSenderController < ApplicationController
 
   def send_mail
+    message_params[:body] = message_params[:body].html_safe
     message = Message.create(message_params)
     TempMailSenderJob.perform_later message
     if message.persisted?
