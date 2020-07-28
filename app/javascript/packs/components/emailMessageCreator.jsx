@@ -128,7 +128,7 @@ class EmailMessageCreator extends Component {
                     ['para', ['ul', 'ol', 'paragraph']],
                     ['table', ['table']],
                     ['insert', ['link', 'picture']],
-                    ['view', ['fullscreen']]
+                    ['view']
                   ]
                 }}
                 ref={(summernote) => {this.summernote = summernote}}
