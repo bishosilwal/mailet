@@ -17,7 +17,8 @@ class EmailMessageCreator extends Component {
     subjectInvalid: false,
     toInvalid: false,
     createNewMessage: this.props.createNewMessage,
-    tempMail: this.props.tempMail
+    tempMail: this.props.tempMail,
+    sendDisable: false
   }
 
   sendMessage = (e) => {
@@ -38,7 +39,7 @@ class EmailMessageCreator extends Component {
       e.preventDefault();
       return;
     }
-    this.setState({subjectInvalid: false})
+    this.setState({subjectInvalid: false, sendDisable: true})
 
     var token = window.$("meta[name='csrf-token']").attr('content');
     axios.post('/send_email', {
@@ -53,6 +54,7 @@ class EmailMessageCreator extends Component {
         toastr.success(res.data.message, res.data.details, {'toastClass': 'toastr-success'});
         var state = that.state;
         state.newMessage = {subject: '', body: '', to: ''};
+        state.sendDisable = false;
         that.setState(state);
         that.summernote.reset();
         that.props.messageSent(res.data.sent_message);
@@ -78,7 +80,7 @@ class EmailMessageCreator extends Component {
   }
 
   render() {
-    var { newMessage, subjectInvalid, createNewMessage, toInvalid } = this.state;
+    var { newMessage, subjectInvalid, createNewMessage, toInvalid, sendDisable } = this.state;
     return(
       <div className='col-12 shadow-lg p-3 pt-0 mb-2 bg-white rounded'>
         <div className='row'>
@@ -135,7 +137,7 @@ class EmailMessageCreator extends Component {
             </div>
           </div>
           <div className='col-12 '>
-            <button className='btn btn-outline-primary float-right' onClick={this.sendMessage}>Send</button>
+            <button className={ sendDisable ? "btn btn-outline-primary float-right disabled" : "btn btn-outline-primary float-right" } onClick={this.sendMessage}>Send</button>
           </div>
         </div>
       </div>
