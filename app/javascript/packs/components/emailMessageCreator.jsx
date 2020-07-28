@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from "axios";
+import 'react-summernote/dist/react-summernote.css'; // import styles
+import ReactSummernote from 'react-summernote';
+import 'bootstrap/js/dist/modal';
+import 'bootstrap/js/dist/tooltip';
 
 class EmailMessageCreator extends Component {
   state = {
@@ -11,7 +15,6 @@ class EmailMessageCreator extends Component {
       to: this.props.from || '',
     },
     subjectInvalid: false,
-    bodyInvalid: false,
     toInvalid: false,
     createNewMessage: this.props.createNewMessage,
     tempMail: this.props.tempMail
@@ -73,7 +76,7 @@ class EmailMessageCreator extends Component {
   }
 
   render() {
-    var { newMessage, subjectInvalid, bodyInvalid, createNewMessage, toInvalid } = this.state;
+    var { newMessage, subjectInvalid, createNewMessage, toInvalid } = this.state;
     return(
       <div className='col-12 shadow-lg p-3 pt-0 mb-2 bg-white rounded'>
         <div className='row'>
@@ -84,7 +87,7 @@ class EmailMessageCreator extends Component {
                   <span className='font-weight-bolder'>To:</span>
                 </label>
                 <div className="col-sm-10">
-                  <input type="text" name='to' value={newMessage.to} ref={(el) => this.mailTo = el} className={"form-control " + `${toInvalid ? 'is-invalid' : ''}` } id="to" placeholder='Enter mail subject' onChange={this.handleChange} required={true}/>
+                  <input type="text" name='to' value={newMessage.to} className={"form-control " + `${toInvalid ? 'is-invalid' : ''}` } id="to" placeholder='Enter mail subject' onChange={this.handleChange} required={true}/>
                   <div className="invalid-feedback">
                     Please enter email address
                   </div>
@@ -99,7 +102,7 @@ class EmailMessageCreator extends Component {
                 <span className='font-weight-bolder'>Subject:</span>
               </label>
               <div className="col-sm-10">
-                <input type="text" name='subject' value={newMessage.subject} ref={(el) => this.mailSubject = el} className={"form-control " + `${subjectInvalid ? 'is-invalid' : ''}` } id="subject" placeholder='Enter mail subject' onChange={this.handleChange} required={true}/>
+                <input type="text" name='subject' value={newMessage.subject} className={"form-control " + `${subjectInvalid ? 'is-invalid' : ''}` } id="subject" placeholder='Enter mail subject' onChange={this.handleChange} required={true}/>
                 <div className="invalid-feedback">
                   Please enter subject
                 </div>
@@ -108,10 +111,23 @@ class EmailMessageCreator extends Component {
           </div>
           <div className='col-12 p-3 pt-0'>
             <div className="form-group">
-              <textarea value={newMessage.body} ref={(el) => this.mailBody = el} onChange={this.handleChange} name='body' rows="3" placeholder='Enter message' required={true} className={"form-control " + `${bodyInvalid ? 'is-invalid' : ''}` }></textarea>
-              <div className="invalid-feedback">
-                Please enter body
-              </div>
+              <ReactSummernote
+                value="Default value"
+                options={{
+                  height: 250,
+                  dialogsInBody: true,
+                  toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['fontname', ['fontname']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link', 'picture']],
+                    ['view', ['fullscreen']]
+                  ]
+                }}
+                onChange={this.onChange}
+              />
             </div>
           </div>
           <div className='col-12 '>
