@@ -11,9 +11,6 @@ import $ from 'jquery'
 import toastr from 'toastr'
 import 'popper.js'
 import 'bootstrap'
-import '@fortawesome/fontawesome-free/scss/fontawesome.scss';
-import '@fortawesome/fontawesome-free/scss/regular.scss';
-import '@fortawesome/fontawesome-free/scss/solid.scss';
 window.$ = $;
 toastr.options = {
   'closeButton': true,

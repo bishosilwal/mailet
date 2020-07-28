@@ -89,7 +89,9 @@ class EmailContainer extends Component{
                     <span className='text-dark mail'>{tempMail.mail}</span>
                   </div>
                   <div className='col-4 p-0 text-right'>
-                    <div className='btn btn-primary rounded-circle copy-clipboard' onClick={ e => this.copyToClipboard(tempMail.mail, e) } data-toggle="tooltip" data-placement="right" title="Copy to clipboard"><i className="fas fa-clone"></i></div>
+                    <div className='btn btn-primary rounded-circle copy-clipboard' onClick={ e => this.copyToClipboard(tempMail.mail, e) } data-toggle="tooltip" data-placement="right" title="Copy to clipboard">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#dae1e7" width="24px" height="24px"><path d="M0 0h24v24H0z" fill="none"/><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -108,7 +110,7 @@ class EmailContainer extends Component{
               <div className='col-md-3 col-sm-12'>
                 <div className='btn btn-primary rounded-pill p-3 text-center w-75' onClick={this.handleChange} data-toggle="tooltip" data-placement="bottom" title="Change mail address">
                    <span className='float-left ml-1'>
-                     <i className="fas fa-edit"></i>
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#dae1e7" width="24px" height="24px"><path d="M0 0h24v24H0z" fill="none"/><path d="M20 13H4c-.55 0-1 .45-1 1v6c0 .55.45 1 1 1h16c.55 0 1-.45 1-1v-6c0-.55-.45-1-1-1zM7 19c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zM20 3H4c-.55 0-1 .45-1 1v6c0 .55.45 1 1 1h16c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1zM7 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg>
                    </span>
                   <span className=''>Change</span>
                 </div>
@@ -116,7 +118,7 @@ class EmailContainer extends Component{
               <div className='col-md-3 col-sm-12'>
                 <div className='btn btn-primary rounded-pill p-3 text-center w-75' onClick={this.handleDelete} data-toggle="tooltip" data-placement="bottom" title="Delete and create new mail address">
                   <span className='float-left ml-1'>
-                    <i className="fas fa-trash-alt"></i>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#dae1e7" width="24px" height="24px"><path d="M0 0h24v24H0z" fill="none"/><path d="M0 0h24v24H0V0z" fill="none"/><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zm2.46-7.12l1.41-1.41L12 12.59l2.12-2.12 1.41 1.41L13.41 14l2.12 2.12-1.41 1.41L12 15.41l-2.12 2.12-1.41-1.41L10.59 14l-2.13-2.12zM15.5 4l-1-1h-5l-1 1H5v2h14V4z"/></svg>
                   </span>
                   <span className=''>Delete</span>
                 </div>
@@ -124,15 +126,15 @@ class EmailContainer extends Component{
               <div className='col-md-3 col-sm-12'>
                 <div className='btn btn-primary rounded-pill p-3 text-center w-75' onClick={this.createMessage} data-toggle="tooltip" data-placement="bottom" title="Send email using current mail address">
                   <span className='float-left ml-1'>
-                    <i className="fas fa-envelope-open-text"></i>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#dae1e7" width="24px" height="24px"><path d="M0 0h24v24H0z" fill="none"/><path d="M21.99 8c0-.72-.37-1.35-.94-1.7L12 1 2.95 6.3C2.38 6.65 2 7.28 2 8v10c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2l-.01-10zM12 13L3.74 7.84 12 3l8.26 4.84L12 13z"/></svg>
                   </span>
-                  <span className=''>Send Email</span>
+                  <span className=''>Write Email</span>
                 </div>
               </div>
               <div className='col-md-3 col-sm-12'>
                 <div className='btn btn-primary rounded-pill p-3 text-center w-75' onClick={this.allMessages} data-toggle="tooltip" data-placement="bottom" title="List all received mails">
                   <span className='float-left ml-1'>
-                    <i className="fas fa-mail-bulk"></i>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#dae1e7" width="24px" height="24px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 3H5c-1.1 0-2 .9-2 2v7c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 6h-4c0 1.62-1.38 3-3 3s-3-1.38-3-3H5V5h14v4zm-4 7h6v3c0 1.1-.9 2-2 2H5c-1.1 0-2-.9-2-2v-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3z"/></svg>
                   </span>
                   <span className=''>All Mails</span>
                 </div>
