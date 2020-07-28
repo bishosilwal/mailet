@@ -51,7 +51,9 @@ class EmailMessageCreator extends Component {
     })
       .then(function (res) {
         toastr.success(res.data.message, res.data.details, {'toastClass': 'toastr-success'});
-        that.setState({newMessage: {subject: '', body: '', to: ''}});
+        var state = that.state;
+        state.newMessage = {subject: '', body: '', to: ''};
+        that.setState(state);
         that.summernote.reset();
         that.props.messageSent(res.data.sent_message);
       })
