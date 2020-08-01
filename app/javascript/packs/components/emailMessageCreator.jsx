@@ -23,23 +23,30 @@ class EmailMessageCreator extends Component {
 
   sendMessage = (e) => {
     var that = this;
-    var { newMessage, createNewMessage, from, tempMail } = this.state;
+    var { newMessage, createNewMessage, from, tempMail, sendDisable } = this.state;
     newMessage['from'] = tempMail.mail; // make sure to change when system generate the mail
+    if(sendDisable) {
+      e.preventDefault();
+      return;
+    }
     if(from.length != 0 && !createNewMessage) {
       newMessage['to'] = from;
     }
-    if(createNewMessage && newMessage['to'].trim().length == 0) {
+
+    if(createNewMessage && newMessage['to'].trim().length == 0 || !this.emailTo.checkValidity()) {
       this.setState({toInvalid: true})
       e.preventDefault();
-      return
+      e.stopPropagation();
+      return;
     }
+    this.setState({toInvalid: false});
 
     if(newMessage['subject'].trim().length == 0) {
       this.setState({ subjectInvalid: true });
       e.preventDefault();
       return;
     }
-    this.setState({subjectInvalid: false, sendDisable: true})
+    this.setState({subjectInvalid: false, sendDisable: true});
 
     var token = window.$("meta[name='csrf-token']").attr('content');
     axios.post('/send_email', {
@@ -91,7 +98,7 @@ class EmailMessageCreator extends Component {
                   <span className='font-weight-bolder'>To:</span>
                 </label>
                 <div className="col-sm-10">
-                  <input type="text" name='to' value={newMessage.to} className={"form-control " + `${toInvalid ? 'is-invalid' : ''}` } id="to" placeholder='Enter mail subject' onChange={this.handleChange} required={true}/>
+                  <input type="email" name='to' ref={(emailTo) => this.emailTo = emailTo} value={newMessage.to} className={"form-control " + `${toInvalid ? 'is-invalid' : ''}` } id="to" placeholder='Enter mail address' onChange={this.handleChange} required={true}/>
                   <div className="invalid-feedback">
                     Please enter email address
                   </div>
