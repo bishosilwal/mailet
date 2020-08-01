@@ -21,10 +21,11 @@ class EmailReceive
     puts "............................. Mail raw content end ............................."
 
     params = {
-        :body     => body,
-        :to       => to,
-        :subject  => subject,
-        :from     => from
+      body: body,
+      to: to,
+      subject: subject,
+      from: from,
+      raw: content.html_safe
     }
 
     mail_exists = MailAddress.find_by(mail: params[:to]).present?

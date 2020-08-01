@@ -135,6 +135,20 @@ h1 {
 .note-btn-primary {
   background-color: $primary;
 }
+
+.email-pdf-download {
+  float: right;
+  span {
+    margin-right: 10px;
+  }
+  span:hover {
+    color: $success;
+    svg {
+      fill: $success;
+    }
+  }
+}
+
 @media only screen and (max-width: 600px) {
   .action-pills {
     .col-sm-12 {
