@@ -56,7 +56,10 @@ class Message extends Component{
     }).then(function(res) {
       window.open("/pdfs/" + res.data.file, '_blank');
       that.setState({disableDownload: false});
-    })
+    }).catch(error => {
+      that.setState({disableDownload: false});
+      console.log(error);
+    });
     toastr.info('Please wait!', 'Downloading email...');
   }
 
