@@ -10,6 +10,7 @@ class Message extends Component{
   state = {
     selectedMessages: this.props.selectedMessages || [],
     createNewMessage: this.props.createNewMessage,
+    disableDownload: false,
   }
 
   UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
@@ -20,6 +21,16 @@ class Message extends Component{
 
   componentDidMount() {
     $('[data-toggle="tooltip"]').tooltip();
+    $('.email-pdf-download span').hover(function(e){
+      e.target.style.cursor = 'pointer';
+    })
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    $('[data-toggle="tooltip"]').tooltip();
+    $('.email-pdf-download span').hover(function(e){
+      e.target.style.cursor = 'pointer';
+    })
   }
 
   formatDateTime(date) {
@@ -29,6 +40,12 @@ class Message extends Component{
   }
 
   downloadPdf(id) {
+    var that = this;
+    var {disableDownload} = this.state;
+    if(disableDownload) {
+      return;
+    }
+    this.setState({disableDownload: true});
     axios({
       method: 'get',
       url: '/mail/download?id='+id,
@@ -38,7 +55,9 @@ class Message extends Component{
       }
     }).then(function(res) {
       window.open("/pdfs/" + res.data.file, '_blank');
+      that.setState({disableDownload: false});
     })
+    toastr.info('Please wait!', 'Downloading email...');
   }
 
   downloadRawPdf(raw) {
