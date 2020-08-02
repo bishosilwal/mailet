@@ -94,7 +94,7 @@ class Message extends Component{
                   </span>
                   <span onClick={e =>this.downloadRawPdf(message.raw)} data-toggle="tooltip" data-placement="bottom" title="Download as raw pdf">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="24px" height="24px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>
-                    <sup>Raw pdf</sup>
+                    <sup>Raw</sup>
                   </span>
                 </div>
                 <p className='float-right'>
