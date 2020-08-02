@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from "axios";
 import 'react-summernote/dist/react-summernote.css'; // import styles
-import ReactSummernote from 'react-summernote';
 import 'bootstrap/js/dist/modal';
 import 'bootstrap/js/dist/tooltip';
+
+import ReactSummernote from './summerNote';
 
 class EmailMessageCreator extends Component {
   state = {
@@ -135,11 +136,12 @@ class EmailMessageCreator extends Component {
                     ['para', ['ul', 'ol', 'paragraph']],
                     ['table', ['table']],
                     ['insert', ['link', 'picture']],
-                    ['view']
+                    ['view', ['codeview']],
                   ]
                 }}
                 ref={(summernote) => {this.summernote = summernote}}
                 onChange={this.summerNoteChange}
+                onChangeCodeview={this.summerNoteChange}
               />
             </div>
           </div>
