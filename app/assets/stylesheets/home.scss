@@ -100,7 +100,7 @@ input.form-control, textarea.form-control, .btn{
 }
 
 h1 {
-  font-size: 25px;
+  font-size: 1.5rem;
 }
 
 .note {
@@ -149,6 +149,29 @@ h1 {
   }
 }
 
+.posts {
+  margin-bottom: 30px;
+  h1 {
+    font-size: 1.3rem;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+  .jumbotron {
+    color: $primary;
+    padding-top: 10px;
+    width: 220px;
+    height: 190px;
+    padding-bottom: 10px;
+    margin-bottom: 5px;
+    p {
+      font-size: 0.9rem;
+      font-weight: 300;
+    }
+  }
+}
 @media only screen and (max-width: 600px) {
   .action-pills {
     .col-sm-12 {
