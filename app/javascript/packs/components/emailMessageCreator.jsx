@@ -34,7 +34,7 @@ class EmailMessageCreator extends Component {
       newMessage['to'] = from;
     }
 
-    if(createNewMessage && newMessage['to'].trim().length == 0 || !this.emailTo.checkValidity()) {
+    if(createNewMessage && newMessage['to'].trim().length == 0 || (this.emailTo && !this.emailTo.checkValidity())) {
       this.setState({toInvalid: true})
       e.preventDefault();
       e.stopPropagation();
