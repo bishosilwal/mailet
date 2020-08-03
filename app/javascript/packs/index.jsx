@@ -21,8 +21,10 @@ class Index extends Component {
 }
 
 $(document).on('ready DOMContentLoaded turbolinks:load', function() {
-  ReactDOM.render(
-    <Index />,
-    document.getElementById('main-app-body')
-  )
+  if(document.getElementById('main-app-body')) {
+    ReactDOM.render(
+      <Index />,
+      document.getElementById('main-app-body')
+    )
+  }
 });
