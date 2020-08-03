@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Mailet - Temporary Disposable Free Email Address</title>
-
-    <meta name="description" content="Use free temporary disposable random fake email address to send, receive, delete mail with images and richtext. Secure, anonymous, spam free email generator." />
+    <title>
+      <%= content_for?(:title) ? yield(:title) : 'Mailet - Temporary Disposable Free Email Address'%>
+    </title>
+    <% description = content_for?(:description) ? yield(:description) : "Use free temporary disposable random fake email address to send, receive, delete mail with images and richtext. Secure, anonymous, spam free email generator." %>
+    <meta name="description" content="<%= description %>" />
     <meta name="keywords" content="email,fake,send,mail,temporary,disposable,free,receive,delete,custom,random,generate,image,attachment,security,secure,use, mailet.in,mailet,quick,anonymous,account,protect,online,identity,trash,generator,instant,fast,throwaway,richtext">
     <meta name="robots" content="index">
 <!--     Facebook Open Graph data-->
