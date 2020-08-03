@@ -4,16 +4,19 @@
 @import './variables/_variables.scss';
 @import "bootstrap/scss/bootstrap.scss";
 @import "toastr/toastr.scss";
+@import "./blog.scss";
 
 body {
   min-height: 100vh;
-  background-color: #e2e0e0;
 }
 
 #main-app-body {
   min-height: 80vh;
 }
 
+.app-body {
+  background-color: #e2e0e0;
+}
 .email-container{
   background-color: $secondary;
 }
@@ -149,29 +152,6 @@ h1 {
   }
 }
 
-.posts {
-  margin-bottom: 30px;
-  h1 {
-    font-size: 1.3rem;
-  }
-
-  h2 {
-    font-size: 1.1rem;
-    font-weight: 500;
-  }
-  .jumbotron {
-    color: $primary;
-    padding-top: 10px;
-    width: 220px;
-    height: 190px;
-    padding-bottom: 10px;
-    margin-bottom: 5px;
-    p {
-      font-size: 0.9rem;
-      font-weight: 300;
-    }
-  }
-}
 @media only screen and (max-width: 600px) {
   .action-pills {
     .col-sm-12 {
