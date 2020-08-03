@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'blog/tmp_email_description'
   # mount Resque::Server, :at => "/resque"
   mount ActionCable.server => '/cable'
   post '/send_email', to: 'mail_sender#send_mail', as: 'mail_sender'
@@ -8,6 +9,9 @@ Rails.application.routes.draw do
   post '/mail_address/create/custom', to: 'mail_address#custom_address', as: :custom_mail_address
   get '/mail/download', to: 'home#download_pdf'
 
+  scope 'blog' do
+    get '/temporary-disposable-email-address', to: 'blog#tmp_email_description', as: :tmp_email_description
+  end
   get 'home/index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'home#index'
