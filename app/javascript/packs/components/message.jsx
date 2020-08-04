@@ -138,8 +138,8 @@ class Message extends Component{
 }
 
 const mapsStateToProps = (state) => {
-  const from = state.emailReducer.from;
-  var messages = state.emailReducer.emails.filter(m => m.from === from)[0];
+  const from = state.from;
+  var messages = state.emails.filter(m => m.from === from)[0];
   if(typeof(messages) == 'undefined') {
     messages = [];
   } else {
@@ -147,7 +147,7 @@ const mapsStateToProps = (state) => {
   }
   return {
     selectedMessages: messages,
-    createNewMessage: state.emailReducer.createNewMessage
+    createNewMessage: state.createNewMessage
   }
 };
 export default connect(mapsStateToProps, null)(Message);

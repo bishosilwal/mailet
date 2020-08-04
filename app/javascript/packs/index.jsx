@@ -8,13 +8,24 @@ import EmailContainer from './components/emailContainer';
 import MessageContainer from "./components/messageContainer";
 import './store/configureStore';
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import PulseLoader from "react-spinners/PulseLoader";
 
 class Index extends Component {
   render(){
     return(
       <Provider store={window.store}>
-        <EmailContainer />
-        <MessageContainer />
+        <PersistGate loading={
+          <PulseLoader
+            size={15}
+            color={"#142850"}
+            loading={true}
+            margin={2}
+          />
+        } persistor={window.persistor}>
+          <EmailContainer />
+          <MessageContainer />
+        </PersistGate>
       </Provider>
     )
   }

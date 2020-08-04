@@ -100,7 +100,7 @@ class CustomMailAddress extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    tempMail: state.emailReducer.tempMail,
+    tempMail: state.tempMail,
   }
 };
 

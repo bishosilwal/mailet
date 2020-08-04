@@ -14,6 +14,9 @@ class EmailContainer extends Component{
     axios({
       method: 'post',
       url: '/mail_address',
+      data: {
+        mail_address: this.props.tempMail.mail
+      },
       headers: {
         'X-Requested-With': 'XMLHttpRequest',
         'X-CSRF-Token': token
@@ -159,7 +162,7 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    tempMail: state.emailReducer.tempMail
+    tempMail: state.tempMail
   }
 }
 

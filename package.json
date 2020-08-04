@@ -19,6 +19,7 @@
     "react-spinners": "^0.8.3",
     "react-summernote": "^2.0.2",
     "redux": "^4.0.5",
+    "redux-persist": "^6.0.0",
     "toastr": "^2.1.4",
     "turbolinks": "^5.2.0"
   },

@@ -1,5 +1,13 @@
-import { createStore, combineReducers } from 'redux';
+import { createStore } from 'redux';
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
+
 import consumer from "../../channels/consumer";
+
+const persistConfig = {
+  key: 'root',
+  storage,
+};
 
 const initialState = {
   emails: [],
@@ -40,6 +48,7 @@ function subscribeChannel(mailAddress){
     }
   });
 }
+
 function emailReducer(state = initialState, action) {
   switch (action.type) {
     case 'EMAIL_RECEIVED':
@@ -95,7 +104,7 @@ function emailReducer(state = initialState, action) {
     case 'TEMP_MAIL_ADDRESS_CREATE':
       subscribeChannel(action.value.mail);
       return {
-        ...initialState,
+        ...state,
         tempMail: action.value
       }
 
@@ -138,6 +147,8 @@ function emailReducer(state = initialState, action) {
   }
 };
 
-const reducer = combineReducers({emailReducer});
-window.store = createStore(reducer);
-export default window.store;
+const persistedStore = persistReducer(persistConfig, emailReducer);
+const store = createStore(persistedStore);
+const persistor = persistStore(store);
+window.store = store;
+window.persistor = persistor;

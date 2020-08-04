@@ -129,12 +129,12 @@ class MessageContainer extends Component{
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    emails: state.emailReducer.emails,
-    from: state.emailReducer.from,
-    createNewMessage: state.emailReducer.createNewMessage,
-    changeMailAddress: state.emailReducer.changeMailAddress,
-    tempMail: state.emailReducer.tempMail,
-    showAllMessage: state.emailReducer.showAllMessage,
+    emails: state.emails,
+    from: state.from,
+    createNewMessage: state.createNewMessage,
+    changeMailAddress: state.changeMailAddress,
+    tempMail: state.tempMail,
+    showAllMessage: state.showAllMessage,
   }
 };
 

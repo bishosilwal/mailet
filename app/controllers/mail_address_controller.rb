@@ -32,9 +32,7 @@ class MailAddressController < ApplicationController
   private
 
   def check_address_session
-    if mail_address_session.present?
-      @mail = MailAddress.find_by_mail(mail_address_session)
-    end
+    @mail = MailAddress.find_or_create_by(mail: mail_address_session)
   end
 
   def set_address_session
