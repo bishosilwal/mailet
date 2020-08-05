@@ -7,10 +7,14 @@ require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
-import $ from 'jquery'
-import toastr from 'toastr'
-import 'popper.js'
-import 'bootstrap'
+
+import "core-js/stable";
+import "regenerator-runtime/runtime";
+import $ from 'jquery';
+import toastr from 'toastr';
+import 'popper.js';
+import 'bootstrap';
+
 window.$ = $;
 toastr.options = {
   'closeButton': true,
