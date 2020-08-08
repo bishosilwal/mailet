@@ -101,10 +101,10 @@ class EmailContainer extends Component{
             </div>
             <div className='row justify-content-center p-2'>
               <div className='col-md-5 w-sm-60 w-l-50'>
-                <h5>
+                <h2>
                   <p className='text-muted mail-desc'>Ready to use email address to send and receive mail from any sites. You don't have to worry about the spam emails in your personal mailbox, your
                     online privacy, giving away your personal email address to other company. Generated fake random email address will be deleted after you leave the page.</p>
-                </h5>
+                </h2>
               </div>
             </div>
           </div>
