@@ -1,7 +1,7 @@
 module ApplicationHelper
   def meta_keywords
     keywords = "email,fake,send,mail,temporary,disposable,free,receive,delete,custom,random,generate,image,attachment,security,secure, mailet.in,mailet,quick,anonymous,account,protect,online,identity,trash,generator,throwaway,html form"
-    "<meta name='keywords' contents='#{keywords}'/>".html_safe
+    "<meta name='keywords' content='#{keywords}'/>".html_safe
   end
 
   def meta_description
