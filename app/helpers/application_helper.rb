@@ -6,13 +6,13 @@ module ApplicationHelper
 
   def meta_description
     default = "Use free temporary disposable random fake email address to send, receive, delete mail with images and richtext. Secure, anonymous, spam free email generator."
-    description = content_for?(:description) ? yield(:description) : default
+    description = content_for?(:description) ? content_for(:description) : default
     "<meta name='description' content='#{description}' />".html_safe
   end
 
   def meta_title
     content_tag :title do
-      content_for?(:title) ? yield(:title) : 'Mailet - Temporary Disposable Free Email Address'
+      content_for?(:title) ? content_for(:title) : 'Mailet - Temporary Disposable Free Email Address'
     end
   end
 

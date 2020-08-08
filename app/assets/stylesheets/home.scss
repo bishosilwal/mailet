@@ -99,6 +99,7 @@ input.form-control, textarea.form-control, .btn{
   margin: 3px;
   svg{
     margin: 3px -1px;
+    width: 20px;
   }
 }
 
@@ -151,8 +152,46 @@ h1 {
     }
   }
 }
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+  .w-l-30 {
+    flex: 0 0 30%;
+    max-width: 100%;
+  }
 
-@media only screen and (max-width: 600px) {
+  .w-l-50 {
+    flex: 0 0 50%;
+    max-width: 100%;
+  }
+
+  .w-l-60 {
+    flex: 0 0 60%;
+    max-width: 100%;
+  }
+}
+
+@media only screen and (min-width: 426px) and (max-width: 768px) {
+  .w-sm-40 {
+    flex: 0 0 40%;
+    max-width: 100%;
+  }
+  .w-sm-60 {
+    flex: 0 0 60%;
+    max-width: 100%;
+  }
+
+  .w-sm-80 {
+    flex: 0 0 80%;
+  }
+
+  .rounded-pill {
+    font-size: 0.8rem;
+    svg {
+      width: 20px;
+    }
+  }
+}
+
+@media only screen and (max-width: 425px) {
   .action-pills {
     .col-sm-12 {
       text-align: center;
@@ -189,6 +228,28 @@ h1 {
       margin-bottom: 10px;
       padding: 5px;
       font-size: 10px;
+    }
+  }
+  .email-container {
+    h1 {
+      font-size: 1.3rem;
+    }
+    .mail {
+      font-size: 0.9rem;
+    }
+
+    .mail-desc {
+      font-size: 0.7rem;
+    }
+
+    svg {
+      width: 20px;
+    }
+
+    .action-pills {
+      span {
+        font-size: 0.8rem;
+      }
     }
   }
 }
