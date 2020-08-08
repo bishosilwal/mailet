@@ -152,6 +152,12 @@ h1 {
     }
   }
 }
+
+.rounded-pill {
+  width: 100%;
+}
+
+
 @media only screen and (min-width: 769px) and (max-width: 1024px) {
   .w-l-30 {
     flex: 0 0 30%;
@@ -167,6 +173,12 @@ h1 {
     flex: 0 0 60%;
     max-width: 100%;
   }
+
+  .w-l-40 {
+    flex: 0 0 40%;
+    max-width: 100%;
+  }
+
 }
 
 @media only screen and (min-width: 426px) and (max-width: 768px) {
@@ -189,13 +201,48 @@ h1 {
       width: 20px;
     }
   }
+
+  .custom-mail-address {
+    button {
+      padding: 5px 10px;
+      margin: 10px 0;
+    }
+  }
 }
 
+@media only screen and (min-width: 426px) and (max-width: 573px) {
+  .w-sm-45-70 {
+    flex: 0 0 70%;
+    max-width: 100%;
+  }
+
+  .w-sm-45-90 {
+    flex: 0 0 90%;
+    max-width: 100%;
+  }
+
+  .m-sm-45-10 {
+    margin-top: 10px;
+  }
+
+  .custom-mail-address {
+    button {
+      padding: 5px;
+      margin: 10px 0;
+    }
+  }
+}
 @media only screen and (max-width: 425px) {
+  .rounded-pill {
+    width: auto;
+  }
   .action-pills {
     .col-sm-12 {
       text-align: center;
       margin: 5px 0;
+    }
+    .rounded-pill {
+      width: 75%;
     }
   }
   .message-container {

@@ -99,9 +99,9 @@ class EmailMessageCreator extends Component {
                   <span className='font-weight-bolder'>To:</span>
                 </label>
                 <div className="col-sm-10">
-                  <input type="email" name='to' ref={(emailTo) => this.emailTo = emailTo} value={newMessage.to} className={"form-control " + `${toInvalid ? 'is-invalid' : ''}` } id="to" placeholder='Enter mail address' onChange={this.handleChange} required={true}/>
+                  <input type="email" name='to' ref={(emailTo) => this.emailTo = emailTo} value={newMessage.to} className={"form-control " + `${toInvalid ? 'is-invalid' : ''}` } id="to" placeholder='Enter recipient mail address' onChange={this.handleChange} required={true}/>
                   <div className="invalid-feedback">
-                    Please enter email address
+                    Please enter recipient email address
                   </div>
                 </div>
               </div>
