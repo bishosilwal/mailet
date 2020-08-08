@@ -1,11 +1,11 @@
 module ApplicationHelper
   def meta_keywords
-    keywords = "email,fake,send,mail,temporary,disposable,free,receive,delete,custom,random,generate,image,attachment,security,secure,use, mailet.in,mailet,quick,anonymous,account,protect,online,identity,trash,generator,instant,fast,throwaway,richtext"
+    keywords = "email,fake,send,mail,temporary,disposable,free,receive,delete,custom,random,generate,image,attachment,security,secure, mailet.in,mailet,quick,anonymous,account,protect,online,identity,trash,generator,throwaway,html form"
     "<meta name='keywords' contents='#{keywords}'/>".html_safe
   end
 
   def meta_description
-    default = "Use free temporary disposable random fake email address to send, receive, delete mail with images and richtext. Secure, anonymous, spam free email generator."
+    default = "Use free random fake email address to send, receive, delete mail with images and html form. Secure, anonymous, spam free email id generator."
     description = content_for?(:description) ? content_for(:description) : default
     "<meta name='description' content='#{description}' />".html_safe
   end
