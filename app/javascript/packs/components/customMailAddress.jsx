@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import axios from "axios";
 import {connect} from "react-redux";
+import $ from 'jquery';
 
-const token = window.$("meta[name='csrf-token']").attr('content');
+const token = $("meta[name='csrf-token']").attr('content');
 
 class CustomMailAddress extends Component {
   state = {

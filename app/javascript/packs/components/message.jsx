@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import CustomIframe from './customIframe';
 import EmailMessageCreator from "./emailMessageCreator";
 import axios from 'axios';
+import $ from 'jquery';
 
-const token = window.$("meta[name='csrf-token']").attr('content');
+const token = $("meta[name='csrf-token']").attr('content');
 
 class Message extends Component{
   state = {
