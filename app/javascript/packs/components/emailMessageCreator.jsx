@@ -138,7 +138,10 @@ class EmailMessageCreator extends Component {
                     ['table', ['table']],
                     ['insert', ['link', 'picture']],
                     ['view', ['codeview']],
-                  ]
+                  ],
+                  codemirror: { // codemirror options
+                    theme: 'monokai'
+                  }
                 }}
                 ref={(summernote) => {this.summernote = summernote}}
                 onChange={this.summerNoteChange}
