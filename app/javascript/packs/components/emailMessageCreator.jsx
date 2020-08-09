@@ -4,6 +4,7 @@ import axios from "axios";
 import 'react-summernote/dist/react-summernote.css'; // import styles
 import 'bootstrap/js/dist/modal';
 import 'bootstrap/js/dist/tooltip';
+import $ from 'jquery';
 
 import ReactSummernote from './summerNote';
 
@@ -49,7 +50,7 @@ class EmailMessageCreator extends Component {
     }
     this.setState({subjectInvalid: false, sendDisable: true});
 
-    var token = window.$("meta[name='csrf-token']").attr('content');
+    var token = $("meta[name='csrf-token']").attr('content');
     axios.post('/send_email', {
       new_message: newMessage
     },{
