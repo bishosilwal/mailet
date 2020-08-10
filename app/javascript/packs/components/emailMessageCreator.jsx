@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from "axios";
-import 'react-summernote/dist/react-summernote.css'; // import styles
+import 'react-summernote/dist/react-summernote'; // import styles
 import 'bootstrap/js/dist/modal';
 import 'bootstrap/js/dist/tooltip';
 import $ from 'jquery';
