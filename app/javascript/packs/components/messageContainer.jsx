@@ -1,6 +1,8 @@
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
 import PulseLoader from "react-spinners/PulseLoader";
+import toastr from 'toastr';
+window.toastr = toastr;
 
 import Message from './message';
 import EmailMessageCreator from "./emailMessageCreator";

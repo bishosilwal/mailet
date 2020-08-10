@@ -2,6 +2,8 @@ import React,{ Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import $ from 'jquery';
+import toastr from 'toastr';
+window.toastr = toastr;
 
 const token = $("meta[name='csrf-token']").attr('content');
 

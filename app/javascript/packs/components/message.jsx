@@ -4,6 +4,8 @@ import CustomIframe from './customIframe';
 import EmailMessageCreator from "./emailMessageCreator";
 import axios from 'axios';
 import $ from 'jquery';
+import toastr from 'toastr';
+window.toastr = toastr;
 
 const token = $("meta[name='csrf-token']").attr('content');
 

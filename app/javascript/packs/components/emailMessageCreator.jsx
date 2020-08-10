@@ -5,6 +5,8 @@ import 'react-summernote/dist/react-summernote'; // import styles
 import 'bootstrap/js/dist/modal';
 import 'bootstrap/js/dist/tooltip';
 import $ from 'jquery';
+import toastr from 'toastr';
+window.toastr = toastr;
 
 import ReactSummernote from './summerNote';
 
