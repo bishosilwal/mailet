@@ -210,6 +210,12 @@ h1 {
   }
 }
 
+.note-modal {
+  h4 {
+    font-size: 1.1rem;
+  }
+}
+
 @media only screen and (min-width: 426px) and (max-width: 573px) {
   .w-sm-45-70 {
     flex: 0 0 70%;

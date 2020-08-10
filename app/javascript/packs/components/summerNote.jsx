@@ -50,6 +50,7 @@ class ReactSummernote extends Component {
 
     this.editor = $(`#${this.uid}`);
     this.editor.summernote(options);
+    $('.dropdown-toggle').dropdown();
     if (codeview) {
       this.editor.summernote('codeview.activate');
     }
