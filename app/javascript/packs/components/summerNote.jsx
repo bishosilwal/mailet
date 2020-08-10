@@ -4,6 +4,7 @@ import 'summernote/dist/summernote';
 import 'codemirror/lib/codemirror';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import 'bootstrap/js/dist/dropdown';
 
 const randomUid = () => Math.floor(Math.random() * 100000);
 
