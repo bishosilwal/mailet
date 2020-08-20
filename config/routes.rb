@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   scope 'blog' do
     get '/temporary-disposable-email-address', to: 'blog#tmp_email_description', as: :tmp_email_description
+    get '/what-we-offer-at-mailet', to: 'blog#what_we_offer'
   end
   get 'home/index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
