@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import {connect, Provider} from 'react-redux';
-// import ReactDOM from 'react-dom';
-// import { Provider } from 'react-redux';
-// import { PersistGate } from 'redux-persist/integration/react';
 import axios from "axios";
 import 'react-summernote/dist/react-summernote'; // import styles
 import 'bootstrap/js/dist/modal';
@@ -15,15 +12,15 @@ import ReactSummernote from './summerNote';
 
 class EmailMessageCreator extends Component {
   state = {
-    from: this.props.from || '',
+    from: this.props.createMail ? this.props.tempMail : this.props.from,
     newMessage: {
       subject: '',
       body: '',
-      to: this.props.from || '',
+      to: this.props.createMail ? '' : this.props.from,
     },
     subjectInvalid: false,
     toInvalid: false,
-    createNewMessage: this.props.createNewMessage,
+    createNewMessage: this.props.createMail,
     tempMail: this.props.tempMail,
     sendDisable: false
   }
@@ -56,7 +53,7 @@ class EmailMessageCreator extends Component {
     this.setState({subjectInvalid: false, sendDisable: true});
 
     var token = $("meta[name='csrf-token']").attr('content');
-    axios.post('/send_email', {
+    axios.post('/mail/send', {
       new_message: newMessage
     },{
       headers: {
@@ -164,10 +161,8 @@ class EmailMessageCreator extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  var from = state.createNewMessage ? '' : state.from;
   return {
-    createNewMessage: state.createNewMessage,
-    from: from,
+    from: state.from,
     tempMail: state.tempMail
   }
 };
@@ -180,17 +175,3 @@ const mapDispatchToProps = (dispatch) => {
 
 export default connect(mapStateToProps, mapDispatchToProps)(EmailMessageCreator);
 
-//
-// $(document).on('ready DOMContentLoaded turbolinks:load', function() {
-//   if(document.getElementById('main-app-body')) {
-//     ReactDOM.render(
-//       <Provider store={window.store}>
-//         <PersistGate persistor={window.persistor}>
-//           <EmailMessageCreator />
-//         </PersistGate>
-//       </Provider>,
-//       document.getElementById('main-app-body')
-//     )
-//   }
-// });
-//

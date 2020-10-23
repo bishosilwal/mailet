@@ -7,7 +7,6 @@ import toastr from 'toastr';
 window.toastr = toastr;
 
 import Message from './message';
-import $ from "jquery";
 
 class MessageContainer extends Component{
   state = {
@@ -131,15 +130,11 @@ const mapDispatchToProps = dispatch => {
 }
 const Container =  connect(mapStateToProps, mapDispatchToProps)(MessageContainer);
 
-$(document).on('ready DOMContentLoaded turbolinks:load', function() {
-  if(document.getElementById('main-app-body')) {
-    ReactDOM.render(
-      <Provider store={window.store}>
-        <PersistGate persistor={window.persistor}>
-          <Container />
-        </PersistGate>
-      </Provider>,
-      document.getElementById('main-app-body')
-    )
-  }
-});
+ReactDOM.render(
+  <Provider store={window.store}>
+    <PersistGate persistor={window.persistor}>
+      <Container />
+    </PersistGate>
+  </Provider>,
+  document.getElementById('main-app-body')
+)

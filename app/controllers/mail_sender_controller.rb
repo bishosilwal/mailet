@@ -3,7 +3,7 @@ class MailSenderController < ApplicationController
 
   end
 
-  def send_mail
+  def create
     message_params[:body] = message_params[:body].html_safe
     message = Message.create(message_params)
     TempMailSenderJob.perform_later message
