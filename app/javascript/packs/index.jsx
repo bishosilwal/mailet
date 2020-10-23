@@ -4,7 +4,6 @@
 
 import React, { Component} from 'react';
 import ReactDOM from 'react-dom';
-import MessageContainer from "./components/messageContainer";
 import './store/configureStore';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -22,7 +21,6 @@ class Index extends Component {
             margin={2}
           />
         } persistor={window.persistor}>
-          <MessageContainer />
         </PersistGate>
       </Provider>
     )

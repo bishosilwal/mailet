@@ -13,7 +13,7 @@ window.toastr = toastr;
 
 const token = $("meta[name='csrf-token']").attr('content');
 
-class EmailContainer extends Component{
+class TempEmailAddressContainer extends Component{
   state = {
     tempMail: this.props.tempMail || '',
   };
@@ -105,7 +105,7 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-const Container =  connect(mapStateToProps, mapDispatchToProps)(EmailContainer)
+const Container =  connect(mapStateToProps, mapDispatchToProps)(TempEmailAddressContainer)
 
 
 $(document).on('ready DOMContentLoaded turbolinks:load', function() {

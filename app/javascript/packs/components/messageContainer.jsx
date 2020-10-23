@@ -1,12 +1,13 @@
 import React,{ Component } from 'react';
-import { connect } from 'react-redux';
+import ReactDOM from 'react-dom';
+import { PersistGate } from 'redux-persist/integration/react';
+import {connect, Provider} from 'react-redux';
 import PulseLoader from "react-spinners/PulseLoader";
 import toastr from 'toastr';
 window.toastr = toastr;
 
 import Message from './message';
-import EmailMessageCreator from "./emailMessageCreator";
-import CustomMailAddress from "./customMailAddress";
+import $ from "jquery";
 
 class MessageContainer extends Component{
   state = {
@@ -40,63 +41,46 @@ class MessageContainer extends Component{
         )}
       </div>
     )
-
-    if(changeMailAddress) {
+    if(emails.length === 0 && !createNewMessage) {
       return(
-        <CustomMailAddress />
-      )
-    } else if(showAllMessage) {
-      if(emails.length === 0 && !createNewMessage) {
-        return(
-          <div className='col-12'>
-            <div className='row justify-content-center p-5 m-5 loading-row'>
-              <div className='col-12 text-center'>
-                <PulseLoader
-                  size={15}
-                  color={"#142850"}
-                  loading={true}
-                  margin={2}
-                />
-                <h2 className='text-secondary mt-2'>
-                  You have received 0 emails.<br/>
-                  <span className='text-light'>Waiting for incoming emails.</span>
-                </h2>
-              </div>
+        <div className='col-12'>
+          <div className='row justify-content-center p-5 m-5 loading-row'>
+            <div className='col-12 text-center'>
+              <PulseLoader
+                size={15}
+                color={"#142850"}
+                loading={true}
+                margin={2}
+              />
+              <h2 className='text-secondary mt-2'>
+                You have received 0 emails.<br/>
+                <span className='text-light'>Waiting for incoming emails.</span>
+              </h2>
             </div>
           </div>
-        )
-      } else {
-        return(
-          <div className='col-12'>
-            <div className='row'>
-              <div className='col-md-4 p-2 address-list'>
-                {emailAddressList}
-              </div>
-              <div className='col-md-8 col-sm-12 p-1 mt-2'>
-                <div className="tab-content" id="v-pills-tabContent">
-                  <div className="tab-pane fade show active" id="v-pills-message" role="tabpanel"
-                       aria-labelledby="v-pills-message-tab">
-                    <Message />
-                  </div>
+        </div>
+      )
+    } else {
+      return(
+        <div className='col-12'>
+          <div className='row'>
+            <div className='col-md-4 p-2 address-list'>
+              {emailAddressList}
+            </div>
+            <div className='col-md-8 col-sm-12 p-1 mt-2'>
+              <div className="tab-content" id="v-pills-tabContent">
+                <div className="tab-pane fade show active" id="v-pills-message" role="tabpanel"
+                     aria-labelledby="v-pills-message-tab">
+                  <Message />
                 </div>
               </div>
             </div>
           </div>
-        )
-      }
-    } else {
-        return(
-          <div className='col-12'>
-            <div className='row justify-content-center'>
-              <div className='col-md-10 col-sm-12 p-1 mt-2'>
-                <EmailMessageCreator />
-              </div>
-            </div>
-          </div>
-        )
-
+        </div>
+      )
     }
   }
+
   render(){
     return(
       <div className='container-fluid'>
@@ -145,4 +129,17 @@ const mapDispatchToProps = dispatch => {
     fromChanged: email => dispatch({type: 'EMAIL_SELECTED', value: email}),
   }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(MessageContainer);
+const Container =  connect(mapStateToProps, mapDispatchToProps)(MessageContainer);
+
+$(document).on('ready DOMContentLoaded turbolinks:load', function() {
+  if(document.getElementById('main-app-body')) {
+    ReactDOM.render(
+      <Provider store={window.store}>
+        <PersistGate persistor={window.persistor}>
+          <Container />
+        </PersistGate>
+      </Provider>,
+      document.getElementById('main-app-body')
+    )
+  }
+});

@@ -43,10 +43,10 @@
           <div class="nav flex-column nav-pills w-100 pl-5" id="v-pills-tab" role="tablist" aria-orientation="vertical">
             <h6 class="pt-2 m-0">Email</h6>
             <div class="dropdown-divider"></div>
-            <a class="nav-link" id="v-pills-home-tab" data-toggle="pill" href="" role="tab" aria-selected="false">All Emails</a>
-            <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="" role="tab" aria-selected="false">Send Email</a>
-            <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="" role="tab" aria-selected="false">Delete Emails</a>
-            <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="" role="tab" aria-selected="false">Change Address</a>
+            <a class="nav-link" href="/" data-toggle="pill">All Emails</a>
+            <a class="nav-link" href="/mail/send"data-toggle="pill">Send Email</a>
+            <a class="nav-link" data-toggle="pill">Delete Emails</a>
+            <a class="nav-link" data-toggle="pill">Change Address</a>
             <div class="dropdown-divider"></div>
             <h6 class="pt-2 m-0">Text Chat</h6>
             <div class="dropdown-divider"></div>
@@ -65,7 +65,7 @@
           <div id='main-app-email' class="'container-fluid p-0'"></div>
           <div id='main-app-body' class="'container-fluid p-0'"></div>
 
-          <%= javascript_pack_tag 'components/emailContainer'%>
+          <%= javascript_pack_tag 'components/tempEmailAddressContainer'%>
           <%= yield %>
         </div>
       </div>
