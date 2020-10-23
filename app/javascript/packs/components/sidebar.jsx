@@ -1,7 +1,33 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom';
+import $ from "jquery";
+import { PersistGate } from 'redux-persist/integration/react';
+import {connect, Provider} from 'react-redux';
+import axios from 'axios';
+
+const token = $("meta[name='csrf-token']").attr('content');
 
 class Sidebar extends Component {
+  handleDelete = e => {
+    e.stopPropagation();
+    e.preventDefault();
+    var that = this;
+    var tempMail = this.props.tempMail;
+    console.log(tempMail)
+    axios.delete('/mail_address/', {
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+        'X-CSRF-Token': token
+      },
+      data: {
+        mail: tempMail
+      }
+    }).then(function (res) {
+      that.props.handleMailDelete();
+      that.props.newMailAddress(res.data.new_mail);
+      toastr.success(res.data.message, res.data.details, {'toastClass': 'toastr-success'});
+    });
+  };
 
   render() {
     return(
@@ -21,8 +47,8 @@ class Sidebar extends Component {
               <div className="dropdown-divider"></div>
               <a className="nav-link" href="/">All Emails</a>
               <a className="nav-link" href="/mail/send">Send Email</a>
-              <a className="nav-link" href="mail_address">Delete Emails</a>
-              <a className="nav-link" href="mail_address">Change Address</a>
+              <a className="nav-link" href="/mail_address" onClick={e => this.handleDelete(e)} >Delete Emails</a>
+              <a className="nav-link" href="/mail_address">Change Address</a>
               <div className="dropdown-divider"></div>
               <h6 className="pt-2 m-0">Text Chat</h6>
               <div className="dropdown-divider"></div>
@@ -44,8 +70,26 @@ class Sidebar extends Component {
     )
   }
 }
+const mapStateToProps = (state, ownProps) => {
+  return {
+    tempMail: state.tempMail,
+  }
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    handleMailDelete: (_) => dispatch({ type: 'TEMP_MAIL_ADDRESS_DELETE' }),
+    newMailAddress: (address) => dispatch({type: 'TEMP_MAIL_ADDRESS_CREATE', value: address}),
+  }
+}
+const Container = connect(mapStateToProps, mapDispatchToProps)(Sidebar);
+
 
 ReactDOM.render(
-  <Sidebar />,
+  <Provider store={window.store}>
+    <PersistGate persistor={window.persistor}>
+      <Container />
+    </PersistGate>
+  </Provider>,
   document.getElementById('sidebar')
 )

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {connect, Provider} from 'react-redux';
+import {connect} from 'react-redux';
 import axios from "axios";
 import 'react-summernote/dist/react-summernote'; // import styles
 import 'bootstrap/js/dist/modal';

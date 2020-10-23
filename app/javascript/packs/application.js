@@ -14,6 +14,7 @@ import $ from 'jquery';
 import toastr from 'toastr';
 import 'popper.js';
 import 'bootstrap';
+import './store/configureStore'
 
 window.$ = $;
 toastr.options = {

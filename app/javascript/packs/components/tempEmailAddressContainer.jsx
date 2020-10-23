@@ -5,7 +5,6 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import $ from 'jquery';
 import toastr from 'toastr';
-import '../store/configureStore';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 
