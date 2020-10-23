@@ -40,29 +40,27 @@ class Sidebar extends Component {
             <h1></h1>
             <p>test@mailet.in</p>
           </div>
-          <div className="row">
-            <div className="nav flex-column nav-pills w-100 pl-5" id="v-pills-tab" role="tablist"
-                 aria-orientation="vertical">
-              <h6 className="pt-2 m-0">Email</h6>
+          <div className="row pl-3">
+            <div className='col pl-4'>
+              <div className="dropdown-divider"></div>
+              <h6 className="pt-2 m-0">Email Section</h6>
               <div className="dropdown-divider"></div>
               <a className="nav-link" href="/">All Emails</a>
               <a className="nav-link" href="/mail/send">Send Email</a>
               <a className="nav-link" href="/mail_address" onClick={e => this.handleDelete(e)} >Delete Emails</a>
               <a className="nav-link" href="/mail_address">Change Address</a>
               <div className="dropdown-divider"></div>
-              <h6 className="pt-2 m-0">Text Chat</h6>
+              <h6 className="pt-2 m-0">Text Chat Section</h6>
               <div className="dropdown-divider"></div>
-              <a className="nav-link" id="v-pills-home-tab" data-toggle="pill" href="" role="tab" aria-selected="false">Create
+              <a className="nav-link" >Create
                 Room</a>
-              <a className="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="" role="tab"
-                 aria-selected="false">Join Room</a>
+              <a className="nav-link" >Join Room</a>
               <div className="dropdown-divider"></div>
-              <h6 className="pt-2 m-0">Video Chat</h6>
+              <h6 className="pt-2 m-0">Video Chat Section</h6>
               <div className="dropdown-divider"></div>
-              <a className="nav-link" id="v-pills-home-tab" data-toggle="pill" href="" role="tab" aria-selected="false">Create
+              <a className="nav-link" >Create
                 Room</a>
-              <a className="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="" role="tab"
-                 aria-selected="false">Join Room</a>
+              <a className="nav-link" >Join Room</a>
             </div>
           </div>
         </div>

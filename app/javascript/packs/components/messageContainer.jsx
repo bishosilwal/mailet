@@ -90,7 +90,7 @@ class MessageContainer extends Component{
             </h5>
           </div>
           <div className='col-md-12 col-sm-12 message-container'>
-            <div className="card message-container-card" >
+            <div className="card message-container-card div-border">
               <div className="card-header">
                 <div className='row justify-content-around text-light'>
                   <div className='col'>Sender</div>
