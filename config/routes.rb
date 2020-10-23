@@ -1,13 +1,20 @@
 Rails.application.routes.draw do
-  get 'blog/tmp_email_description'
   # mount Resque::Server, :at => "/resque"
   mount ActionCable.server => '/cable'
-  post '/send_email', to: 'mail_sender#send_mail', as: 'mail_sender'
-  post '/mail_address', to: 'mail_address#create', as: :mail_addresses
-  delete '/mail_address', to: 'mail_address#destroy', as: :mail_address
-  post '/mail_address/change', to: 'mail_address#change', as: :mail_address_change
-  post '/mail_address/create/custom', to: 'mail_address#custom_address', as: :custom_mail_address
-  get '/mail/download', to: 'home#download_pdf'
+
+  scope 'mail_address' do
+    post '/', to: 'mail_address#create', as: :mail_addresses
+    delete '/', to: 'mail_address#destroy', as: :mail_address
+    post '/change', to: 'mail_address#change', as: :mail_address_change
+    post '/create/custom', to: 'mail_address#custom_address', as: :custom_mail_address
+  end
+
+  scope 'mail' do
+    get '/download', to: 'home#download_pdf'
+    get '/send', to: 'mail_sender#new', as: :new_mail_sender
+    post '/send', to: 'mail_sender#create', as: :mail_sender
+
+  end
 
   scope 'blog' do
     get '/temporary-disposable-email-address', to: 'blog#tmp_email_description', as: :tmp_email_description

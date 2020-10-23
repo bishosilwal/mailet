@@ -1,4 +1,7 @@
 class MailSenderController < ApplicationController
+  def new
+
+  end
 
   def send_mail
     message_params[:body] = message_params[:body].html_safe

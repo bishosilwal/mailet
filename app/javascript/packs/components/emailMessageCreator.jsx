@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import {connect, Provider} from 'react-redux';
+// import ReactDOM from 'react-dom';
+// import { Provider } from 'react-redux';
+// import { PersistGate } from 'redux-persist/integration/react';
 import axios from "axios";
 import 'react-summernote/dist/react-summernote'; // import styles
 import 'bootstrap/js/dist/modal';
@@ -176,3 +179,18 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(EmailMessageCreator);
+
+//
+// $(document).on('ready DOMContentLoaded turbolinks:load', function() {
+//   if(document.getElementById('main-app-body')) {
+//     ReactDOM.render(
+//       <Provider store={window.store}>
+//         <PersistGate persistor={window.persistor}>
+//           <EmailMessageCreator />
+//         </PersistGate>
+//       </Provider>,
+//       document.getElementById('main-app-body')
+//     )
+//   }
+// });
+//
