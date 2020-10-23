@@ -63,10 +63,10 @@ class MessageContainer extends Component{
       return(
         <div className='col-12'>
           <div className='row'>
-            <div className='col-md-4 p-2 address-list'>
+            <div className='col-md-3 p-2 address-list'>
               {emailAddressList}
             </div>
-            <div className='col-md-8 col-sm-12 p-1 mt-2'>
+            <div className='col-md-9 col-sm-12 p-1 mt-2'>
               <div className="tab-content" id="v-pills-tabContent">
                 <div className="tab-pane fade show active" id="v-pills-message" role="tabpanel"
                      aria-labelledby="v-pills-message-tab">
@@ -84,12 +84,12 @@ class MessageContainer extends Component{
     return(
       <div className='container-fluid'>
         <div className='row justify-content-center p-3 pb-4'>
-          <div className='col-md-10 col-sm-12'>
+          <div className='col-md-12 col-sm-12'>
             <h5>
               <span className='text-primary font-italic font-weight-light note'>*Note: Incoming mail is updated automatically</span>
             </h5>
           </div>
-          <div className='col-md-10 col-sm-12 message-container'>
+          <div className='col-md-12 col-sm-12 message-container'>
             <div className="card message-container-card" >
               <div className="card-header">
                 <div className='row justify-content-around text-light'>
@@ -98,7 +98,7 @@ class MessageContainer extends Component{
                 </div>
               </div>
               <div className='card-body p-0'>
-                <div className='container'>
+                <div className='container m-0'>
                   <div className='row'>
                     {this.renderContent()}
                   </div>

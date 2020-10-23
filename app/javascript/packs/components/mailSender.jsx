@@ -9,17 +9,16 @@ class MailSender extends Component {
     return(
       <div className='container-fluid'>
         <div className='row justify-content-center p-3 pb-4'>
-          <div className='col-md-10 col-sm-12'>
+          <div className='col-md-12 col-sm-12'>
             <h5>
               <span className='text-primary font-italic font-weight-light note'>*Note: Incoming mail is updated automatically</span>
             </h5>
           </div>
-          <div className='col-md-10 col-sm-12 message-container'>
+          <div className='col-md-12 col-sm-12 message-container'>
             <div className="card message-container-card" >
               <div className="card-header">
                 <div className='row justify-content-around text-light'>
-                  <div className='col'>Sender</div>
-                  <div className='col'>Message</div>
+                  <div className='col'>Mail send form</div>
                 </div>
               </div>
               <div className='card-body p-0'>
