@@ -12,7 +12,9 @@
 /tmp/*
 !/log/.keep
 !/tmp/.keep
-shared/*
+!shared/log/puma.stderr.log
+!shared/log/puma.stdout.log
+shared/**/log/*.log
 /.idea/*
 # Ignore uploaded files in development.
 /storage/*

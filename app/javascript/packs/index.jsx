@@ -4,7 +4,6 @@
 
 import React, { Component} from 'react';
 import ReactDOM from 'react-dom';
-import EmailContainer from './components/emailContainer';
 import MessageContainer from "./components/messageContainer";
 import './store/configureStore';
 import { Provider } from 'react-redux';
@@ -23,7 +22,6 @@ class Index extends Component {
             margin={2}
           />
         } persistor={window.persistor}>
-          <EmailContainer />
           <MessageContainer />
         </PersistGate>
       </Provider>

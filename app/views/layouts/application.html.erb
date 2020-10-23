@@ -61,7 +61,13 @@
         </div>
       </div>
       <div class="col-10 content-body p-0">
-        <%= yield %>
+        <div class="container-fluid p-0 app-body">
+          <div id='main-app-email' class="'container-fluid p-0'"></div>
+          <div id='main-app-body' class="'container-fluid p-0'"></div>
+
+          <%= javascript_pack_tag 'components/emailContainer'%>
+          <%= yield %>
+        </div>
       </div>
     </div>
     <div class="container blog">

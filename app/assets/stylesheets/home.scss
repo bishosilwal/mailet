@@ -104,7 +104,7 @@ input.form-control, textarea.form-control, .btn{
 }
 
 h1 {
-  font-size: 1.5rem;
+  font-size: 1.1rem;
 }
 
 .note {
@@ -153,11 +153,6 @@ h1 {
   }
 }
 
-.rounded-pill {
-  width: 100%;
-}
-
-
 @media only screen and (min-width: 769px) and (max-width: 1024px) {
   .w-l-30 {
     flex: 0 0 30%;
@@ -193,13 +188,6 @@ h1 {
 
   .w-sm-80 {
     flex: 0 0 80%;
-  }
-
-  .rounded-pill {
-    font-size: 0.8rem;
-    svg {
-      width: 20px;
-    }
   }
 
   .custom-mail-address {
@@ -239,18 +227,6 @@ h1 {
   }
 }
 @media only screen and (max-width: 425px) {
-  .rounded-pill {
-    width: auto;
-  }
-  .action-pills {
-    .col-sm-12 {
-      text-align: center;
-      margin: 5px 0;
-    }
-    .rounded-pill {
-      width: 75%;
-    }
-  }
   .message-container {
     padding: 0px;
   }
@@ -285,7 +261,7 @@ h1 {
   }
   .email-container {
     h1 {
-      font-size: 1.3rem;
+      font-size: 1rem;
     }
     .mail {
       font-size: 0.9rem;
@@ -293,16 +269,6 @@ h1 {
 
     .mail-desc {
       font-size: 0.7rem;
-    }
-
-    svg {
-      width: 20px;
-    }
-
-    .action-pills {
-      span {
-        font-size: 0.8rem;
-      }
     }
   }
 }
