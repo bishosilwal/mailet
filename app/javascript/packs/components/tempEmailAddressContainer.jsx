@@ -107,16 +107,11 @@ const mapStateToProps = (state, ownProps) => {
 
 const Container =  connect(mapStateToProps, mapDispatchToProps)(TempEmailAddressContainer)
 
-
-$(document).on('ready DOMContentLoaded turbolinks:load', function() {
-  if(document.getElementById('main-app-email')) {
-    ReactDOM.render(
-      <Provider store={window.store}>
-        <PersistGate persistor={window.persistor}>
-          <Container />
-        </PersistGate>
-      </Provider>,
-      document.getElementById('main-app-email')
-    )
-  }
-});
+ReactDOM.render(
+  <Provider store={window.store}>
+    <PersistGate persistor={window.persistor}>
+      <Container />
+    </PersistGate>
+  </Provider>,
+  document.getElementById('main-app-email')
+)

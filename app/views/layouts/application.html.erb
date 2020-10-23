@@ -33,73 +33,48 @@
   <body class="container-fluid p-0">
     <%= render 'shared/header' %>
     <div class="row">
-      <div class="col-2 sidebar p-0">
-        <div class="row col justify-content-center p-3 m-0 bg-light">
-          <img height='50px' src='https://w0.pngwave.com/png/387/456/conservatorio-santa-cecilia-maulana-malik-ibrahim-state-islamic-university-malang-gold-lorem-ipsum-is-simply-dummy-text-of-the-printing-system-gold-png-clip-art.png' class="rounded-circle d-block" />
-          <h1></h1>
-          <p>test@mailet.in</p>
-        </div>
-        <div class="row">
-          <div class="nav flex-column nav-pills w-100 pl-5" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-            <h6 class="pt-2 m-0">Email</h6>
-            <div class="dropdown-divider"></div>
-            <a class="nav-link" href="/" >All Emails</a>
-            <a class="nav-link" href="/mail/send">Send Email</a>
-            <a class="nav-link" href="mail_address">Delete Emails</a>
-            <a class="nav-link" href="mail_address">Change Address</a>
-            <div class="dropdown-divider"></div>
-            <h6 class="pt-2 m-0">Text Chat</h6>
-            <div class="dropdown-divider"></div>
-            <a class="nav-link" id="v-pills-home-tab" data-toggle="pill" href="" role="tab" aria-selected="false">Create Room</a>
-            <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="" role="tab"  aria-selected="false">Join Room</a>
-            <div class="dropdown-divider"></div>
-            <h6 class="pt-2 m-0">Video Chat</h6>
-            <div class="dropdown-divider"></div>
-            <a class="nav-link" id="v-pills-home-tab" data-toggle="pill" href="" role="tab" aria-selected="false">Create Room</a>
-            <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="" role="tab"  aria-selected="false">Join Room</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-10 content-body p-0">
-        <div class="container-fluid p-0 app-body">
-          <div id='main-app-email' class="'container-fluid p-0'"></div>
-          <div id='main-app-body' class="'container-fluid p-0'"></div>
+      <div id='sidebar' class="col-2"> </div>
+      <%= javascript_pack_tag 'components/sidebar' %>
+      <div class="col-10 app-body p-0">
+        <div class="container-fluid p-0">
+          <div id='main-app-email' class="container-fluid p-0"></div>
+          <div id='main-app-body' class="container-fluid p-0"></div>
 
           <%= javascript_pack_tag 'components/tempEmailAddressContainer'%>
           <%= yield %>
         </div>
-      </div>
-    </div>
-    <div class="container blog">
-      <div class="row">
-        <div class="col-12">
-          <h1>Top Posts</h1>
-        </div>
-        <div class="col-6 col-md-3 col-sm-4 col-lg-3">
-          <div class="post-highlight">
-            <a href="/blog/temporary-disposable-email-address"><h2>What is temporary disposable email address?</h2></a>
-            <h3>Free email address that can be thrown out after you use it without any worry. Completely working email address without
-              giving any data.
-            </h3>
-          </div>
-        </div>
-        <div class="col-6 col-md-3 col-sm-4 col-lg-3">
-          <div class="post-highlight">
-            <a href="/blog/what-we-offer-at-mailet"><h2>What we offer for you?</h2></a>
-            <h3>You can do various kind of email activity on our site. From sending and receiving mail to generating custom mail address.</h3>
-          </div>
-        </div>
-        <div class="col-6 col-md-3 col-sm-4 col-lg-3">
-          <div class="post-highlight">
-            <a href="#"><h2>Say ‘No’ to spam emails?</h2></a>
-            <h3>Spam emails are flooding in our personal mailbox, making hard to get right information at the right time. It's time to get rid of them.
-            </h3>
-          </div>
-        </div>
-        <div class="col-6 col-md-3 col-sm-4 col-lg-3">
-          <div class="post-highlight">
-            <a href="#"><h2>How can an anonymous email protect you from phishing hacker attack?</h2></a>
-            <h3>In such a way you decline the probability of getting noxious spam that will be phishing for your data.</h3>
+        <div class="container blog">
+          <div class="row">
+            <div class="col-12">
+              <h1>Top Posts</h1>
+            </div>
+            <div class="col-6 col-md-3 col-sm-4 col-lg-3">
+              <div class="post-highlight">
+                <a href="/blog/temporary-disposable-email-address"><h2>What is temporary disposable email address?</h2></a>
+                <h3>Free email address that can be thrown out after you use it without any worry. Completely working email address without
+                  giving any data.
+                </h3>
+              </div>
+            </div>
+            <div class="col-6 col-md-3 col-sm-4 col-lg-3">
+              <div class="post-highlight">
+                <a href="/blog/what-we-offer-at-mailet"><h2>What we offer for you?</h2></a>
+                <h3>You can do various kind of email activity on our site. From sending and receiving mail to generating custom mail address.</h3>
+              </div>
+            </div>
+            <div class="col-6 col-md-3 col-sm-4 col-lg-3">
+              <div class="post-highlight">
+                <a href="#"><h2>Say ‘No’ to spam emails?</h2></a>
+                <h3>Spam emails are flooding in our personal mailbox, making hard to get right information at the right time. It's time to get rid of them.
+                </h3>
+              </div>
+            </div>
+            <div class="col-6 col-md-3 col-sm-4 col-lg-3">
+              <div class="post-highlight">
+                <a href="#"><h2>How can an anonymous email protect you from phishing hacker attack?</h2></a>
+                <h3>In such a way you decline the probability of getting noxious spam that will be phishing for your data.</h3>
+              </div>
+            </div>
           </div>
         </div>
       </div>

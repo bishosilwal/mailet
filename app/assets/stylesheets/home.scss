@@ -5,7 +5,7 @@
 @import "bootstrap/scss/bootstrap.scss";
 @import "toastr/toastr.scss";
 @import "./blog.scss";
-
+@import "./sidebar.scss";
 body {
   min-height: 100vh;
 }
@@ -15,6 +15,7 @@ body {
 }
 
 .app-body {
+  min-height: 80vh;
   background-color: #e2e0e0;
 }
 .email-container{
