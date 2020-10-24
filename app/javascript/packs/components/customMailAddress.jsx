@@ -64,36 +64,29 @@ class CustomMailAddress extends Component {
     var { customMailAddress, customMailValid, addressValidationMsg } = this.state;
 
     return(
-      <div className='col-md-12 col-sm-12 custom-mail-address'>
-        <div className='row p-md-5'>
-          <div className='col-md-10 col-sm-12 text-center'>
-            <h5 className='text-primary'>Create custom mail address.</h5>
-          </div>
-          <div className='col-md-12 col-sm-12 pt-md-3'>
-            <div className='row justify-content-center'>
-              <div className='col-md-8 col-sm-12'>
-                <div className='row'>
-                  <div className='col-md-9 col-sm-12'>
-                    <div className='row'>
-                      <label htmlFor="customMailAddress" className="col-md-3 col-sm-3 col-form-label">
-                        <span className='font-weight-bolder'>Email:</span>
-                      </label>
-                      <div className="col-md-9 col-sm-9">
-                        <input type="text" name='to' value={customMailAddress} className={"form-control " + `${customMailValid ? '' : 'is-invalid'}` } id="customMailAddress" placeholder={this.customMailPlaceholder()} onChange={this.handleCustomMailChange} required={true}/>
-                        <div className="invalid-feedback" >
-                          {addressValidationMsg}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className='col-md-3 col-sm-12'>
-                    <div className='row text-right'>
-                      <div className='col-md-12 col-sm-12 text-right'>
-                        <button className='btn btn-outline-primary' onClick={this.handleCustomMailSubmit}>Submit</button>
-                      </div>
-                    </div>
-                  </div>
+      <div className='col-md-12 pt-5 pl-5'>
+        <div className='row col'>
+          <h5 className='text-primary'>Create custom mail address.</h5>
+        </div>
+        <div className='row pt-3'>
+          <div className='col-md-9 col-sm-12'>
+            <div className='row'>
+              <label htmlFor="customMailAddress" className="col-md-12 col-sm-3 col-form-label">
+                <span className='font-weight-bolder'>Email:</span>
+              </label>
+              <br/>
+              <div className="col-md-7 col-sm-9">
+                <input type="text" name='to' value={customMailAddress} className={"form-control " + `${customMailValid ? '' : 'is-invalid'}` } id="customMailAddress" placeholder={this.customMailPlaceholder()} onChange={this.handleCustomMailChange} required={true}/>
+                <div className="invalid-feedback" >
+                  {addressValidationMsg}
                 </div>
+              </div>
+            </div>
+          </div>
+          <div className='col-md-7 col-sm-12'>
+            <div className='row text-right'>
+              <div className='col-md-10 mt-3 col-sm-12 text-right'>
+                <button className='btn btn-outline-primary' onClick={this.handleCustomMailSubmit}>Submit</button>
               </div>
             </div>
           </div>
