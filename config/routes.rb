@@ -15,8 +15,13 @@ Rails.application.routes.draw do
     post '/send', to: 'mail_sender#create', as: :mail_sender
   end
 
-  resources :video_chat, only: [:new]
-  post '/video_chat/room', to: 'video_chat#room'
+  resources :video_chat, only: [:new] do
+    collection do
+      post '/room', to: 'video_chat#room'
+      get '/join', to: 'video_chat#join'
+      get '/room', to: 'video_chat#check_room'
+    end
+  end
 
   scope 'blog' do
     get '/temporary-disposable-email-address', to: 'blog#tmp_email_description', as: :tmp_email_description

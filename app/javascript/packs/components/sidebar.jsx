@@ -64,7 +64,7 @@ class Sidebar extends Component {
               <h6 className="pt-2 m-0">Video Chat Section</h6>
               <div className="dropdown-divider"></div>
               <a className={"nav-link" + this.activeLink('/video_chat/new')} href="/video_chat/new">Create Room</a>
-              <a className="nav-link" >Join Room</a>
+              <a className={"nav-link" + this.activeLink('/video_chat/join')} href="/video_chat/join" >Join Room</a>
             </div>
           </div>
         </div>

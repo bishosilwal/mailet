@@ -45,11 +45,13 @@ peerConnection.addEventListener('track', async event => {
   remoteStream.addTrack(event.track, remoteStream);
 });
 
-class VideoChat extends Component {
+class VideoJoin extends Component {
   state = {
     enableCamera: true,
     enableAudio: true,
-    stream: null
+    stream: null,
+    roomId: null,
+    roomError: null
   }
 
   componentDidMount() {
@@ -102,20 +104,16 @@ class VideoChat extends Component {
     window.app.videoCall.subscription.sendVideoOffer(offer);
   }
 
-  createRoom(e) {
-    const that = this;
-    axios.post('/video_chat/room', {
-      mail_address: this.props.mail,
-      room_id: this.props.videoRoomId
-    }, {
+  async joinRoom(e) {
+    const res = await axios.get('/video_chat/room?room_id=' + this.state.roomId, {
       headers: {
         'X-Requested-With': 'XMLHttpRequest',
         'X-CSRF-Token': token
       }
-    }).then(function(res) {
-      that.props.videoRoomCreated(res.data.room_id);
-      window.app.videoCall.roomId = res.data.room_id;
-      window.app.videoCall.subscription = consumer.subscriptions.create({ channel: 'VideoCallChannel', room_id: res.data.room_id},
+    });
+
+    if(res.data.room) {
+      window.app.videoCall.subscription = consumer.subscriptions.create({ channel: 'VideoCallChannel', room_id: this.state.roomId},
         {
           async received(data) {
             const peerConnection = window.app.videoCall.peerConnection;
@@ -146,34 +144,39 @@ class VideoChat extends Component {
           },
 
         });
-    }).catch(function(err){
-      console.log(err)
-    })
+    } else {
+      this.setState({roomError: 'Room not found!'})
+    }
   }
 
   stopCall(e) {
     window.app.videoCall.peerConnection.close();
   }
 
+  roomIdChange(e) {
+    this.setState({roomId: e.target.value})
+  }
   render() {
     const roomId = this.props.videoRoomId;
     return(
       <div className='container video-call'>
         <div className='row mt-5 mb-5'>
           <div className='col-4 border-secondary'>
-            <h5>Room Settings</h5>
             <div className='form-group'>
               <label>Enable Camera: </label>
               <input type='checkbox' onClick={e => this.handleCamera(e)} name='cameraCheck'/>
             </div>
             <div className='form-group video-room'>
-              <label>Create Room: &nbsp;</label> <br/>
-              ID: <h6 className='d-inline'>{roomId}</h6>
-              <button onClick={e => this.createRoom(e) } className='btn btn-primary btn-sm d-block'>{roomId ? 'Change' : 'Create'}</button>
+              <label>Join Room: &nbsp;</label> <br/>
+              <input type='text' name='joinRoom' placeholder='Enter room id' value={this.state.roomId} onChange={e => this.roomIdChange(e)} className={this.state.roomError ? 'form-control is-invalid' : 'form-control'}/>
+              <div className='invalid-feedback'>
+                {this.state.roomError}
+              </div>
+              <button onClick={e => this.joinRoom(e) } className='btn btn-primary d-block btn-sm'>Join</button>
             </div>
             <div className='form-group'>
               <label>Remove Room: </label>
-              <button onClick={e => this.stopCall(e) } className='btn btn-primary btn-sm'>Stop</button>
+              <button onClick={e => this.stopCall(e) } className='btn btn-primary btm-sm'>Stop</button>
             </div>
           </div>
           <div className='col-8'>
@@ -202,7 +205,7 @@ const mapDispatchToProps = dispatch => {
     videoRoomCreated: roomId => dispatch({ type: 'VIDEO_CHAT_ROOM_CREATED', value: roomId})
   }
 };
-const Container = connect(mapStateToProps, mapDispatchToProps)(VideoChat);
+const Container = connect(mapStateToProps, mapDispatchToProps)(VideoJoin);
 
 ReactDOM.render(
   <Provider store={window.store}>
