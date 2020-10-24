@@ -112,8 +112,6 @@ class VideoChat extends Component {
         'X-CSRF-Token': token
       }
     }).then(function(res) {
-      $('.video-room h6').text(res.data.room_id);
-      $('.video-room button').remove();
       that.props.videoRoomCreated(res.data.room_id);
       window.app.videoCall.roomId = res.data.room_id;
       window.app.videoCall.subscription = consumer.subscriptions.create({ channel: 'VideoCallChannel', room_id: res.data.room_id},
@@ -157,6 +155,7 @@ class VideoChat extends Component {
   }
 
   render() {
+    const roomId = this.props.videoRoomId;
     return(
       <div className='container video-call'>
         <div className='row mt-5 mb-5'>
@@ -167,9 +166,9 @@ class VideoChat extends Component {
               <input type='checkbox' onClick={e => this.handleCamera(e)} name='cameraCheck'/>
             </div>
             <div className='form-group video-room'>
-              <label>Create Room: &nbsp;</label>
-              <h6 className='d-inline'></h6>
-              <button onClick={e => this.createRoom(e) } className='btn btn-primary'>Start</button>
+              <label>Create Room: &nbsp;</label> <br/>
+              ID: <h6 className='d-inline'>{roomId}</h6>
+              <button onClick={e => this.createRoom(e) } className='btn btn-primary d-block'>{roomId ? 'Change' : 'Create'}</button>
             </div>
             <div className='form-group'>
               <label>Remove Room: </label>

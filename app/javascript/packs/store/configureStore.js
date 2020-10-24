@@ -156,7 +156,13 @@ function emailReducer(state = initialState, action) {
 function videoCallReducer(state = initialVideoCallState, action) {
   switch(action.type) {
     case 'VIDEO_CHAT_ROOM_CREATED':
-      debugger;
+      return {
+        ...state,
+        videoCall: {
+          ...state.videoCall,
+          roomId: action.value
+        }
+      }
     default:
       return state;
   }
