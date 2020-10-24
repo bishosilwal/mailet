@@ -48,7 +48,7 @@ class Sidebar extends Component {
               <a className="nav-link" href="/">All Emails</a>
               <a className="nav-link" href="/mail/send">Send Email</a>
               <a className="nav-link" href="/mail_address" onClick={e => this.handleDelete(e)} >Delete Emails</a>
-              <a className="nav-link" href="/mail_address">Change Address</a>
+              <a className="nav-link" href="/mail_address/change">Change Address</a>
               <div className="dropdown-divider"></div>
               <h6 className="pt-2 m-0">Text Chat Section</h6>
               <div className="dropdown-divider"></div>

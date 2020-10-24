@@ -13,13 +13,11 @@ class MailAddressController < ApplicationController
   end
 
   def change
-    @mail = MailAddress.random(mail_id_params)
-    render json: { message: 'Mail address changed', new_mail: @mail, status: :ok }
   end
 
   def custom_address
-    @mail = MailAddress.random(**mail_id_params, address: mail_address_params[:mail])
-    if @mail.save
+    @mail = MailAddress.random(address: mail_address_params[:mail], mail_id: check_address_session.id)
+    if @mail.persisted?
       render json: {
         message: 'Mail address created',
         new_mail: @mail
@@ -36,7 +34,7 @@ class MailAddressController < ApplicationController
   end
 
   def set_address_session
-    if @mail.persisted?
+    if @mail&.persisted?
       session.delete(:mail_address)
       mail_address_session @mail.mail
     end

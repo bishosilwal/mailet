@@ -35,6 +35,7 @@ class MailSender extends Component {
     )
   }
 }
+
 ReactDOM.render(
   <Provider store={window.store}>
     <PersistGate persistor={window.persistor}>

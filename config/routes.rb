@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   scope 'mail_address' do
     post '/', to: 'mail_address#create', as: :mail_addresses
     delete '/', to: 'mail_address#destroy', as: :mail_address
-    post '/change', to: 'mail_address#change', as: :mail_address_change
-    post '/create/custom', to: 'mail_address#custom_address', as: :custom_mail_address
+    get '/change', to: 'mail_address#change', as: :mail_address_change
+    post '/change', to: 'mail_address#custom_address', as: :custom_mail_address
   end
 
   scope 'mail' do

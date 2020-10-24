@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from "axios";
-import {connect} from "react-redux";
+import ReactDOM from 'react-dom';
+import { PersistGate } from 'redux-persist/integration/react';
+import {connect, Provider} from "react-redux";
 import $ from 'jquery';
 import toastr from 'toastr';
 window.toastr = toastr;
@@ -26,7 +28,7 @@ class CustomMailAddress extends Component {
     var domain = tempMail.slice(tempMail.lastIndexOf('@'));
     var mail = customMailAddress + domain;
     if(this.validateEmail(mail)) {
-      axios.post('/mail_address/create/custom', {
+      axios.post('/mail_address/change', {
         mail: mail
       }, {
         headers: {
@@ -35,7 +37,7 @@ class CustomMailAddress extends Component {
         }
       }).then(function (res) {
         that.props.customMailAddressCreated(res.data.new_mail);
-        // that.setState({customMailAddress: '', customMailValid: true});
+        that.setState({customMailAddress: '', customMailValid: true});
         toastr.success(res.data.message, res.data.details, {'toastClass': 'toastr-success'});
       }).catch(function(error) {
         var msg = Object.values(error.response.data).join();
@@ -112,4 +114,14 @@ const mapDispatchToProps = dispatch => {
     customMailAddressCreated: email => dispatch({ type: 'TEMP_MAIL_ADDRESS_CREATE', value: email}),
   }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(CustomMailAddress);
+const Container =  connect(mapStateToProps, mapDispatchToProps)(CustomMailAddress);
+
+
+ReactDOM.render(
+  <Provider store={window.store}>
+    <PersistGate persistor={window.persistor}>
+      <Container />
+    </PersistGate>
+  </Provider>,
+  document.getElementById('main-app-body')
+)
