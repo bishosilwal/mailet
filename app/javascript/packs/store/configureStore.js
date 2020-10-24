@@ -150,5 +150,5 @@ function emailReducer(state = initialState, action) {
 const persistedStore = persistReducer(persistConfig, emailReducer);
 const store = createStore(persistedStore);
 const persistor = persistStore(store);
-window.store = store;
-window.persistor = persistor;
+window.store = window.store ? window.store : store;
+window.persistor = window.persistor ? window.persistor : persistor;

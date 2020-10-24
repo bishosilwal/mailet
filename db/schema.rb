@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 2020_10_24_113354) do
 
   create_table "video_rooms", force: :cascade do |t|
     t.bigint "admin_id"
+    t.string "slug"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["admin_id"], name: "index_video_rooms_on_admin_id"

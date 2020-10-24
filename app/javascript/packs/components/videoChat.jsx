@@ -1,6 +1,14 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom';
+import { PersistGate } from 'redux-persist/integration/react';
+import {connect, Provider} from "react-redux";
+import axios from "axios";
+import toastr from 'toastr';
 import consumer from '../../channels/consumer'
+import '../store/configureStore'
+window.toastr = toastr;
+
+const token = $("meta[name='csrf-token']").attr('content');
 
 const videoConfig = {
   configuration: {
@@ -38,38 +46,6 @@ const remoteStream = new MediaStream();
 peerConnection.addEventListener('track', async event => {
   remoteStream.addTrack(event.track, remoteStream);
 });
-
-window.app.videoCall.subscription = consumer.subscriptions.create({ channel: 'VideoCallChannel'},
-  {
-    async received(data) {
-      const peerConnection = window.app.videoCall.peerConnection;
-      const caller = window.app.videoCall.caller;
-      if(data.offer && !caller) {
-        await peerConnection.setRemoteDescription(new RTCSessionDescription(data.offer));
-        const answer = await peerConnection.createAnswer();
-        await peerConnection.setLocalDescription(answer);
-        this.perform('broadcast_answer', {answer: answer});
-      } else if(data.answer && caller) {
-        await peerConnection.setRemoteDescription(new RTCSessionDescription(data.answer));
-      } else if(data.candidate && !caller) {
-        try {
-          await peerConnection.addIceCandidate(data.candidate);
-        } catch(e) {
-          console.error('Error adding receiving ice candidate.', e)
-        }
-      }
-    },
-    disconnected() {
-      console.log('channel disconnected')
-    },
-    sendIceCandidate(candidate) {
-      this.perform('broadcast_candidate', {candidate: candidate});
-    },
-    sendVideoOffer(offer) {
-      this.perform('broadcast_offer', {offer: offer})
-    },
-
-  });
 
 class VideoChat extends Component {
   state = {
@@ -128,6 +104,52 @@ class VideoChat extends Component {
     window.app.videoCall.subscription.sendVideoOffer(offer);
   }
 
+  createRoom(e) {
+    axios.post('/video_chat/room', {
+      mail_id: this.props.mail.id
+    }, {
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+        'X-CSRF-Token': token
+      }
+    }).then(function(res) {
+      window.app.videoCall.roomId = res.data.room_id;
+      window.app.videoCall.subscription = consumer.subscriptions.create({ channel: 'VideoCallChannel', room_id: res.data.room_id},
+        {
+          async received(data) {
+            const peerConnection = window.app.videoCall.peerConnection;
+            const caller = window.app.videoCall.caller;
+            if(data.offer && !caller) {
+              await peerConnection.setRemoteDescription(new RTCSessionDescription(data.offer));
+              const answer = await peerConnection.createAnswer();
+              await peerConnection.setLocalDescription(answer);
+              this.perform('broadcast_answer', {answer: answer, room_id: window.app.videoCall.roomId});
+            } else if(data.answer && caller) {
+              await peerConnection.setRemoteDescription(new RTCSessionDescription(data.answer));
+            } else if(data.candidate && !caller) {
+              try {
+                await peerConnection.addIceCandidate(data.candidate);
+              } catch(e) {
+                console.error('Error adding receiving ice candidate.', e)
+              }
+            }
+          },
+          disconnected() {
+            console.log('channel disconnected')
+          },
+          sendIceCandidate(candidate) {
+            this.perform('broadcast_candidate', {candidate: candidate, room_id: window.app.videoCall.roomId});
+          },
+          sendVideoOffer(offer) {
+            this.perform('broadcast_offer', {offer: offer, room_id: window.app.videoCall.roomId})
+          },
+
+        });
+    }).catch(function(err){
+      console.log(err)
+    })
+  }
+
   stopCall(e) {
     window.app.videoCall.peerConnection.close();
   }
@@ -144,7 +166,7 @@ class VideoChat extends Component {
             </div>
             <div className='form-group'>
               <label>Create Room: </label>
-              <button onClick={e => this.startCall(e) } className='btn btn-primary'>Start</button>
+              <button onClick={e => this.createRoom(e) } className='btn btn-primary'>Start</button>
             </div>
             <div className='form-group'>
               <label>Remove Room: </label>
@@ -165,7 +187,19 @@ class VideoChat extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    mail: state.tempMail
+  }
+};
+
+const Container = connect(mapStateToProps, {})(VideoChat);
+
 ReactDOM.render(
-  <VideoChat />,
+  <Provider store={window.store}>
+    <PersistGate persistor={window.persistor}>
+      <Container />
+    </PersistGate>
+  </Provider>,
   document.getElementById('main-app-body')
 )
