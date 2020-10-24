@@ -29,7 +29,14 @@ class Sidebar extends Component {
     });
   };
 
+  activeLink(link) {
+    if(window.location.pathname == link) {
+      return ' active';
+    }
+    return '';
+  }
   render() {
+
     return(
       <div className='row sidebar-sticky-top'>
         <div className="col p-0">
@@ -45,10 +52,10 @@ class Sidebar extends Component {
               <div className="dropdown-divider"></div>
               <h6 className="pt-2 m-0">Email Section</h6>
               <div className="dropdown-divider"></div>
-              <a className="nav-link" href="/">All Emails</a>
-              <a className="nav-link" href="/mail/send">Send Email</a>
-              <a className="nav-link" href="/mail_address" onClick={e => this.handleDelete(e)} >Delete Emails</a>
-              <a className="nav-link" href="/mail_address/change">Change Address</a>
+              <a className={"nav-link" + this.activeLink('/')} href="/">All Emails</a>
+              <a className={"nav-link" + this.activeLink('/mail/send')} href="/mail/send">Send Email</a>
+              <a className={"nav-link" + this.activeLink('/mail_address')} href="/mail_address" onClick={e => this.handleDelete(e)} >Delete Emails</a>
+              <a className={"nav-link" + this.activeLink('/mail_address/change')} href="/mail_address/change">Change Address</a>
               <div className="dropdown-divider"></div>
               <h6 className="pt-2 m-0">Text Chat Section</h6>
               <div className="dropdown-divider"></div>

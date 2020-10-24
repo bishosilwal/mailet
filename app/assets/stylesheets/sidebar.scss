@@ -6,4 +6,9 @@
     top: 0;
     position: -webkit-sticky;
   }
+
+  .nav-link:hover, .nav-link.active {
+    background-color: $primary;
+    color: white;
+  }
 }
