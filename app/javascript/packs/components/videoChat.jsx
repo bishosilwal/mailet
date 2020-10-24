@@ -134,9 +134,10 @@ class VideoChat extends Component {
 
   render() {
     return(
-      <div className='container'>
-        <div className='row'>
+      <div className='container video-call'>
+        <div className='row mt-5 mb-5'>
           <div className='col-4 border-secondary'>
+            <h5>Call Settings</h5>
             <div className='form-group'>
               <label>Enable Camera: </label>
               <input type='checkbox' onClick={e => this.handleCamera(e)} name='cameraCheck'/>
@@ -151,12 +152,12 @@ class VideoChat extends Component {
             </div>
           </div>
           <div className='col-8'>
-            <h3> Your webcam</h3>
-            <video id='local-video' autoPlay={true} playsInline={true} controls={true} className='w-100'/>
+            <h6> Your Camera</h6>
+            <video id='local-video' height={300} width={600} autoPlay={true} playsInline={true} controls={true}/>
           </div>
           <div className='col-12'>
-            <h3> Remote Webcam</h3>
-            <video id='remote-video' autoPlay={true} playsInline={true} controls={false} className='w-100' />
+            <h6> Remote Camera</h6>
+            <video id='remote-video' autoPlay={true} playsInline={true} controls={true} className='w-100' />
           </div>
         </div>
       </div>
