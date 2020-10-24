@@ -14,8 +14,6 @@ class MessageContainer extends Component{
     emails: this.props.emails || [],
     tempMail: this.props.tempMail,
     createNewMessage: this.props.createNewMessage,
-    changeMailAddress: this.props.changeMailAddress,
-    showAllMessage: this.props.showAllMessage,
   };
 
   UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
@@ -29,7 +27,7 @@ class MessageContainer extends Component{
   };
 
   renderContent() {
-    var { emails, from, createNewMessage, changeMailAddress, showAllMessage } = this.state;
+    var { emails, from, createNewMessage } = this.state;
     const emailAddressList = (
       <div className="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
         {emails.map(m =>
@@ -117,9 +115,7 @@ const mapStateToProps = (state, ownProps) => {
     emails: state.emails,
     from: state.from,
     createNewMessage: state.createNewMessage,
-    changeMailAddress: state.changeMailAddress,
     tempMail: state.tempMail,
-    showAllMessage: state.showAllMessage,
   }
 };
 

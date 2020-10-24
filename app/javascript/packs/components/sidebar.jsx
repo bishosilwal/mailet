@@ -13,7 +13,6 @@ class Sidebar extends Component {
     e.preventDefault();
     var that = this;
     var tempMail = this.props.tempMail;
-    console.log(tempMail)
     axios.delete('/mail_address/', {
       headers: {
         'X-Requested-With': 'XMLHttpRequest',
@@ -59,14 +58,12 @@ class Sidebar extends Component {
               <div className="dropdown-divider"></div>
               <h6 className="pt-2 m-0">Text Chat Section</h6>
               <div className="dropdown-divider"></div>
-              <a className="nav-link" >Create
-                Room</a>
+              <a className="nav-link" >Create Room</a>
               <a className="nav-link" >Join Room</a>
               <div className="dropdown-divider"></div>
               <h6 className="pt-2 m-0">Video Chat Section</h6>
               <div className="dropdown-divider"></div>
-              <a className="nav-link" >Create
-                Room</a>
+              <a className={"nav-link" + this.activeLink('/video_chat/new')} href="/video_chat/new">Create Room</a>
               <a className="nav-link" >Join Room</a>
             </div>
           </div>

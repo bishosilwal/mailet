@@ -13,8 +13,9 @@ Rails.application.routes.draw do
     get '/download', to: 'home#download_pdf'
     get '/send', to: 'mail_sender#new', as: :new_mail_sender
     post '/send', to: 'mail_sender#create', as: :mail_sender
-
   end
+
+  resources :video_chat, only: [:new]
 
   scope 'blog' do
     get '/temporary-disposable-email-address', to: 'blog#tmp_email_description', as: :tmp_email_description
