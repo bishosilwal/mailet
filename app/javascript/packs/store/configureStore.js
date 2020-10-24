@@ -1,4 +1,4 @@
-import { createStore } from 'redux';
+import {combineReducers, createStore} from 'redux';
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
@@ -15,7 +15,13 @@ const initialState = {
   tempMail: {},
   createNewMessage: false,
   changeMailAddress: false,
-  showAllMessage: true,
+  showAllMessage: true
+};
+
+const initialVideoCallState = {
+  videoCall: {
+    roomId: null
+  }
 };
 
 function subscribeChannel(mailAddress){
@@ -147,7 +153,17 @@ function emailReducer(state = initialState, action) {
   }
 };
 
-const persistedStore = persistReducer(persistConfig, emailReducer);
+function videoCallReducer(state = initialVideoCallState, action) {
+  switch(action.type) {
+    case 'VIDEO_CHAT_ROOM_CREATED':
+      debugger;
+    default:
+      return state;
+  }
+};
+
+const rootReducer = combineReducers({emailReducer, videoCallReducer})
+const persistedStore = persistReducer(persistConfig, rootReducer);
 const store = createStore(persistedStore);
 const persistor = persistStore(store);
 window.store = window.store ? window.store : store;

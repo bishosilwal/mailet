@@ -26,8 +26,6 @@ window.app.videoCall = {
   localStream: null
 };
 
-window.app.consumer = consumer;
-
 const peerConnection = window.app.videoCall.peerConnection
 peerConnection.addEventListener('connectionstatechange', event => {
   if(peerConnection.connectionState === 'connected' ) {
@@ -105,6 +103,7 @@ class VideoChat extends Component {
   }
 
   createRoom(e) {
+    const that = this;
     axios.post('/video_chat/room', {
       mail_id: this.props.mail.id
     }, {
@@ -113,6 +112,9 @@ class VideoChat extends Component {
         'X-CSRF-Token': token
       }
     }).then(function(res) {
+      $('.video-room h6').text(res.data.room_id);
+      $('.video-room button').remove();
+      that.props.videoRoomCreated(res.data.room_id);
       window.app.videoCall.roomId = res.data.room_id;
       window.app.videoCall.subscription = consumer.subscriptions.create({ channel: 'VideoCallChannel', room_id: res.data.room_id},
         {
@@ -164,8 +166,9 @@ class VideoChat extends Component {
               <label>Enable Camera: </label>
               <input type='checkbox' onClick={e => this.handleCamera(e)} name='cameraCheck'/>
             </div>
-            <div className='form-group'>
-              <label>Create Room: </label>
+            <div className='form-group video-room'>
+              <label>Create Room: &nbsp;</label>
+              <h6 className='d-inline'></h6>
               <button onClick={e => this.createRoom(e) } className='btn btn-primary'>Start</button>
             </div>
             <div className='form-group'>
@@ -189,11 +192,17 @@ class VideoChat extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    mail: state.tempMail
+    mail: state.emailReducer.tempMail.mail,
+    videoRoomId: state.videoCallReducer.videoCall.roomId
   }
 };
 
-const Container = connect(mapStateToProps, {})(VideoChat);
+const mapDispatchToProps = dispatch => {
+  return {
+    videoRoomCreated: roomId => dispatch({ type: 'VIDEO_CHAT_ROOM_CREATED', value: roomId})
+  }
+};
+const Container = connect(mapStateToProps, mapDispatchToProps)(VideoChat);
 
 ReactDOM.render(
   <Provider store={window.store}>
