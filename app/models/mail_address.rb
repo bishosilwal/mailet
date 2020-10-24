@@ -2,6 +2,8 @@ class MailAddress < ApplicationRecord
   DOMAIN = 'mailet.in'
   MAIL_LOCAL_LENGTH = 8
 
+  has_many :video_chat_rooms, foreign_key: 'admin_id'
+
   validates :mail, presence: true, uniqueness: true
   validate :mail_regex
 

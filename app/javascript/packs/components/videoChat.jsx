@@ -143,11 +143,11 @@ class VideoChat extends Component {
               <input type='checkbox' onClick={e => this.handleCamera(e)} name='cameraCheck'/>
             </div>
             <div className='form-group'>
-              <label>Create Call: </label>
+              <label>Create Room: </label>
               <button onClick={e => this.startCall(e) } className='btn btn-primary'>Start</button>
             </div>
             <div className='form-group'>
-              <label>Stop Call: </label>
+              <label>Remove Room: </label>
               <button onClick={e => this.stopCall(e) } className='btn btn-primary'>Stop</button>
             </div>
           </div>
