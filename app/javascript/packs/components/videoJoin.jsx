@@ -49,7 +49,7 @@ class VideoJoin extends Component {
     enableCamera: true,
     enableAudio: true,
     stream: null,
-    roomId: this.props.videoRoomId,
+    roomId: null,
     roomError: null
   }
 
@@ -145,7 +145,6 @@ class VideoJoin extends Component {
     this.setState({roomId: e.target.value})
   }
   render() {
-    const roomId = this.props.videoRoomId;
     return(
       <div className='container video-call'>
         <div className='row mt-5 mb-5'>
@@ -156,7 +155,7 @@ class VideoJoin extends Component {
             </div>
             <div className='form-group video-room'>
               <label>Join Room: &nbsp;</label> <br/>
-              <input type='text' name='joinRoom' placeholder='Enter room id' value={roomId} onChange={e => this.roomIdChange(e)} className={this.state.roomError ? 'form-control is-invalid' : 'form-control'}/>
+              <input type='text' name='joinRoom' placeholder='Enter room id' value={this.state.roomId} onChange={e => this.roomIdChange(e)} className={this.state.roomError ? 'form-control is-invalid' : 'form-control'}/>
               <div className='invalid-feedback'>
                 {this.state.roomError}
               </div>
