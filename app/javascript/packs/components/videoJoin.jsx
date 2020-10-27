@@ -22,11 +22,10 @@ window.app = {};
 window.app.videoCall = {
   subscription: null,
   peerConnection:  new RTCPeerConnection(videoConfig),
-  caller: false,
   localStream: null
 };
 
-const peerConnection = window.app.videoCall.peerConnection
+const peerConnection = window.app.videoCall.peerConnection;
 peerConnection.addEventListener('connectionstatechange', event => {
   if(peerConnection.connectionState === 'connected' ) {
     console.log('peers connected')
@@ -50,7 +49,7 @@ class VideoJoin extends Component {
     enableCamera: true,
     enableAudio: true,
     stream: null,
-    roomId: null,
+    roomId: this.props.videoRoomId,
     roomError: null
   }
 
@@ -100,11 +99,11 @@ class VideoJoin extends Component {
     const peerConnection = window.app.videoCall.peerConnection;
     const offer = await peerConnection.createOffer();
     await peerConnection.setLocalDescription(offer);
-    window.app.videoCall.caller = true;
     window.app.videoCall.subscription.sendVideoOffer(offer);
   }
 
   async joinRoom(e) {
+    const that = this;
     const res = await axios.get('/video_chat/room?room_id=' + this.state.roomId, {
       headers: {
         'X-Requested-With': 'XMLHttpRequest',
@@ -113,28 +112,17 @@ class VideoJoin extends Component {
     });
 
     if(res.data.room) {
+      window.app.videoCall.roomId = this.state.roomId
       window.app.videoCall.subscription = consumer.subscriptions.create({ channel: 'VideoCallChannel', room_id: this.state.roomId},
         {
           async received(data) {
             const peerConnection = window.app.videoCall.peerConnection;
-            const caller = window.app.videoCall.caller;
-            if(data.offer && !caller) {
-              await peerConnection.setRemoteDescription(new RTCSessionDescription(data.offer));
-              const answer = await peerConnection.createAnswer();
-              await peerConnection.setLocalDescription(answer);
-              this.perform('broadcast_answer', {answer: answer, room_id: window.app.videoCall.roomId});
-            } else if(data.answer && caller) {
+            if(data.answer) {
               await peerConnection.setRemoteDescription(new RTCSessionDescription(data.answer));
-            } else if(data.candidate && !caller) {
-              try {
-                await peerConnection.addIceCandidate(data.candidate);
-              } catch(e) {
-                console.error('Error adding receiving ice candidate.', e)
-              }
             }
           },
           disconnected() {
-            console.log('channel disconnected')
+            console.log('joiner channel disconnected')
           },
           sendIceCandidate(candidate) {
             this.perform('broadcast_candidate', {candidate: candidate, room_id: window.app.videoCall.roomId});
@@ -142,8 +130,8 @@ class VideoJoin extends Component {
           sendVideoOffer(offer) {
             this.perform('broadcast_offer', {offer: offer, room_id: window.app.videoCall.roomId})
           },
-
         });
+      this.startCall('');
     } else {
       this.setState({roomError: 'Room not found!'})
     }
@@ -168,7 +156,7 @@ class VideoJoin extends Component {
             </div>
             <div className='form-group video-room'>
               <label>Join Room: &nbsp;</label> <br/>
-              <input type='text' name='joinRoom' placeholder='Enter room id' value={this.state.roomId} onChange={e => this.roomIdChange(e)} className={this.state.roomError ? 'form-control is-invalid' : 'form-control'}/>
+              <input type='text' name='joinRoom' placeholder='Enter room id' value={roomId} onChange={e => this.roomIdChange(e)} className={this.state.roomError ? 'form-control is-invalid' : 'form-control'}/>
               <div className='invalid-feedback'>
                 {this.state.roomError}
               </div>

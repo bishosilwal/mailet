@@ -22,7 +22,6 @@ window.app = {};
 window.app.videoCall = {
   subscription: null,
   peerConnection:  new RTCPeerConnection(videoConfig),
-  caller: false,
   localStream: null
 };
 
@@ -30,12 +29,6 @@ const peerConnection = window.app.videoCall.peerConnection
 peerConnection.addEventListener('connectionstatechange', event => {
   if(peerConnection.connectionState === 'connected' ) {
     console.log('peers connected')
-  }
-});
-
-peerConnection.addEventListener('icecandidate', event => {
-  if(event.candidate) {
-    window.app.videoCall.subscription.sendIceCandidate(event.candidate);
   }
 });
 
@@ -94,14 +87,6 @@ class VideoChat extends Component {
     return this.state.stream.getAudioTracks()[0];
   }
 
-  async startCall(e) {
-    const peerConnection = window.app.videoCall.peerConnection;
-    const offer = await peerConnection.createOffer();
-    await peerConnection.setLocalDescription(offer);
-    window.app.videoCall.caller = true;
-    window.app.videoCall.subscription.sendVideoOffer(offer);
-  }
-
   createRoom(e) {
     const that = this;
     axios.post('/video_chat/room', {
@@ -119,15 +104,13 @@ class VideoChat extends Component {
         {
           async received(data) {
             const peerConnection = window.app.videoCall.peerConnection;
-            const caller = window.app.videoCall.caller;
-            if(data.offer && !caller) {
+            if(data.offer) {
               await peerConnection.setRemoteDescription(new RTCSessionDescription(data.offer));
               const answer = await peerConnection.createAnswer();
               await peerConnection.setLocalDescription(answer);
+
               this.perform('broadcast_answer', {answer: answer, room_id: window.app.videoCall.roomId});
-            } else if(data.answer && caller) {
-              await peerConnection.setRemoteDescription(new RTCSessionDescription(data.answer));
-            } else if(data.candidate && !caller) {
+            } else if(data.candidate) {
               try {
                 await peerConnection.addIceCandidate(data.candidate);
               } catch(e) {
@@ -136,15 +119,8 @@ class VideoChat extends Component {
             }
           },
           disconnected() {
-            console.log('channel disconnected')
-          },
-          sendIceCandidate(candidate) {
-            this.perform('broadcast_candidate', {candidate: candidate, room_id: window.app.videoCall.roomId});
-          },
-          sendVideoOffer(offer) {
-            this.perform('broadcast_offer', {offer: offer, room_id: window.app.videoCall.roomId})
-          },
-
+            console.log('creator channel disconnected')
+          }
         });
     }).catch(function(err){
       console.log(err)
