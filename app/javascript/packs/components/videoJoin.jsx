@@ -96,6 +96,7 @@ class VideoJoin extends Component {
   }
 
   async startCall(e) {
+    this.enableCamera();
     const peerConnection = window.app.videoCall.peerConnection;
     const offer = await peerConnection.createOffer();
     await peerConnection.setLocalDescription(offer);
@@ -149,10 +150,6 @@ class VideoJoin extends Component {
       <div className='container video-call'>
         <div className='row mt-5 mb-5'>
           <div className='col-4 border-secondary'>
-            <div className='form-group'>
-              <label>Enable Camera: </label>
-              <input type='checkbox' onClick={e => this.handleCamera(e)} name='cameraCheck'/>
-            </div>
             <div className='form-group video-room'>
               <label>Join Room: &nbsp;</label> <br/>
               <input type='text' name='joinRoom' placeholder='Enter room id' value={this.state.roomId} onChange={e => this.roomIdChange(e)} className={this.state.roomError ? 'form-control is-invalid' : 'form-control'}/>
