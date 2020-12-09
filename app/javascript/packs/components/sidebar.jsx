@@ -8,6 +8,9 @@ import axios from 'axios';
 const token = $("meta[name='csrf-token']").attr('content');
 
 class Sidebar extends Component {
+  state = {
+    tempMail: this.props.tempMail || '',
+  }
   handleDelete = e => {
     e.stopPropagation();
     e.preventDefault();
@@ -28,6 +31,12 @@ class Sidebar extends Component {
     });
   };
 
+  UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
+    if(nextProps != this.props) {
+      this.setState({...nextProps})
+    }
+  };
+
   activeLink(link) {
     if(window.location.pathname == link) {
       return ' active';
@@ -35,7 +44,7 @@ class Sidebar extends Component {
     return '';
   }
   render() {
-
+    const { tempMail } = this.state;
     return(
       <div className='row sidebar-sticky-top'>
         <div className="col p-0">
@@ -43,8 +52,9 @@ class Sidebar extends Component {
             <img height='50'
                  src='https://w0.pngwave.com/png/387/456/conservatorio-santa-cecilia-maulana-malik-ibrahim-state-islamic-university-malang-gold-lorem-ipsum-is-simply-dummy-text-of-the-printing-system-gold-png-clip-art.png'
                  className="rounded-circle d-block"/>
-            <h1></h1>
-            <p>test@mailet.in</p>
+            <div className='col-12'>
+              <p>{tempMail.mail}</p>
+            </div>
           </div>
           <div className="row pl-3">
             <div className='col pl-4'>
@@ -55,11 +65,6 @@ class Sidebar extends Component {
               <a className={"nav-link" + this.activeLink('/mail/send')} href="/mail/send">Send Email</a>
               <a className={"nav-link" + this.activeLink('/mail_address')} href="/mail_address" onClick={e => this.handleDelete(e)} >Delete Emails</a>
               <a className={"nav-link" + this.activeLink('/mail_address/change')} href="/mail_address/change">Change Address</a>
-              <div className="dropdown-divider"></div>
-              <h6 className="pt-2 m-0">Text Chat Section</h6>
-              <div className="dropdown-divider"></div>
-              <a className="nav-link" >Create Room</a>
-              <a className="nav-link" >Join Room</a>
               <div className="dropdown-divider"></div>
               <h6 className="pt-2 m-0">Video Chat Section</h6>
               <div className="dropdown-divider"></div>
