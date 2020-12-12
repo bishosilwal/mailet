@@ -18,7 +18,6 @@ namespace "deploy" do
         execute :bundle, 'install'
         puts "Installing node modules"
         execute "cd #{release_path} && yarn install"
-        # execute "cd #{release_path} && bin/rails webpacker:install"
       end
     end
   end
