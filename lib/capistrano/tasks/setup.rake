@@ -17,7 +17,7 @@ namespace "deploy" do
       within release_path do
         execute :bundle, 'install'
         puts "Installing node modules"
-        execute "cd #{release_path} && yarn install"
+        execute "cd #{release_path} && yarn install --silent"
       end
     end
   end
