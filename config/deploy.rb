@@ -3,7 +3,7 @@ lock "~> 3.14.1"
 
 set :application, "mail-generate"
 set :repo_url, "git@gitlab.com:bisho/mailgenerator.git"
-set :branch, "cap-setup"
+set :branch, "master"
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
