@@ -12,7 +12,7 @@ namespace "deploy" do
   end
 
   desc "install gems and node modules"
-  task :update_npx_db do
+  task :lib_install do
     on roles(:all) do |host|
       within release_path do
         execute :bundle, 'install'
@@ -48,5 +48,5 @@ namespace "deploy" do
 
   before "deploy:check:linked_files", :upload_files
   before :updating, :update_binstub
-  before "deploy:assets:precompile", :update_npx_db
+  before "deploy:assets:precompile", :lib_install
 end
