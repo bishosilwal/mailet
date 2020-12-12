@@ -16,11 +16,9 @@ namespace "deploy" do
     on roles(:all) do |host|
       within release_path do
         execute :bundle, 'install'
-        # execute "gem install tzinfo "
-        # execute "gem install activesupport-6.0.3.4 "
-        # execute "gem install nokogiri"
         puts "Installing node modules"
-        execute "yarn install"
+        execute "cd #{release_path} && yarn install"
+        # execute "cd #{release_path} && bin/rails webpacker:install"
       end
     end
   end
@@ -32,9 +30,9 @@ namespace "deploy" do
       upload! 'config/database.yml', "#{shared_path}/config/database.yml"
       upload! 'config/secret.yml', "#{shared_path}/config/secret.yml"
       within shared_path do
-        execute "mkdir -p log"
-        execute "touch log/puma.stdout.log"
-        execute "touch log/puma.stderr.log"
+        execute "cd #{shared_path} && mkdir -p log"
+        execute "cd #{shared_path} && touch log/puma.stdout.log"
+        execute "cd #{shared_path} && touch log/puma.stderr.log"
       end
     end
   end

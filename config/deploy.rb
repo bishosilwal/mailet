@@ -37,3 +37,6 @@ set :keep_releases, 5
 # set :ssh_options, verify_host_key: :secure
 set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 set :local_user, 'deploy'
+set :bundle_dir,     ""         # install into "system" gems
+set :bundle_flags,   "--quiet"  # no verbose output
+set :bundle_without, []         # bundle all gems (even dev & test)

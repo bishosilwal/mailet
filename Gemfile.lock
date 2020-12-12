@@ -275,7 +275,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   ed25519
   jbuilder (~> 2.7)
-  listen (>= 3.0.5, < 3.2)
+  listen
   mail
   pg (>= 0.18, < 2.0)
   pry
