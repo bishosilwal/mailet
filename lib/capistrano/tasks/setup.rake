@@ -19,6 +19,7 @@ namespace "deploy" do
         # execute "gem install tzinfo "
         # execute "gem install activesupport-6.0.3.4 "
         # execute "gem install nokogiri"
+        puts "Installing node modules"
         execute "yarn install"
       end
     end
