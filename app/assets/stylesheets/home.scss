@@ -2,8 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import './variables/_variables.scss';
-@import "~bootstrap/scss/bootstrap.scss";
-@import "~toastr/toastr.scss";
+@import "bootstrap/scss/bootstrap.scss";
+@import "toastr/toastr.scss";
 @import "./blog.scss";
 @import "./sidebar.scss";
 @import './video_chat.scss';
