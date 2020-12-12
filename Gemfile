@@ -50,6 +50,12 @@ group :development do
   gem 'pry-rails'
   gem 'pry-stack_explorer'
   gem 'pry-nav'
+  gem "capistrano", "~> 3.14", require: false
+  gem "capistrano-rails", "~> 1.3", require: false
+  gem 'capistrano-rvm'
+  gem 'capistrano-bundler', '~> 2.0'
+  gem 'ed25519'
+  gem 'bcrypt_pbkdf'
 end
 
 group :test do

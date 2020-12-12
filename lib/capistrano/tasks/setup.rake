@@ -11,13 +11,16 @@ namespace "deploy" do
     end
   end
 
+  desc "install gems and node modules"
   task :update_npx_db do
     on roles(:all) do |host|
       within release_path do
         execute :bundle, 'install'
-        system "yarn install"
+        # execute "gem install tzinfo "
+        # execute "gem install activesupport-6.0.3.4 "
+        # execute "gem install nokogiri"
+        execute "yarn install"
       end
-      system "npx browserslist@latest --update-db"
     end
   end
 
@@ -28,6 +31,14 @@ namespace "deploy" do
       upload! 'config/database.yml', "#{shared_path}/config/database.yml"
       upload! 'config/secret.yml', "#{shared_path}/config/secret.yml"
     end
+  end
+
+  desc "print env"
+  task :print_env do
+    on release_roles(:all) do
+      puts capture("env")
+    end
+
   end
 
   before "deploy:check:linked_files", :upload_files

@@ -80,6 +80,4 @@ test:
 #
 production:
   <<: *default
-  database: mail_generate_production
-  username: postgres
-  password: <%= ENV['MAIL_GENERATE_DATABASE_PASSWORD'] || 'root' %>
+  url: <%= ENV['DATABASE_URL'] %>
