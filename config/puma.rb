@@ -14,22 +14,22 @@ port        ENV.fetch("PORT") { 3000 }
 
 # Specifies the `environment` that Puma will run in.
 #
-environment ENV.fetch("RAILS_ENV") { "development" }
+environment ENV.fetch("RAILS_ENV") { "production" }
 
 app_dir = File.expand_path("../..", __FILE__)
-shared_dir = "#{app_dir}/shared"
+shared_dir = "../#{app_dir}/shared"
 #
 # # Set up socket location
-# bind "unix://#{shared_dir}/sockets/puma.sock"
+bind "unix://#{app_dir}/tmp/sockets/puma.sock"
 #
 # # Specifies the `pidfile` that Puma will use.
-# pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
+pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
 #
 # # Set master PID and state locations
-# state_path "#{shared_dir}/tmp/pids/puma.state"
+state_path "#{app_dir}/tmp/pids/puma.state"
 #
 # # Logging
-# stdout_redirect "#{shared_dir}/log/puma.stdout.log", "#{shared_dir}/log/puma.stderr.log", true
+stdout_redirect "#{shared_dir}/log/puma.stdout.log", "#{shared_dir}/log/puma.stderr.log", true
 
 # activate_control_app
 # Specifies the number of `workers` to boot in clustered mode.
@@ -47,10 +47,10 @@ shared_dir = "#{app_dir}/shared"
 #
 # preload_app!
 #
-# on_worker_boot do
-#  require "active_record"
-#  ActiveRecord::Base.connection.disconnect! rescue ActiveRecord::ConnectionNotEstablished
-#  ActiveRecord::Base.establish_connection(YAML.load_file("#{app_dir}/config/database.yml")[rails_env])
-# end
+on_worker_boot do
+ require "active_record"
+ ActiveRecord::Base.connection.disconnect! rescue ActiveRecord::ConnectionNotEstablished
+ ActiveRecord::Base.establish_connection(YAML.load_file("#{shared_dir}/config/database.yml")[rails_env])
+end
 # Allow puma to be restarted by `rails restart` command.
 plugin :tmp_restart

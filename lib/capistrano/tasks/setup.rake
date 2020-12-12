@@ -30,6 +30,11 @@ namespace "deploy" do
       puts "uploading database and secret file"
       upload! 'config/database.yml', "#{shared_path}/config/database.yml"
       upload! 'config/secret.yml', "#{shared_path}/config/secret.yml"
+      within shared_path do
+        execute "mkdir -p log"
+        execute "touch log/puma.stdout.log"
+        execute "touch log/puma.stderr.log"
+      end
     end
   end
 
