@@ -32,6 +32,7 @@ gem 'redis', :require => false
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
+gem 'bootstrap-sass'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
