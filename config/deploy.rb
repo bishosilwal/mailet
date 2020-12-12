@@ -3,8 +3,7 @@ lock "~> 3.14.1"
 
 set :application, "mail-generate"
 set :repo_url, "git@gitlab.com:bisho/mailgenerator.git"
-
-# Default branch is :master
+set :branch, "cap-setup"
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
@@ -18,10 +17,10 @@ set :deploy_to, "/var/www/mailet.in/test"
 # set :format_options, command_output: true, log_file: "log/capistrano.log", color: :auto, truncate: :auto
 
 # Default value for :pty is false
-# set :pty, true
+set :pty, true
 
 # Default value for :linked_files is []
-# append :linked_files, "config/database.yml"
+append :linked_files, "config/database.yml", "config/secret.yml"
 
 # Default value for linked_dirs is []
 # append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
@@ -34,10 +33,7 @@ set :deploy_to, "/var/www/mailet.in/test"
 
 # Default value for keep_releases is 5
 set :keep_releases, 5
-
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
-set :linked_dirs, %w{bin log tmp/backup tmp/pids tmp/cache tmp/sockets vendor/bundle}
-
+set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 set :local_user, 'deploy'
-set :bundle_binstubs, -> { shared_path.join('bin') }
