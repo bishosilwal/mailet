@@ -91,7 +91,7 @@ const mapDispatchToProps = dispatch => {
 }
 const Container = connect(mapStateToProps, mapDispatchToProps)(Sidebar);
 
-$(document).ready(function() {
+$(document).on("ready page:load", function () {
   ReactDOM.render(
     <Provider store={window.store}>
       <PersistGate persistor={window.persistor}>
