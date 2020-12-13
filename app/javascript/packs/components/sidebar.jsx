@@ -91,12 +91,13 @@ const mapDispatchToProps = dispatch => {
 }
 const Container = connect(mapStateToProps, mapDispatchToProps)(Sidebar);
 
-
-ReactDOM.render(
-  <Provider store={window.store}>
-    <PersistGate persistor={window.persistor}>
-      <Container />
-    </PersistGate>
-  </Provider>,
-  document.getElementById('sidebar')
-)
+$(document).ready(function() {
+  ReactDOM.render(
+    <Provider store={window.store}>
+      <PersistGate persistor={window.persistor}>
+        <Container />
+      </PersistGate>
+    </Provider>,
+    document.getElementById('sidebar')
+  )
+})
