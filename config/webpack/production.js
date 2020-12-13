@@ -5,7 +5,7 @@ const CompressionPlugin = require('compression-webpack-plugin');
 const zlib = require('zlib');
 var webpack = require('webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
+const path  = require('path');
 
 const { merge } = require('webpack-merge')
 // Enable the default config
