@@ -24,6 +24,11 @@ module.exports = merge(
       entrypoints: false,
       children: false
     },
+    resolve: {
+      alias: {
+       'jquery': path.resolve(__dirname, 'node_modules/jquery/dist/jquery.js')
+      }
+    },
     plugins: [
       new webpack.ProvidePlugin({ $: "jquery", jQuery: "jquery" }),
       new webpack.DefinePlugin({
