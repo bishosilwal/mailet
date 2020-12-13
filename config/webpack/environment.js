@@ -15,5 +15,6 @@ environment.plugins.append(
     jquery: 'jquery',
   }),
 )
+environment.splitChunks();
 // Enable the default config
 module.exports = environment

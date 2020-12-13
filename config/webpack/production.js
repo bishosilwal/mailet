@@ -5,17 +5,17 @@ const CompressionPlugin = require('compression-webpack-plugin');
 const zlib = require('zlib');
 var webpack = require('webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const path  = require('path');
 
 const { merge } = require('webpack-merge')
-// Enable the default config
-environment.splitChunks()
 
 module.exports = merge(
   environment.toWebpackConfig(),
   {
     mode: 'production',
     optimization: {
+      runtimeChunk: {
+        name: 'manifest',
+      },
       splitChunks: {
         chunks: 'all',
       }
@@ -23,11 +23,6 @@ module.exports = merge(
     stats: {
       entrypoints: false,
       children: false
-    },
-    resolve: {
-      alias: {
-       'jquery': path.resolve(__dirname,'../','../', 'node_modules/jquery/dist/jquery.js')
-      }
     },
     plugins: [
       new webpack.ProvidePlugin({ $: "jquery", jQuery: "jquery" }),
