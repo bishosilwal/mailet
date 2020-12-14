@@ -58,12 +58,12 @@ function subscribeChannel(mailAddress){
 function emailReducer(state = initialState, action) {
   switch (action.type) {
     case 'EMAIL_RECEIVED':
-      var mail = state.emails.find(m => m.from == action.email.from);
+      var mail = state.emailReducer.emails.find(m => m.from == action.email.from);
       if(typeof(mail) == 'undefined') {
         return {
           ...state,
           emails: [
-            ...state.emails,
+            ...state.emailReducer.emails,
             {
               from: action.email.from,
               messages: [action.email]
@@ -74,7 +74,7 @@ function emailReducer(state = initialState, action) {
         return {
           ...state,
           emails: [
-            ...state.emails.filter(m => m.from != action.email.from),
+            ...state.emailReducer.emails.filter(m => m.from != action.email.from),
             {
               from: action.email.from,
               messages: [
@@ -115,7 +115,7 @@ function emailReducer(state = initialState, action) {
       }
 
     case 'EMAIL_SENT':
-      var mail = state.emails.find(m => m.from == action.value.to);
+      var mail = state.emailReducer.emails.find(m => m.from == action.value.to);
       if(mail){
         mail.messages = [
           ...mail.messages,
@@ -124,7 +124,7 @@ function emailReducer(state = initialState, action) {
         return {
           ...state,
           emails: [
-            ...state.emails.filter(m=> m.from != action.value.to),
+            ...state.emailReducer.emails.filter(m=> m.from != action.value.to),
             mail
           ]
         }
