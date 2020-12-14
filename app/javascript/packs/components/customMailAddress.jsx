@@ -6,6 +6,7 @@ import {connect, Provider} from "react-redux";
 import $ from 'jquery';
 import toastr from 'toastr';
 window.toastr = toastr;
+import '../store/configureStore'
 
 const token = $("meta[name='csrf-token']").attr('content');
 

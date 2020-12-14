@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { PersistGate } from 'redux-persist/integration/react';
 import {Provider} from "react-redux";
 import EmailMessageCreator from "./emailMessageCreator";
+import '../store/configureStore'
 
 class MailSender extends Component {
   render() {

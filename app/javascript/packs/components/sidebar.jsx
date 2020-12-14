@@ -4,6 +4,7 @@ import $ from "jquery";
 import { PersistGate } from 'redux-persist/integration/react';
 import {connect, Provider} from 'react-redux';
 import axios from 'axios';
+import '../store/configureStore'
 
 const token = $("meta[name='csrf-token']").attr('content');
 
@@ -89,13 +90,15 @@ const mapDispatchToProps = dispatch => {
     newMailAddress: (address) => dispatch({type: 'TEMP_MAIL_ADDRESS_CREATE', value: address}),
   }
 }
-const Container = connect(mapStateToProps, mapDispatchToProps)(Sidebar);
 
-ReactDOM.render(
-  <Provider store={window.store}>
-    <PersistGate persistor={window.persistor}>
-      <Container />
-    </PersistGate>
-  </Provider>,
-  document.getElementById('sidebar')
-)
+document.addEventListener('DOMContentLoaded', () => {
+  const Container = connect(mapStateToProps, mapDispatchToProps)(Sidebar);
+  ReactDOM.render(
+    <Provider store={window.store}>
+      <PersistGate persistor={window.persistor}>
+        <Container />
+      </PersistGate>
+    </Provider>,
+    document.getElementById('sidebar')
+  )
+});

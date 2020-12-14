@@ -4,6 +4,8 @@ import { PersistGate } from 'redux-persist/integration/react';
 import {connect, Provider} from 'react-redux';
 import PulseLoader from "react-spinners/PulseLoader";
 import toastr from 'toastr';
+import '../store/configureStore';
+
 window.toastr = toastr;
 
 import Message from './message';

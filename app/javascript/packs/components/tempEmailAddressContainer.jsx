@@ -7,6 +7,7 @@ import $ from 'jquery';
 import toastr from 'toastr';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
+import '../store/configureStore'
 
 window.toastr = toastr;
 

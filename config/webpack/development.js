@@ -1,5 +1,54 @@
 process.env.NODE_ENV = process.env.NODE_ENV || 'development'
 
 const environment = require('./environment')
+const CompressionPlugin = require('compression-webpack-plugin');
+const zlib = require('zlib');
+var webpack = require('webpack')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-module.exports = environment.toWebpackConfig()
+const { merge } = require('webpack-merge')
+
+module.exports = merge(
+  environment.toWebpackConfig(),
+  {
+    mode: 'development',
+    optimization: {
+      runtimeChunk: {
+        name: 'manifest',
+      },
+      splitChunks: {
+        chunks: 'all',
+      }
+    },
+    stats: {
+      entrypoints: false,
+      children: false
+    },
+    plugins: [
+      new webpack.ProvidePlugin({ $: "jquery", jQuery: "jquery" }),
+      new webpack.DefinePlugin({
+        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+        $: "jquery",
+        jQuery: "jquery"
+      }),
+      new MiniCssExtractPlugin(),
+      new CompressionPlugin({
+        filename: '[path].gz[query]',
+        algorithm: 'gzip',
+        test: /\.js$|\.jsx$|\.css$|\.html$/,
+        threshold: 10240,
+        minRatio: 0.8,
+      }),
+      new CompressionPlugin({
+        filename: '[path].br[query]',
+        algorithm: 'brotliCompress',
+        test: /\.(js|jsx|css|html|svg)$/,
+        compressionOptions: {
+          level: 11,
+        },
+        threshold: 10240,
+        minRatio: 0.8,
+      }),
+    ]
+  }
+)
