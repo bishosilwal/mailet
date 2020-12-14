@@ -8,7 +8,7 @@ set :branch, "master"
 
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, "/var/www/mailet.in/"
-set :deploy_stage, "production"
+set :deploy_stage, "cap-setup"
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
 

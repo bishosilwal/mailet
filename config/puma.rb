@@ -20,13 +20,13 @@ app_dir = File.expand_path("../..", __FILE__)
 shared_dir = "/var/www/mailet.in/shared"
 #
 # # Set up socket location
-bind "unix://#{app_dir}/tmp/sockets/puma.sock"
+bind "unix://#{shared_dir}/tmp/sockets/puma.sock"
 #
 # # Specifies the `pidfile` that Puma will use.
-pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
+pidfile ENV.fetch("PIDFILE") { "#{shared_dir}/tmp/pids/server.pid" }
 #
 # # Set master PID and state locations
-state_path "#{app_dir}/tmp/pids/puma.state"
+state_path "#{shared_dir}/tmp/pids/puma.state"
 #
 # # Logging
 stdout_redirect "#{shared_dir}/log/puma.stdout.log", "#{shared_dir}/log/puma.stderr.log", true
