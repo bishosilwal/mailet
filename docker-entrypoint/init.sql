@@ -1,0 +1,1 @@
+CREATE USER mailet SUPERUSER;
