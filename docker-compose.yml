@@ -1,6 +1,15 @@
 version: '3.4'
 
 services:
+  database:
+    image: postgres:12.1
+    restart: always
+    volumes:
+      - ./db_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=mail_generate_development
+    ports:
+      - "5432:5432"
   web:
     build: .
     depends_on:
@@ -12,15 +21,11 @@ services:
     environment:
       RAILS_ENV: development
       DATABASE_NAME: mail_generate_development
-      DATABASE_USER: mailet
+      DATABASE_USER: postgres
       DATABASE_PASSWORD:
       DATABASE_HOST: database
       BUNDLER_VERSION: 2.0.2
-  database:
-    image: postgres:12.1
-    volumes:
-      - ./db_data:/var/lib/postgresql/data
-      - ./init.sql:/docker-entrypoint/init.sql
+
 #  redis:
 #    image: redis:5.0.7
 volumes:
