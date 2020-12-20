@@ -5,15 +5,37 @@ services:
     image: postgres:12.1
     restart: always
     volumes:
-      - ./db_data:/var/lib/postgresql/data
+      - postgres:/var/lib/postgresql/data
     environment:
       - POSTGRES_DB=mail_generate_development
     ports:
       - "5432:5432"
+  redis:
+    image: redis:6.0
+    command: redis-server
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis:/data
+  worker:
+    build: .
+    command: bundle exec rake resque:work  QUEUE=*
+    environment:
+      - RAILS_ENV=development
+      - DATABASE_NAME=mail_generate_development
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=
+      - DATABASE_HOST=database
+    volumes:
+      - .:/mail-app
+    depends_on:
+      - database
+      - redis
   web:
     build: .
     depends_on:
       - database
+      - redis
     ports:
       - "5000:3000"
     volumes:
@@ -26,7 +48,6 @@ services:
       DATABASE_HOST: database
       BUNDLER_VERSION: 2.0.2
 
-#  redis:
-#    image: redis:5.0.7
 volumes:
-  db_data:
+  postgres:
+  redis:
