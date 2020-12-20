@@ -17,20 +17,6 @@ services:
       - "6379:6379"
     volumes:
       - redis:/data
-  worker:
-    build: .
-    command: bundle exec rake resque:work  QUEUE=*
-    environment:
-      - RAILS_ENV=development
-      - DATABASE_NAME=mail_generate_development
-      - DATABASE_USER=postgres
-      - DATABASE_PASSWORD=
-      - DATABASE_HOST=database
-    volumes:
-      - .:/mail-app
-    depends_on:
-      - database
-      - redis
   web:
     build: .
     depends_on:
@@ -47,7 +33,6 @@ services:
       DATABASE_PASSWORD:
       DATABASE_HOST: database
       BUNDLER_VERSION: 2.0.2
-
 volumes:
   postgres:
   redis:
