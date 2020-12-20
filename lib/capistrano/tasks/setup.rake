@@ -53,6 +53,7 @@ namespace "deploy" do
       upload! 'config/database.yml', "#{shared_path}/config/database.yml"
       upload! 'config/secret.yml', "#{shared_path}/config/secret.yml"
       within shared_path do
+        execute "cd #{shared_path} && mkdir -p pdfs"
         execute "cd #{shared_path} && mkdir -p log"
         execute "cd #{shared_path} && touch log/puma.stdout.log"
         execute "cd #{shared_path} && touch log/puma.stderr.log"
