@@ -2,11 +2,14 @@
 import $ from 'jquery';
 window.$ = $;
 window.jQuery = $;
-import 'summernote/dist/summernote';
-import 'codemirror/lib/codemirror';
+// import 'codemirror/lib/codemirror';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import 'bootstrap/js/dist/dropdown';
+import 'bootstrap/js/dist/modal';
+import 'bootstrap/js/dist/tooltip';
+import '../shared/summernote/summernote.css';
+import '../shared/summernote/summernote.js';
 
 const randomUid = () => Math.floor(Math.random() * 100000);
 
