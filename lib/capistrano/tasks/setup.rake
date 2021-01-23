@@ -18,6 +18,9 @@ namespace "deploy" do
   desc "Restart all the application process"
   task :restart_all_process do
     on roles(:all) do |host|
+      within release_path do
+        execute :rake, 'sitemap:refresh'
+      end
       within shared_path do
         execute "cd #{shared_path} && ./mailet-tmux-server-setup.sh"
       end
