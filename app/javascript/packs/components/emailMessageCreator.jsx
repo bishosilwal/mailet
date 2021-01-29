@@ -130,10 +130,10 @@ class EmailMessageCreator extends Component {
                 initialValue={newMessage.body}
                 inline={false}
                 onEditorChange={this.handleEditorChange}
-                plugins=''
+                plugins="link image code"
                 tagName='div'
                 textareaName=''
-                toolbar=''
+                toolbar="undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | link image | code"
                 value={newMessage.body}
               />
 
