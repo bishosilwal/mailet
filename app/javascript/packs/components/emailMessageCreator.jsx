@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import axios from "axios";
 import $ from 'jquery';
 import toastr from 'toastr';
+import { Editor } from '@tinymce/tinymce-react';
 window.toastr = toastr;
 
 class EmailMessageCreator extends Component {
@@ -28,7 +29,7 @@ class EmailMessageCreator extends Component {
       e.preventDefault();
       return;
     }
-    if(from.length != 0 && !createNewMessage) {
+    if(from && from.length != 0 && !createNewMessage) {
       newMessage['to'] = from;
     }
 
@@ -62,7 +63,6 @@ class EmailMessageCreator extends Component {
         state.newMessage = {subject: '', body: '', to: ''};
         state.sendDisable = false;
         that.setState(state);
-        that.summernote.reset();
         that.props.messageSent(res.data.sent_message);
       })
   }
@@ -79,7 +79,7 @@ class EmailMessageCreator extends Component {
     this.setState({newMessage: newMessage})
   }
 
-  summerNoteChange = value => {
+  handleEditorChange = value => {
     var newMessage = this.state.newMessage;
     newMessage['body'] = value;
     this.setState({newMessage: newMessage});
@@ -121,6 +121,21 @@ class EmailMessageCreator extends Component {
           </div>
           <div className='col-12 p-3 pt-0'>
             <div className="form-group">
+              <Editor
+                apiKey='wcflz2um9582bx1keqhifcb5il65xp6mc1m5m7gne46zylq9'
+                cloudChannel='5-stable'
+                disabled={false}
+                id='uuid'
+                init= {{  }}
+                initialValue={newMessage.body}
+                inline={false}
+                onEditorChange={this.handleEditorChange}
+                plugins=''
+                tagName='div'
+                textareaName=''
+                toolbar=''
+                value={newMessage.body}
+              />
 
             </div>
           </div>
