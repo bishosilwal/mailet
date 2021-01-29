@@ -14,13 +14,17 @@ port        ENV.fetch("PORT") { 3000 }
 
 # Specifies the `environment` that Puma will run in.
 #
-environment ENV.fetch("RAILS_ENV") { "production" }
+environment ENV.fetch("RAILS_ENV") { "development" }
 
 app_dir = File.expand_path("../..", __FILE__)
-shared_dir = "/var/www/mailet.in/shared"
-#
-# # Set up socket location
-bind "unix://#{shared_dir}/tmp/sockets/puma.sock"
+  if Rails.env.production?
+   shared_dir = "/var/www/mailet.in/shared"
+   #
+   # # Set up socket location
+   bind "unix://#{shared_dir}/tmp/sockets/puma.sock"
+  else
+   shared_dir = app_dir + '/shared'
+  end
 #
 # # Specifies the `pidfile` that Puma will use.
 pidfile ENV.fetch("PIDFILE") { "#{shared_dir}/tmp/pids/server.pid" }
@@ -50,7 +54,12 @@ stdout_redirect "#{shared_dir}/log/puma.stdout.log", "#{shared_dir}/log/puma.std
 on_worker_boot do
  require "active_record"
  ActiveRecord::Base.connection.disconnect! rescue ActiveRecord::ConnectionNotEstablished
- ActiveRecord::Base.establish_connection(YAML.load_file("#{shared_dir}/config/database.yml")[rails_env])
+ if Rails.production?
+   ActiveRecord::Base.establish_connection(YAML.load_file("#{shared_dir}/config/database.yml")[rails_env])
+ else
+   ActiveRecord::Base.establish_connection(YAML.load_file("#{app_dir}/config/database.yml")[rails_env])
+ end
+
 end
 # # Allow puma to be restarted by `rails restart` command.
 plugin :tmp_restart
