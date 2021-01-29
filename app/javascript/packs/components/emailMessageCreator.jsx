@@ -5,8 +5,6 @@ import $ from 'jquery';
 import toastr from 'toastr';
 window.toastr = toastr;
 
-import ReactSummernote from './summerNote';
-
 class EmailMessageCreator extends Component {
   state = {
     from: this.props.createMail ? this.props.tempMail : this.props.from,
@@ -123,29 +121,7 @@ class EmailMessageCreator extends Component {
           </div>
           <div className='col-12 p-3 pt-0'>
             <div className="form-group">
-              <ReactSummernote
-                value="Hi there"
-                options={{
-                  height: 250,
-                  dialogsInBody: true,
-                  toolbar: [
-                    ['style', ['style']],
-                    ['font', ['bold', 'underline', 'clear']],
-                    ['fontname', ['fontname']],
-                    ['color', ['color']],
-                    ['para', ['ul', 'ol', 'paragraph']],
-                    ['table', ['table']],
-                    ['insert', ['link', 'picture']],
-                    ['view', ['codeview']],
-                  ],
-                  codemirror: { // codemirror options
-                    theme: 'monokai'
-                  }
-                }}
-                ref={(summernote) => {this.summernote = summernote}}
-                onChange={this.summerNoteChange}
-                onChangeCodeview={this.summerNoteChange}
-              />
+
             </div>
           </div>
           <div className='col-12 '>

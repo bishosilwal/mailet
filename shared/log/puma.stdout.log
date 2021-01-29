@@ -3871,3 +3871,536 @@ puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
 puma (3.12.6) lib/puma/server.rb:476:in `process_client'
 puma (3.12.6) lib/puma/server.rb:334:in `block in run'
 puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/" for ::1 at 2021-01-29 14:37:29 +0545
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 6.3ms | Allocations: 3031)
+  Rendered shared/_header.html.erb (Duration: 0.0ms | Allocations: 6)
+  Rendered shared/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 40ms (Views: 39.0ms | ActiveRecord: 0.0ms | Allocations: 25037)
+
+
+Started POST "/mail_address" for ::1 at 2021-01-29 14:37:30 +0545
+Processing by MailAddressController#create as JSON
+  Parameters: {"mail_address"=>"m98c6jp1@mailet.in"}
+  [1m[36mMailAddress Load (0.3ms)[0m  [1m[34mSELECT "mail_addresses".* FROM "mail_addresses" WHERE "mail_addresses"."mail" = $1 LIMIT $2[0m  [["mail", "m98c6jp1@mailet.in"], ["LIMIT", 1]]
+  ↳ app/controllers/mail_address_controller.rb:33:in `check_address_session'
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.3ms | Allocations: 1444)
+
+
+Started GET "/cable" for ::1 at 2021-01-29 14:37:30 +0545
+Started GET "/cable/" [WebSocket] for ::1 at 2021-01-29 14:37:30 +0545
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+EmailChannel is transmitting the subscription confirmation
+EmailChannel is streaming from mail_receiver_m98c6jp1@mailet.in
+Started GET "/sw.js" for ::1 at 2021-01-29 14:37:32 +0545
+  
+ActionController::RoutingError (No route matches [GET] "/sw.js"):
+  
+actionpack (6.0.3.4) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.1.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.1.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.4) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.4) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.4) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+webpacker (5.2.1) lib/webpacker/dev_server_proxy.rb:25:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.3.4) lib/rails/engine.rb:527:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/mail/send" for ::1 at 2021-01-29 14:37:38 +0545
+Processing by MailSenderController#new as HTML
+  Rendering mail_sender/new.html.erb within layouts/application
+  Rendered mail_sender/new.html.erb within layouts/application (Duration: 3.3ms | Allocations: 2869)
+  Rendered shared/_header.html.erb (Duration: 0.0ms | Allocations: 6)
+  Rendered shared/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 26ms (Views: 24.3ms | ActiveRecord: 0.0ms | Allocations: 24873)
+
+
+Finished "/cable/" [WebSocket] for ::1 at 2021-01-29 14:37:38 +0545
+EmailChannel stopped streaming from mail_receiver_m98c6jp1@mailet.in
+Started GET "/sw.js" for ::1 at 2021-01-29 14:37:41 +0545
+  
+ActionController::RoutingError (No route matches [GET] "/sw.js"):
+  
+actionpack (6.0.3.4) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.1.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.1.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.4) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.4) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.4) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+webpacker (5.2.1) lib/webpacker/dev_server_proxy.rb:25:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.3.4) lib/rails/engine.rb:527:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/mail/send" for ::1 at 2021-01-29 14:47:13 +0545
+Processing by MailSenderController#new as HTML
+  Rendering mail_sender/new.html.erb within layouts/application
+  Rendered mail_sender/new.html.erb within layouts/application (Duration: 10.9ms | Allocations: 2548)
+  Rendered shared/_header.html.erb (Duration: 0.1ms | Allocations: 6)
+  Rendered shared/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 72ms (Views: 66.0ms | ActiveRecord: 0.0ms | Allocations: 24320)
+
+
+Started POST "/mail_address" for ::1 at 2021-01-29 14:47:13 +0545
+Processing by MailAddressController#create as JSON
+  Parameters: {"mail_address"=>"m98c6jp1@mailet.in"}
+  [1m[36mMailAddress Load (0.5ms)[0m  [1m[34mSELECT "mail_addresses".* FROM "mail_addresses" WHERE "mail_addresses"."mail" = $1 LIMIT $2[0m  [["mail", "m98c6jp1@mailet.in"], ["LIMIT", 1]]
+  ↳ app/controllers/mail_address_controller.rb:33:in `check_address_session'
+Completed 200 OK in 7ms (Views: 0.8ms | ActiveRecord: 0.7ms | Allocations: 1557)
+
+
+Started GET "/cable" for ::1 at 2021-01-29 14:47:13 +0545
+Started GET "/cable/" [WebSocket] for ::1 at 2021-01-29 14:47:13 +0545
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+EmailChannel is transmitting the subscription confirmation
+EmailChannel is streaming from mail_receiver_m98c6jp1@mailet.in
+Started GET "/sw.js" for ::1 at 2021-01-29 14:47:14 +0545
+  
+ActionController::RoutingError (No route matches [GET] "/sw.js"):
+  
+actionpack (6.0.3.4) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.1.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.1.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.4) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.4) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.4) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+webpacker (5.2.1) lib/webpacker/dev_server_proxy.rb:25:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.3.4) lib/rails/engine.rb:527:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/mail/send" for ::1 at 2021-01-29 14:47:19 +0545
+Processing by MailSenderController#new as HTML
+  Rendering mail_sender/new.html.erb within layouts/application
+  Rendered mail_sender/new.html.erb within layouts/application (Duration: 3.0ms | Allocations: 2550)
+  Rendered shared/_header.html.erb (Duration: 0.0ms | Allocations: 6)
+  Rendered shared/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 24ms (Views: 22.9ms | ActiveRecord: 0.0ms | Allocations: 24322)
+
+
+Finished "/cable/" [WebSocket] for ::1 at 2021-01-29 14:47:19 +0545
+EmailChannel stopped streaming from mail_receiver_m98c6jp1@mailet.in
+Started POST "/mail_address" for ::1 at 2021-01-29 14:47:20 +0545
+Processing by MailAddressController#create as JSON
+  Parameters: {"mail_address"=>"m98c6jp1@mailet.in"}
+  [1m[36mMailAddress Load (0.3ms)[0m  [1m[34mSELECT "mail_addresses".* FROM "mail_addresses" WHERE "mail_addresses"."mail" = $1 LIMIT $2[0m  [["mail", "m98c6jp1@mailet.in"], ["LIMIT", 1]]
+  ↳ app/controllers/mail_address_controller.rb:33:in `check_address_session'
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.3ms | Allocations: 1463)
+
+
+Started GET "/cable" for ::1 at 2021-01-29 14:47:20 +0545
+Started GET "/cable/" [WebSocket] for ::1 at 2021-01-29 14:47:20 +0545
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+EmailChannel is transmitting the subscription confirmation
+EmailChannel is streaming from mail_receiver_m98c6jp1@mailet.in
+Started GET "/sw.js" for ::1 at 2021-01-29 14:47:21 +0545
+  
+ActionController::RoutingError (No route matches [GET] "/sw.js"):
+  
+actionpack (6.0.3.4) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.1.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.1.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.4) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.4) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.4) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+webpacker (5.2.1) lib/webpacker/dev_server_proxy.rb:25:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.3.4) lib/rails/engine.rb:527:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/mail/send" for ::1 at 2021-01-29 14:47:43 +0545
+Processing by MailSenderController#new as HTML
+  Rendering mail_sender/new.html.erb within layouts/application
+  Rendered mail_sender/new.html.erb within layouts/application (Duration: 4.6ms | Allocations: 2639)
+  Rendered shared/_header.html.erb (Duration: 0.8ms | Allocations: 103)
+  Rendered shared/_footer.html.erb (Duration: 0.7ms | Allocations: 140)
+Completed 200 OK in 33ms (Views: 31.7ms | ActiveRecord: 0.0ms | Allocations: 26093)
+
+
+Finished "/cable/" [WebSocket] for ::1 at 2021-01-29 14:47:43 +0545
+EmailChannel stopped streaming from mail_receiver_m98c6jp1@mailet.in
+Started POST "/mail_address" for ::1 at 2021-01-29 14:47:43 +0545
+Processing by MailAddressController#create as JSON
+  Parameters: {"mail_address"=>"m98c6jp1@mailet.in"}
+  [1m[36mMailAddress Load (1.5ms)[0m  [1m[34mSELECT "mail_addresses".* FROM "mail_addresses" WHERE "mail_addresses"."mail" = $1 LIMIT $2[0m  [["mail", "m98c6jp1@mailet.in"], ["LIMIT", 1]]
+  ↳ app/controllers/mail_address_controller.rb:33:in `check_address_session'
+Completed 200 OK in 5ms (Views: 0.4ms | ActiveRecord: 1.5ms | Allocations: 1444)
+
+
+Started GET "/cable" for ::1 at 2021-01-29 14:47:44 +0545
+Started GET "/cable/" [WebSocket] for ::1 at 2021-01-29 14:47:44 +0545
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+EmailChannel is transmitting the subscription confirmation
+EmailChannel is streaming from mail_receiver_m98c6jp1@mailet.in
+Started GET "/sw.js" for ::1 at 2021-01-29 14:47:45 +0545
+  
+ActionController::RoutingError (No route matches [GET] "/sw.js"):
+  
+actionpack (6.0.3.4) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.1.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.1.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.4) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.4) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.4) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+webpacker (5.2.1) lib/webpacker/dev_server_proxy.rb:25:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.3.4) lib/rails/engine.rb:527:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/" for ::1 at 2021-01-29 14:47:52 +0545
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 3.3ms | Allocations: 2817)
+  Rendered shared/_header.html.erb (Duration: 0.0ms | Allocations: 6)
+  Rendered shared/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 29ms (Views: 28.0ms | ActiveRecord: 0.0ms | Allocations: 25168)
+
+
+Finished "/cable/" [WebSocket] for ::1 at 2021-01-29 14:47:52 +0545
+EmailChannel stopped streaming from mail_receiver_m98c6jp1@mailet.in
+Started POST "/mail_address" for ::1 at 2021-01-29 14:47:53 +0545
+Processing by MailAddressController#create as JSON
+  Parameters: {"mail_address"=>"m98c6jp1@mailet.in"}
+  [1m[36mMailAddress Load (0.3ms)[0m  [1m[34mSELECT "mail_addresses".* FROM "mail_addresses" WHERE "mail_addresses"."mail" = $1 LIMIT $2[0m  [["mail", "m98c6jp1@mailet.in"], ["LIMIT", 1]]
+  ↳ app/controllers/mail_address_controller.rb:33:in `check_address_session'
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 0.3ms | Allocations: 1442)
+
+
+Started GET "/cable" for ::1 at 2021-01-29 14:47:53 +0545
+Started GET "/cable/" [WebSocket] for ::1 at 2021-01-29 14:47:53 +0545
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+EmailChannel is transmitting the subscription confirmation
+EmailChannel is streaming from mail_receiver_m98c6jp1@mailet.in
+Started DELETE "/mail_address/" for ::1 at 2021-01-29 14:47:54 +0545
+Processing by MailAddressController#destroy as JSON
+  Parameters: {"mail"=>{"id"=>1258, "mail"=>"m98c6jp1@mailet.in", "created_at"=>"2021-01-29T08:33:29.691Z", "updated_at"=>"2021-01-29T08:33:29.691Z"}, "mail_address"=>{"mail"=>{"id"=>1258, "mail"=>"m98c6jp1@mailet.in", "created_at"=>"2021-01-29T08:33:29.691Z", "updated_at"=>"2021-01-29T08:33:29.691Z"}}}
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/mail_address.rb:28:in `generate_mail'
+  [1m[36mMailAddress Load (0.5ms)[0m  [1m[34mSELECT "mail_addresses".* FROM "mail_addresses" WHERE "mail_addresses"."mail" = $1 LIMIT $2[0m  [["mail", "jlptdv65@mailet.in"], ["LIMIT", 1]]
+  ↳ app/models/mail_address.rb:28:in `generate_mail'
+  [1m[36mMailAddress Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "mail_addresses" WHERE "mail_addresses"."mail" = $1 LIMIT $2[0m  [["mail", "jlptdv65@mailet.in"], ["LIMIT", 1]]
+  ↳ app/models/mail_address.rb:13:in `random'
+  [1m[36mMailAddress Create (5.7ms)[0m  [1m[32mINSERT INTO "mail_addresses" ("mail", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["mail", "jlptdv65@mailet.in"], ["created_at", "2021-01-29 09:02:54.602267"], ["updated_at", "2021-01-29 09:02:54.602267"]]
+  ↳ app/models/mail_address.rb:13:in `random'
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/mail_address.rb:13:in `random'
+  [1m[36mMailAddress Load (0.3ms)[0m  [1m[34mSELECT "mail_addresses".* FROM "mail_addresses" WHERE "mail_addresses"."id" = $1 LIMIT $2[0m  [["id", 1258], ["LIMIT", 1]]
+  ↳ app/models/mail_address.rb:14:in `random'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/mail_address.rb:14:in `random'
+  [1m[36mMailAddress Destroy (2.2ms)[0m  [1m[31mDELETE FROM "mail_addresses" WHERE "mail_addresses"."id" = $1[0m  [["id", 1258]]
+  ↳ app/models/mail_address.rb:14:in `random'
+  [1m[35m (4.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/mail_address.rb:14:in `random'
+Completed 200 OK in 30ms (Views: 0.4ms | ActiveRecord: 15.7ms | Allocations: 7942)
+
+
+Unsubscribing from channel: {"channel":"EmailChannel","mail_address":"m98c6jp1@mailet.in"}
+EmailChannel stopped streaming from mail_receiver_m98c6jp1@mailet.in
+EmailChannel is transmitting the subscription confirmation
+EmailChannel is streaming from mail_receiver_jlptdv65@mailet.in
+Started GET "/sw.js" for ::1 at 2021-01-29 14:47:54 +0545
+  
+ActionController::RoutingError (No route matches [GET] "/sw.js"):
+  
+actionpack (6.0.3.4) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.1.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.1.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.4) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.4) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.4) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+webpacker (5.2.1) lib/webpacker/dev_server_proxy.rb:25:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.3.4) lib/rails/engine.rb:527:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/mail_address/change" for ::1 at 2021-01-29 14:47:57 +0545
+Processing by MailAddressController#change as HTML
+  Rendering mail_address/change.html.erb within layouts/application
+  Rendered mail_address/change.html.erb within layouts/application (Duration: 2.7ms | Allocations: 1745)
+  Rendered shared/_header.html.erb (Duration: 0.0ms | Allocations: 6)
+  Rendered shared/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 22ms (Views: 21.0ms | ActiveRecord: 0.0ms | Allocations: 24101)
+
+
+Finished "/cable/" [WebSocket] for ::1 at 2021-01-29 14:47:58 +0545
+EmailChannel stopped streaming from mail_receiver_jlptdv65@mailet.in
+Started POST "/mail_address" for ::1 at 2021-01-29 14:47:58 +0545
+Processing by MailAddressController#create as JSON
+  Parameters: {"mail_address"=>"jlptdv65@mailet.in"}
+  [1m[36mMailAddress Load (0.8ms)[0m  [1m[34mSELECT "mail_addresses".* FROM "mail_addresses" WHERE "mail_addresses"."mail" = $1 LIMIT $2[0m  [["mail", "jlptdv65@mailet.in"], ["LIMIT", 1]]
+  ↳ app/controllers/mail_address_controller.rb:33:in `check_address_session'
+Completed 200 OK in 5ms (Views: 0.3ms | ActiveRecord: 1.1ms | Allocations: 1548)
+
+
+Started GET "/cable" for ::1 at 2021-01-29 14:47:58 +0545
+Started GET "/cable/" [WebSocket] for ::1 at 2021-01-29 14:47:58 +0545
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+EmailChannel is transmitting the subscription confirmation
+EmailChannel is streaming from mail_receiver_jlptdv65@mailet.in
+Started GET "/video_chat/new" for ::1 at 2021-01-29 14:47:59 +0545
+Processing by VideoChatController#new as HTML
+  Rendering video_chat/new.html.erb within layouts/application
+  Rendered video_chat/new.html.erb within layouts/application (Duration: 3.3ms | Allocations: 2674)
+  Rendered shared/_header.html.erb (Duration: 0.0ms | Allocations: 6)
+  Rendered shared/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 28ms (Views: 26.6ms | ActiveRecord: 0.0ms | Allocations: 25015)
+
+
+Finished "/cable/" [WebSocket] for ::1 at 2021-01-29 14:47:59 +0545
+EmailChannel stopped streaming from mail_receiver_jlptdv65@mailet.in
+Started GET "/sw.js" for ::1 at 2021-01-29 14:48:00 +0545
+  
+ActionController::RoutingError (No route matches [GET] "/sw.js"):
+  
+actionpack (6.0.3.4) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.1.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.1.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.4) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.4) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.4) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+webpacker (5.2.1) lib/webpacker/dev_server_proxy.rb:25:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.3.4) lib/rails/engine.rb:527:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started POST "/mail_address" for ::1 at 2021-01-29 14:48:00 +0545
+Processing by MailAddressController#create as JSON
+  Parameters: {"mail_address"=>"jlptdv65@mailet.in"}
+  [1m[36mMailAddress Load (0.2ms)[0m  [1m[34mSELECT "mail_addresses".* FROM "mail_addresses" WHERE "mail_addresses"."mail" = $1 LIMIT $2[0m  [["mail", "jlptdv65@mailet.in"], ["LIMIT", 1]]
+  ↳ app/controllers/mail_address_controller.rb:33:in `check_address_session'
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 0.2ms | Allocations: 1442)
+
+
+Started GET "/cable" for ::1 at 2021-01-29 14:48:00 +0545
+Started GET "/cable/" [WebSocket] for ::1 at 2021-01-29 14:48:00 +0545
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+EmailChannel is transmitting the subscription confirmation
+EmailChannel is streaming from mail_receiver_jlptdv65@mailet.in
+Started GET "/sw.js" for ::1 at 2021-01-29 14:48:02 +0545
+  
+ActionController::RoutingError (No route matches [GET] "/sw.js"):
+  
+actionpack (6.0.3.4) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.1.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.1.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.4) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.4) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.4) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+webpacker (5.2.1) lib/webpacker/dev_server_proxy.rb:25:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.3.4) lib/rails/engine.rb:527:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/mail/send" for ::1 at 2021-01-29 14:48:10 +0545
+Processing by MailSenderController#new as HTML
+  Rendering mail_sender/new.html.erb within layouts/application
+  Rendered mail_sender/new.html.erb within layouts/application (Duration: 2.7ms | Allocations: 2548)
+  Rendered shared/_header.html.erb (Duration: 0.0ms | Allocations: 6)
+  Rendered shared/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 28ms (Views: 26.8ms | ActiveRecord: 0.0ms | Allocations: 24318)
+
+
+Finished "/cable/" [WebSocket] for ::1 at 2021-01-29 14:48:10 +0545
+EmailChannel stopped streaming from mail_receiver_jlptdv65@mailet.in
+Started POST "/mail_address" for ::1 at 2021-01-29 14:48:11 +0545
+Processing by MailAddressController#create as JSON
+  Parameters: {"mail_address"=>"jlptdv65@mailet.in"}
+  [1m[36mMailAddress Load (0.3ms)[0m  [1m[34mSELECT "mail_addresses".* FROM "mail_addresses" WHERE "mail_addresses"."mail" = $1 LIMIT $2[0m  [["mail", "jlptdv65@mailet.in"], ["LIMIT", 1]]
+  ↳ app/controllers/mail_address_controller.rb:33:in `check_address_session'
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.3ms | Allocations: 1454)
+
+
+Started GET "/cable" for ::1 at 2021-01-29 14:48:11 +0545
+Started GET "/cable/" [WebSocket] for ::1 at 2021-01-29 14:48:11 +0545
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+EmailChannel is transmitting the subscription confirmation
+EmailChannel is streaming from mail_receiver_jlptdv65@mailet.in
+Started GET "/sw.js" for ::1 at 2021-01-29 14:48:13 +0545
+  
+ActionController::RoutingError (No route matches [GET] "/sw.js"):
+  
+actionpack (6.0.3.4) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.1.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.1.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.4) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.4) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.4) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+webpacker (5.2.1) lib/webpacker/dev_server_proxy.rb:25:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.3.4) lib/rails/engine.rb:527:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
