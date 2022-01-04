@@ -16,21 +16,23 @@ port        ENV.fetch("PORT") { 3000 }
 #
 environment ENV.fetch("RAILS_ENV") { "production" }
 
-app_dir = File.expand_path("../..", __FILE__)
-shared_dir = "/var/www/mailet.in/shared"
+  if Rails.env.production?
+   app_dir = File.expand_path("../..", __FILE__)
+   shared_dir = "/var/www/mailet.in/shared"
 #
 # # Set up socket location
-bind "unix://#{shared_dir}/tmp/sockets/puma.sock"
+   bind "unix://#{shared_dir}/tmp/sockets/puma.sock"
 #
 # # Specifies the `pidfile` that Puma will use.
-pidfile ENV.fetch("PIDFILE") { "#{shared_dir}/tmp/pids/server.pid" }
+   pidfile ENV.fetch("PIDFILE") { "#{shared_dir}/tmp/pids/server.pid" }
 #
 # # Set master PID and state locations
-state_path "#{shared_dir}/tmp/pids/puma.state"
+   state_path "#{shared_dir}/tmp/pids/puma.state"
 #
 # # Logging
-stdout_redirect "#{shared_dir}/log/puma.stdout.log", "#{shared_dir}/log/puma.stderr.log", true
+   stdout_redirect "#{shared_dir}/log/puma.stdout.log", "#{shared_dir}/log/puma.stderr.log", true
 
+  end
 # activate_control_app
 # Specifies the number of `workers` to boot in clustered mode.
 # Workers are forked web server processes. If using threads and workers together
