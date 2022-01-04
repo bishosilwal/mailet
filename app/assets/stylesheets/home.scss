@@ -73,6 +73,12 @@ body {
   color: $light;
 }
 
+.nav-pills {
+  a {
+    width: 100%;
+  }
+}
+
 input.form-control, textarea.form-control, .btn{
   box-shadow: none !important;
   &:focus{

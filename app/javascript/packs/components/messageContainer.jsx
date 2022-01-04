@@ -31,7 +31,7 @@ class MessageContainer extends Component{
   renderContent() {
     var { emails, from, createNewMessage } = this.state;
     const emailAddressList = (
-      <div className="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+      <div className="nav d-flex flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
         {emails.map(m =>
           <a className="nav-link border border-secondary rounded-0 mb-2" id="v-pills-message-tab" data-toggle="pill" href="#v-pills-message" role="tab"
              aria-controls="v-pills-message" aria-selected={from == m.from ? 'true' : 'false'} data-from={m.from} onClick={this.messageClicked} key={m.from}>
