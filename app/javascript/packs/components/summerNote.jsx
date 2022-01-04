@@ -2,7 +2,6 @@
 import $ from 'jquery';
 window.$ = $;
 window.jQuery = $;
-import 'summernote/dist/summernote';
 import 'codemirror/lib/codemirror';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
