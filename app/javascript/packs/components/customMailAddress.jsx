@@ -85,8 +85,8 @@ class CustomMailAddress extends Component {
             </div>
           </div>
           <div className='col-md-7 col-sm-12'>
-            <div className='row text-right'>
-              <div className='col-md-10 mt-3 col-sm-12 text-right'>
+            <div className='row'>
+              <div className='col-md-10 mt-3 col-sm-12'>
                 <button className='btn btn-outline-primary' onClick={this.handleCustomMailSubmit}>Submit</button>
               </div>
             </div>

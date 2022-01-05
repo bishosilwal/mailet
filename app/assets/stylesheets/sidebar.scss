@@ -1,14 +1,5 @@
 @import './variables/_variables.scss';
 
-#sidebar {
-  .sidebar-sticky-top {
-    position: sticky;
-    top: 0;
-    position: -webkit-sticky;
-  }
-
-  .nav-link:hover, .nav-link.active {
-    background-color: $primary;
-    color: white;
-  }
+.sidebar nav {
+  background-color: $light-black !important;
 }

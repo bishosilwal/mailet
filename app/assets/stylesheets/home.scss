@@ -4,12 +4,15 @@
 @import './variables/_variables.scss';
 @import "bootstrap/scss/bootstrap.scss";
 @import "toastr/toastr.scss";
+@import '@trendmicro/react-sidenav/dist/react-sidenav.css';
+
 @import "./blog.scss";
 @import "./sidebar.scss";
 @import './video_chat.scss';
 
 body {
   min-height: 100vh;
+  background-color: #e2e0e0;
 }
 
 #main-app-body {

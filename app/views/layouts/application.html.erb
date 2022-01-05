@@ -32,13 +32,13 @@
   </head>
 
   <body class="container-fluid p-0">
+    <div id='sidebar'> </div>
     <%= render 'shared/header' %>
-    <div class="container-fluid row m-0 p-0">
-      <div id='sidebar' class="col-2 bg-light div-border"> </div>
-      <div class="col-10 app-body p-0">
+    <div class="container-fluid row m-0 p-0 pl-5">
+      <div class="col-12 app-body p-0">
         <div class="container-fluid p-0">
           <div id='main-app-email' class="container-fluid p-0"></div>
-          <div id='main-app-body' class="container-fluid p-0"></div>
+          <div id='main-app-body' class="col-9 col-sm-12 col-md-10 container-fluid p-0 offset-lg-2"></div>
           <%= yield %>
         </div>
         <div class="container blog">
