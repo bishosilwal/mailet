@@ -35,7 +35,7 @@ append :linked_files, "config/database.yml", "config/secret.yml"
 set :keep_releases, 5
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
-set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/pdfs}
 set :local_user, 'deploy'
 set :bundle_dir,     ""         # install into "system" gems
 set :bundle_flags,   "--quiet"  # no verbose output

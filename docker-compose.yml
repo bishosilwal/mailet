@@ -1,30 +1,39 @@
 version: '3.4'
 
 services:
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+  database:
+    image: postgres:12.1
+    restart: always
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=mail_generate_development
+    ports:
+      - "5432:5432"
+  redis:
+    image: redis:6.0
+    command: redis-server
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis:/data
+  web:
+    build: .
     depends_on:
       - database
       - redis
     ports:
-      - "5000:5000"
+      - "5000:3000"
     volumes:
       - .:/mail-app
-      - ./gem_cache:/usr/local/bundle/gems
-      - ./node_modules:/mail-app/node_modules
     environment:
       RAILS_ENV: development
-  database:
-    image: postgres:12.1
-    volumes:
-      - ./db_data:/var/lib/postgresql/data
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-  redis:
-    image: redis:5.0.7
-
+      RACK_ENV: development
+      DATABASE_NAME: mail_generate_development
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD:
+      DATABASE_HOST: database
+      BUNDLER_VERSION: 2.0.2
 volumes:
-  gem_cache:
-  db_data:
-  node_modules:
+  postgres:
+  redis:

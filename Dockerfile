@@ -1,45 +1,28 @@
-FROM ruby:2.5.1-alpine
-ENV BUNDLER_VERSION=2.0.2
+FROM ruby:2.5.1
 
-RUN apk add --update --no-cache \
-      binutils-gold \
-      build-base \
-      curl \
-      file \
-      g++ \
-      gcc \
-      git \
-      less \
-      libstdc++ \
-      libffi-dev \
-      libc-dev \
-      linux-headers \
-      libxml2-dev \
-      libxslt-dev \
-      libgcrypt-dev \
-      make \
-      netcat-openbsd \
-      nodejs \
-      openssl \
-      pkgconfig \
-      postgresql-dev \
-      python \
-      tzdata \
-      yarn
+RUN apt-get update && apt-get install apt-transport-https \
+    && apt-get remove -y cmdtest \
+    && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
+    && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
+    && apt update \
+    && apt install -y yarn \
+    && curl -sL https://deb.nodesource.com/setup_10.x | sh - \
+    && apt-get install -y nodejs
 
-RUN gem install bundler -v 2.0.2
-
-RUN mkdir /mail-app
 WORKDIR /mail-app
+
 COPY Gemfile Gemfile.lock ./
+RUN gem update --system --quiet && \
+  gem install  bundler -v '~> 2.1'
+
+ENV BUNDLER_VERSION 2.1
 RUN bundle check || bundle install
+
 COPY package.json yarn.lock ./
 RUN yarn install --check-files
-COPY . /mail-app
 
-EXPOSE 5000
+COPY . ./
 
-# Add a script to be executed every time the container starts.
-COPY entrypoint.sh /usr/bin/
-RUN chmod +x /usr/bin/entrypoint.sh
-ENTRYPOINT ["entrypoint.sh"]
+RUN chmod +x  ./docker-entrypoint/docker-entrypoint.sh
+
+ENTRYPOINT ["./docker-entrypoint/docker-entrypoint.sh"]
